@@ -66,21 +66,6 @@ Beim ersten Öffnen kompiliert Godot die C#-Assemblies. Falls Fehler auftreten:
 
 ## 📦 Addons & Plugins
 Alle benötigten **Godot-Addons** liegen im Repo unter `res://addons/` und sind bereits versioniert.  
-👉 Ihr müsst nichts separat installieren.
-
-### Git Plugin einrichten
-1. Godot starten und das Projekt öffnen.
-2. Gehe zu **Project → Version Control → Version Control Settings**.
-3. Wähle als **VCS-Anbieter** `GitPlugin`.
-4. Aktiviere **Mit VCS verbinden**.
-5. Trage die Remote-Logininformationen ein:
-    - **Nutzername** → GitHub-Benutzername oder Name
-    - **SSH-Schlüssel** → Pfad zum öffentlichen und privaten Schlüssel
-    - **SSH-Schlüsselpasswort** (falls gesetzt)
-6. **Anwenden** klicken.
-
-> 💡 Hinweis: Danach stehen Commit, Push, Pull, Diff und Blame direkt im Editor zur Verfügung.
->  Für komplexere Merge-Konflikte empfiehlt sich zusätzlich ein externer Git-Client.
 
 ---
 
