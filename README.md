@@ -21,7 +21,7 @@
 > [Download Godot .NET](https://godotengine.org/download)
 
 > 💡 Hinweis: Für C# wird zusätzlich das **.NET SDK benötigt**.
-> - Wenn Godot über den **offiziellen Download** wird, muss das SDK separat installiert werden: [Download .NET SDK](https://dotnet.microsoft.com/en-us/download).
+> - Wenn Godot über den **offiziellen Download** bezogen wird, muss das SDK separat installiert werden: [Download .NET SDK](https://dotnet.microsoft.com/en-us/download).
 > - Manche Linux-Pakete installieren das SDK automatisch als Abhängigkeit (z. B. `godot-mono` über Paketmanager).
 
 - **IDE** (empfohlen: [JetBrains Rider](https://www.jetbrains.com/rider/) oder [Visual Studio Code](https://code.visualstudio.com/) mit C#-Plugin)
