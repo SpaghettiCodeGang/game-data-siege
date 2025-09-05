@@ -1,0 +1,31 @@
+# Godot Editor
+.godot/
+.import/
+
+# Export / Builds
+/export/
+*.pck
+*.zip
+*.apk
+*.aab
+*.exe
+*.dll
+*.so
+*.dylib
+
+# C# / Mono
+.mono/
+data_*/
+mono_crash.*.json
+*.csproj
+*.sln
+.vs/
+.idea/
+.vscode/
+
+# System / Temp
+*.tmp
+*.log
+*.cache
+.DS_Store
+Thumbs.db
