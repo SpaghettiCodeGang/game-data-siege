@@ -138,10 +138,12 @@ public void DoSomething()
 - Maximal 120 Zeichen pro Zeile.
 
 ### Benennungen
-- **Klassen, Methoden & Enums:** PascalCase
+- **Klassen, Methoden, Nodes, PackedScenes & Enums:** PascalCase
 ```csharp
 public class PlayerController { }
 public void MoveForward() { }
+[Export] public Node3D LeftMagBox;
+[Export] public PackedScene MagazineScene;
 public enum GameState
 {
     MainMenu,
