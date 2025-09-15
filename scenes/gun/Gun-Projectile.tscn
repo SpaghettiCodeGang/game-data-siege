@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://buudbdqk5jyut"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oulbh"]
+size = Vector3(0.005, 0.005, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vc17"]
+albedo_color = Color(0.0789586, 0.419031, 0.636739, 1)
+emission_enabled = true
+emission = Color(0.0509804, 0.396078, 0.784314, 1)
+emission_energy_multiplier = 5.0
+
+[node name="Gun-projectile" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000350222, -0.000510052, 0.00190387)
+mesh = SubResource("BoxMesh_oulbh")
+surface_material_override/0 = SubResource("StandardMaterial3D_1vc17")

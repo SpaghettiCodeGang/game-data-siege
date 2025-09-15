@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://jd1yrwu0h7se"]
+
+[ext_resource type="PackedScene" uid="uid://c875hsg0s3ppp" path="res://assets/gun_assets/Gun-Mag.glb" id="1_aw3ya"]
+
+[node name="Gun-Mag" instance=ExtResource("1_aw3ya")]
