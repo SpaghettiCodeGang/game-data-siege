@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://2hb4shfe77fw"]
+
+[ext_resource type="PackedScene" uid="uid://p6bh07jcmxm1" path="res://assets/beginner_room.glb" id="1_c13y7"]
+[ext_resource type="PackedScene" uid="uid://lq6kvg0c5auv" path="res://assets/dummy_target.glb" id="2_8ho6b"]
+[ext_resource type="PackedScene" uid="uid://dfkbhlj3rlcaa" path="res://assets/desk.glb" id="4_4kmhl"]
+
+[node name="Tutorial" type="Node3D"]
+
+[node name="beginner_room" parent="." instance=ExtResource("1_c13y7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85186, 0, 1.189)
+
+[node name="dummy_target" parent="." instance=ExtResource("2_8ho6b")]
+transform = Transform3D(0.581967, 0, 0.813213, 0, 1, 0, -0.813213, 0, 0.581967, -2.24794, 2.38419e-07, -0.866365)
+
+[node name="dummy_target2" parent="." instance=ExtResource("2_8ho6b")]
+transform = Transform3D(-0.37797, 0, 0.925818, 0, 1, 0, -0.925818, 0, -0.37797, -2.46002, 0, 3.1676)
+
+[node name="desk" parent="." instance=ExtResource("4_4kmhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76044, -2.38419e-07, -1.25742)
