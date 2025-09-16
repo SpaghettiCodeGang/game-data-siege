@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://duwtbs6aqiwng"]
+
+[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/gun_model.tscn" id="1_nelxh"]
+[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/gun_mag.tscn" id="2_t8ruf"]
+[ext_resource type="PackedScene" uid="uid://buudbdqk5jyut" path="res://scenes/gun/gun-projectile.tscn" id="3_fpcf7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nelxh"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_nelxh")
+
+[sub_resource type="Environment" id="Environment_t8ruf"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+tonemap_mode = 2
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_intensity = 0.4
+
+[node name="Gun-testscene" type="Node3D"]
+
+[node name="Gun-Model" parent="." instance=ExtResource("1_nelxh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.51234e-05, 0.00052996, -0.0119085)
+
+[node name="Gun-Mag" parent="." instance=ExtResource("2_t8ruf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 2.72458e-08, 0.950195, -0.311655, 8.30687e-08, -0.311655, -0.950195, 2.82377e-05, -0.0331307, 0.0249805)
+
+[node name="Gun-projectile" parent="." instance=ExtResource("3_fpcf7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0539834, -0.209214)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t8ruf")
