@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4xohn6b0gx8h"]
+[gd_scene load_steps=7 format=3 uid="uid://b4xohn6b0gx8h"]
 
 [ext_resource type="Script" uid="uid://66uptlvba263" path="res://scripts/Main.cs" id="1_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="2_tefeu"]
-[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="4_tipki"]
+[ext_resource type="PackedScene" uid="uid://d37yu22av1kym" path="res://scenes/player/player.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="5_85g3d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
@@ -29,20 +27,6 @@ environment = SubResource("Environment_0xm2m")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-
-[node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("2_tefeu")]
-
-[node name="XRController3D_Left" type="XRController3D" parent="XROrigin3D"]
-tracker = &"left_hand"
-
-[node name="LeftHand" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("3_o6xl0")]
-
-[node name="XRController3D_Right" type="XRController3D" parent="XROrigin3D"]
-tracker = &"right_hand"
-
-[node name="RightHand" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("4_tipki")]
-
 [node name="StartXR" parent="." instance=ExtResource("5_85g3d")]
+
+[node name="Player" parent="." instance=ExtResource("3_sugp2")]
