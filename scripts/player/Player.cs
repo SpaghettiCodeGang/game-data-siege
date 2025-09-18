@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Player : Node
 {
@@ -8,8 +7,8 @@ public partial class Player : Node
     [Export] public PackedScene GunScene;
     [Export] public PackedScene MagazineScene;
 
-    private Gun currentGun;
-    private Magazin currentMagazine;
+    private Gun _currentGun;
+    private Magazin _currentMagazine;
 
     public override void _Ready()
     {
@@ -19,14 +18,15 @@ public partial class Player : Node
 
     public void SpawnGun()
     {
-        currentGun = GunScene.Instantiate<Gun>();
-        RightHolster.AddChild(currentGun);
+        if (GunScene == null || RightHolster == null) return;
+        _currentGun = GunScene.Instantiate<Gun>();
+        RightHolster.AddChild(_currentGun);
     }
 
     public void SpawnMagazine()
     {
-        currentMagazine = MagazineScene.Instantiate<Magazin>();
-        RightHolster.AddChild(currentMagazine);
+        if (MagazineScene == null || LeftMagBox == null) return;
+        _currentMagazine = MagazineScene.Instantiate<Magazin>();
+        RightHolster.AddChild(_currentMagazine);
     }
 }
-
