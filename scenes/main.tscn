@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4xohn6b0gx8h"]
+[gd_scene load_steps=9 format=3 uid="uid://b4xohn6b0gx8h"]
 
 [ext_resource type="Script" uid="uid://66uptlvba263" path="res://scripts/Main.cs" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://d37yu22av1kym" path="res://scenes/player/player.tscn" id="3_sugp2"]
@@ -16,9 +16,6 @@ sky_material = SubResource("ProceduralSkyMaterial_jyhfs")
 background_mode = 2
 sky = SubResource("Sky_tbgi4")
 tonemap_mode = 2
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_jyhfs"]
-size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
 size = Vector3(100, 1, 100)
@@ -41,9 +38,6 @@ shadow_enabled = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("PlaneMesh_jyhfs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
