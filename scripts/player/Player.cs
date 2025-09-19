@@ -27,6 +27,6 @@ public partial class Player : Node
     {
         if (MagazineScene == null || LeftMagBox == null) return;
         _currentMagazine = MagazineScene.Instantiate<Magazin>();
-        RightHolster.AddChild(_currentMagazine);
+        LeftMagBox.AddChild(_currentMagazine);
     }
 }
