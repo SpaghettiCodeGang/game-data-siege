@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgkg54xv3w2t8"]
+
+[ext_resource type="PackedScene" uid="uid://by0y58rk47x0p" path="res://assets/level-boundaries/Wall-Plain.glb" id="1_mkhjb"]
+
+[node name="Wall-Plain" instance=ExtResource("1_mkhjb")]

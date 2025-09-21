@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://nvnmrad7lex7"]
+
+[ext_resource type="PackedScene" uid="uid://earhukufvls6" path="res://assets/level-boundaries/Wall-Door.glb" id="1_nko6g"]
+
+[node name="Wall-Door" instance=ExtResource("1_nko6g")]
+
+[node name="Wall-door" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.052146435)

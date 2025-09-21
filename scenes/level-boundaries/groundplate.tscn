@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6ob16d80fc8e"]
+
+[ext_resource type="PackedScene" uid="uid://blc216fwjk1gr" path="res://assets/level-boundaries/Groundplate.glb" id="1_wkn0c"]
+
+[node name="Groundplate" instance=ExtResource("1_wkn0c")]
+
+[node name="Ground" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07070354, -0.020092964)

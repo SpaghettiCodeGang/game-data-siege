@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cammbqpyjvrjq"]
+
+[ext_resource type="PackedScene" uid="uid://4gd0yuqhugjq" path="res://assets/level-boundaries/Celling.glb" id="1_ejr4r"]
+
+[node name="Celling2" instance=ExtResource("1_ejr4r")]
+
+[node name="Celling" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.013333334, 0, 0, 0, 1, 0, 0, -0.027287006)

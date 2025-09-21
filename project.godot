@@ -28,6 +28,16 @@ project/assembly_name="game-data-siege"
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://assets/": "yellow",
+"res://light_bakes/": "gray",
+"res://scenes/": "blue",
+"res://scripts/": "red"
+}
+
 [layer_names]
 
 3d_physics/layer_1="Static World"
