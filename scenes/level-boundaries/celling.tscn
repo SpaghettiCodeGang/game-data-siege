@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cammbqpyjvrjq"]
+[gd_scene load_steps=4 format=3 uid="uid://cammbqpyjvrjq"]
 
 [ext_resource type="PackedScene" uid="uid://4gd0yuqhugjq" path="res://assets/level-boundaries/Celling.glb" id="1_ejr4r"]
 
-[node name="Celling2" instance=ExtResource("1_ejr4r")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejr4r"]
+albedo_color = Color(0.8217887, 0.82178867, 0.82178867, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ejr4r"]
+size = Vector3(15, 15.504395, 15)
+
+[node name="Celling" instance=ExtResource("1_ejr4r")]
 
 [node name="Celling" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.013333334, 0, 0, 0, 1, 0, 0, -0.027287006)
+surface_material_override/0 = SubResource("StandardMaterial3D_ejr4r")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Celling" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Celling/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24780259, 0)
+shape = SubResource("BoxShape3D_ejr4r")

@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6ob16d80fc8e"]
+[gd_scene load_steps=3 format=3 uid="uid://b6ob16d80fc8e"]
 
 [ext_resource type="PackedScene" uid="uid://blc216fwjk1gr" path="res://assets/level-boundaries/Groundplate.glb" id="1_wkn0c"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wkn0c"]
+points = PackedVector3Array(-7.5, -0.17070355, -7.4999943, -7.5, -0.17070355, 7.500005, -7.5, 0.019096762, -7.4999943, 7.499999, -0.17070355, -7.4999943, -7.5, 0.019096762, 7.500005, 7.499999, -0.17070355, 7.500005, -7.489722, 0.029296458, -7.489716, 7.499999, 0.019096762, -7.4999943, -7.489722, 0.029296458, 7.4882593, 7.499999, 0.019096762, 7.500005, 7.4882536, 0.029296458, -7.489716, 7.4882536, 0.029296458, 7.4882593)
 
 [node name="Groundplate" instance=ExtResource("1_wkn0c")]
 
 [node name="Ground" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07070354, -0.020092964)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_wkn0c")

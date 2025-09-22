@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dry06jkfk4g51"]
+[gd_scene load_steps=8 format=3 uid="uid://dry06jkfk4g51"]
 
 [ext_resource type="PackedScene" uid="uid://b6ob16d80fc8e" path="res://scenes/level-boundaries/groundplate.tscn" id="1_fxxad"]
 [ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/wall_door.tscn" id="2_d0abw"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dgkg54xv3w2t8" path="res://scenes/level-boundaries/wall_plain.tscn" id="4_dvyej"]
 [ext_resource type="PackedScene" uid="uid://cammbqpyjvrjq" path="res://scenes/level-boundaries/celling.tscn" id="5_6cbmd"]
 [ext_resource type="LightmapGIData" uid="uid://3u6mtasd5su4" path="res://light_bakes/test_scene.lmbake" id="6_dvyej"]
+
+[sub_resource type="Environment" id="Environment_d0abw"]
+background_mode = 1
+background_color = Color(0.851769, 0.8517689, 0.85176885, 1)
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="TestScene" type="Node3D"]
 
@@ -67,4 +73,8 @@ spot_range = 15.876039
 spot_angle = 89.99
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
+visible = false
 light_data = ExtResource("6_dvyej")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d0abw")
