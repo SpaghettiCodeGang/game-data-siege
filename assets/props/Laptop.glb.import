@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://by0y58rk47x0p"
-path="res://.godot/imported/Wall-Plain.glb-32c262a957804ba0e165586f919f16b1.scn"
+uid="uid://fi7vcdpykm36"
+path="res://.godot/imported/Laptop.glb-f05d679acd691f1d66dc0b907fdbeec5.scn"
 
 [deps]
 
-source_file="res://assets/level-boundaries/Wall-Plain.glb"
-dest_files=["res://.godot/imported/Wall-Plain.glb-32c262a957804ba0e165586f919f16b1.scn"]
+source_file="res://assets/props/Laptop.glb"
+dest_files=["res://.godot/imported/Laptop.glb-f05d679acd691f1d66dc0b907fdbeec5.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=2
+meshes/light_baking=3
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true

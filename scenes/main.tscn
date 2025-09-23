@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4xohn6b0gx8h"]
 
 [ext_resource type="Script" uid="uid://66uptlvba263" path="res://scripts/Main.cs" id="1_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://d37yu22av1kym" path="res://scenes/player/player.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://d37yu22av1kym" path="res://scenes/player/Player.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://2hb4shfe77fw" path="res://scenes/tutorial.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="5_85g3d"]
 

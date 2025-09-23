@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://la3waijaakaw"
-path="res://.godot/imported/Wall-Windows.glb-7322e0c33fead9e9795c0eb7294ea1d4.scn"
+uid="uid://by0y58rk47x0p"
+path="res://.godot/imported/WallPlain.glb-409224c93aade5d5c25c996a46071d0a.scn"
 
 [deps]
 
-source_file="res://assets/level-boundaries/Wall-Windows.glb"
-dest_files=["res://.godot/imported/Wall-Windows.glb-7322e0c33fead9e9795c0eb7294ea1d4.scn"]
+source_file="res://assets/level-boundaries/WallPlain.glb"
+dest_files=["res://.godot/imported/WallPlain.glb-409224c93aade5d5c25c996a46071d0a.scn"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
-[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/gun_model.tscn" id="2_p47bc"]
-[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/gun_mag.tscn" id="3_75vfm"]
+[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/GunModel.tscn" id="2_p47bc"]
+[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/GunMag.tscn" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="3_lvxji"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_p47bc"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_0owmy"]

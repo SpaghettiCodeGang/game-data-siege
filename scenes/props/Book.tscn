@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmxwwasybswa3"]
+
+[ext_resource type="PackedScene" uid="uid://c7m886feqlrxo" path="res://assets/props/Book.glb" id="1_srpe8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_srpe8"]
+points = PackedVector3Array(-0.0914094, -0.01722857, -0.15122856, 0.104380816, 0.01682857, 0.12122856, 0.104380816, -0.01722857, 0.12122856, 0.104380816, 0.01682857, -0.15122856, -0.0914094, 0.01682857, 0.12122856, -0.0914094, -0.01722857, 0.12122856, 0.104380816, -0.01722857, -0.15122856, -0.0914094, 0.01682857, -0.15122856)
+
+[node name="Book2" instance=ExtResource("1_srpe8")]
+
+[node name="Book" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0003451109, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Book" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Book/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_srpe8")

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ok52g0hexugy"
-path="res://.godot/imported/Celling-lamp.glb-cfd53dc5ac73ad466e3c85d774dd96ca.scn"
+path="res://.godot/imported/CellingLamp.glb-8b779dbdf05624aea048228d640d0160.scn"
 
 [deps]
 
-source_file="res://assets/props/Celling-lamp.glb"
-dest_files=["res://.godot/imported/Celling-lamp.glb-cfd53dc5ac73ad466e3c85d774dd96ca.scn"]
+source_file="res://assets/props/CellingLamp.glb"
+dest_files=["res://.godot/imported/CellingLamp.glb-8b779dbdf05624aea048228d640d0160.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=2
+meshes/light_baking=3
 meshes/lightmap_texel_size=2.0
 meshes/force_disable_compression=false
 skins/use_named_skins=true

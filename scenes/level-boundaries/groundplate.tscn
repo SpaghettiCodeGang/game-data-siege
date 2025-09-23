@@ -9,6 +9,7 @@ points = PackedVector3Array(-7.5, -0.17070355, -7.4999943, -7.5, -0.17070355, 7.
 
 [node name="Ground" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07070354, -0.020092964)
+gi_mode = 2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground" index="0"]
 

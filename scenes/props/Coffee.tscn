@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7gtwvx1q5nup"]
+
+[ext_resource type="PackedScene" uid="uid://b3hd1mvftx46i" path="res://assets/props/Coffee.glb" id="1_lf78j"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lf78j"]
+height = 0.10900879
+radius = 0.036621094
+
+[node name="Coffee" instance=ExtResource("1_lf78j")]
+
+[node name="Coffecup to go_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00039708614, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Coffecup to go_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Coffecup to go_001/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014303558, 0)
+shape = SubResource("CylinderShape3D_lf78j")
