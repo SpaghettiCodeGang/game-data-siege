@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d37yu22av1kym"]
+[gd_scene load_steps=8 format=3 uid="uid://fl78qrp2gtr1"]
 
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]

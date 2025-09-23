@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6ob16d80fc8e"]
+[gd_scene load_steps=3 format=3 uid="uid://d1dqgvyllsmv1"]
 
 [ext_resource type="PackedScene" uid="uid://blc216fwjk1gr" path="res://assets/level-boundaries/Groundplate.glb" id="1_wkn0c"]
 
@@ -8,7 +8,7 @@ points = PackedVector3Array(-7.5, -0.17070355, -7.4999943, -7.5, -0.17070355, 7.
 [node name="Groundplate" instance=ExtResource("1_wkn0c")]
 
 [node name="Ground" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07070354, -0.020092964)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016303323, -0.020092964)
 gi_mode = 2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground" index="0"]
