@@ -1,19 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://d37yu22av1kym"]
+[gd_scene load_steps=9 format=3 uid="uid://d37yu22av1kym"]
 
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
-[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/gun_model.tscn" id="2_p47bc"]
-[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/gun_mag.tscn" id="3_75vfm"]
+[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/Gun.tscn" id="2_p47bc"]
+[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/Magazin.tscn" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="3_lvxji"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_p47bc"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_0owmy"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qek5x"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "_rightController", "_leftController")]
 script = ExtResource("1_lvxji")
 RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
 LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
 GunScene = ExtResource("2_p47bc")
 MagazineScene = ExtResource("3_75vfm")
+_rightController = NodePath("XROrigin3D/XRController3D_Right")
+_leftController = NodePath("XROrigin3D/XRController3D_Left")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -21,15 +24,17 @@ MagazineScene = ExtResource("3_75vfm")
 
 [node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("1_gqjuk")]
 
-[node name="XRController3D_Left" type="XRController3D" parent="XROrigin3D"]
-tracker = &"left_hand"
-
-[node name="LeftHand" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("3_lvxji")]
-
 [node name="XRController3D_Right" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 
 [node name="RightHand" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("4_p47bc")]
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("7_qek5x")]
+
+[node name="XRController3D_Left" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("3_lvxji")]
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_0owmy")]
 

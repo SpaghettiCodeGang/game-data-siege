@@ -138,12 +138,10 @@ public void DoSomething()
 - Maximal 120 Zeichen pro Zeile.
 
 ### Benennungen
-- **Klassen, Methoden, Nodes, PackedScenes & Enums:** PascalCase
+- **Klassen, Methoden, Enums:** PascalCase
 ```csharp
 public class PlayerController { }
 public void MoveForward() { }
-[Export] public Node3D LeftMagBox;
-[Export] public PackedScene MagazineScene;
 public enum GameState
 {
     MainMenu,
@@ -152,20 +150,21 @@ public enum GameState
 }
 ```
 
-- **Variablen & Felder:** camelCase
+- **public und protected Variablen & Felder:** PascalCase
 ```csharp
-private int playerHealth;
-string userName;
+public string UserName;
+[Export] public Node3D LeftMagBox;
+[Export] public PackedScene MagazineScene;
+```
+
+- **private Variablen & Felder:** camelCase beginnend mit `_`:
+```csharp
+private int _currentScore;
 ```
 
 - **Konstanten:** UPPER_CASE mit `_` als Trenner
 ```csharp
 public const int MAX_HEALTH = 100;
-```
-
-- **Private Felder** beginnen mit `_`:
-```csharp
-private int _currentScore;
 ```
 
 ### Struktur
