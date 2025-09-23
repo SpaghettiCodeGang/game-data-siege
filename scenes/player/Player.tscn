@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://d37yu22av1kym"]
+
+[ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
+[ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
+[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/Gun.tscn" id="2_p47bc"]
+[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/Magazin.tscn" id="3_75vfm"]
+[ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="6_v42im"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_0owmy"]
+[ext_resource type="PackedScene" uid="uid://njx823gyk04n" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_hand.tscn" id="7_pn6s4"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qek5x"]
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "_rightController", "_leftController")]
+script = ExtResource("1_lvxji")
+RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
+LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
+GunScene = ExtResource("2_p47bc")
+MagazineScene = ExtResource("3_75vfm")
+_rightController = NodePath("XROrigin3D/XRController3D_Right")
+_leftController = NodePath("XROrigin3D/XRController3D_Left")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("1_gqjuk")]
+
+[node name="XRController3D_Right" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("7_qek5x")]
+
+[node name="RightHand" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("6_v42im")]
+
+[node name="XRController3D_Left" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("7_pn6s4")]
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_0owmy")]
+player_height_max = 1.8
+
+[node name="RightHolster" type="Node3D" parent="XROrigin3D/PlayerBody"]
+transform = Transform3D(-1, 0, -8.74228e-08, 7.571036e-08, 0.5, -0.8660254, 4.3711402e-08, -0.8660254, -0.5, 0.2, 1, 0)
+
+[node name="LeftMagBox" type="Node3D" parent="XROrigin3D/PlayerBody"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.2, 1, 0)

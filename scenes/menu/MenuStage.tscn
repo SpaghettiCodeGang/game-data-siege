@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://flkgi54xe6gb"]
+
+[ext_resource type="Script" uid="uid://c6ebq4dasxhyp" path="res://scripts/menu/MenuStage.cs" id="1_h4mjy"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_wsfis"]
+[ext_resource type="PackedScene" uid="uid://d0q0oi6040isq" path="res://scenes/menu/Menu.tscn" id="3_sny8h"]
+
+[node name="MenuStage" type="Node3D"]
+script = ExtResource("1_h4mjy")
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("2_wsfis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0308838, -2.5595584)
+screen_size = Vector2(1.5, 1)
+scene = ExtResource("3_sny8h")
+scene_properties_keys = PackedStringArray()

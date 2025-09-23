@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0q0oi6040isq"]
+
+[ext_resource type="Script" uid="uid://mo1m2maa8fix" path="res://scripts/menu/Menu.cs" id="1_klgdb"]
+[ext_resource type="PackedScene" uid="uid://ckw15ucmuo8ip" path="res://scenes/tutorial/TutorialStage.tscn" id="2_mcvr8"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("_btnPlay", "_btnTutorial", "_btnExit")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -98.5
+offset_right = 246.0
+offset_bottom = 98.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_klgdb")
+TutorialStage = ExtResource("2_mcvr8")
+_btnPlay = NodePath("PlayButton")
+_btnTutorial = NodePath("TutorialButton")
+_btnExit = NodePath("ExitButton")
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Spielen"
+
+[node name="TutorialButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Tutorial"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Beenden"
