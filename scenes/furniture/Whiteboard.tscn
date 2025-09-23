@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1ad3ytbwqvfc"]
+
+[ext_resource type="PackedScene" uid="uid://b0khtldnuikw2" path="res://assets/furniture/whiteboard.glb" id="1_55fpx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2h8em"]
+size = Vector3(2.1741943, 2.003357, 5.2684326)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hetnt"]
+size = Vector3(2.2165527, 0.04296875, 36.015625)
+
+[node name="whiteboard" instance=ExtResource("1_55fpx")]
+
+[node name="Whiteboard" parent="." index="0"]
+transform = Transform3D(0.4522717, 0, 0, 0, 0.6231382, 0, 0, 0, 0.030236736, -0.00550133, 1.2276615, 0.009553909)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Whiteboard" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Whiteboard/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00042723864, 0.014770269, 0.06569612)
+shape = SubResource("BoxShape3D_2h8em")
+debug_color = Color(0, 0.6, 0.69803923, 0.7529412)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Whiteboard/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.948436, 0)
+shape = SubResource("BoxShape3D_hetnt")

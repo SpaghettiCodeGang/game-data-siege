@@ -1,8 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://duwtbs6aqiwng"]
 
+<<<<<<<< HEAD:scenes/gun/GunTestscene.tscn
+[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/GunModel.tscn" id="1_nelxh"]
+[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/GunMag.tscn" id="2_t8ruf"]
+[ext_resource type="PackedScene" uid="uid://buudbdqk5jyut" path="res://scenes/gun/GunProjectile.tscn" id="3_fpcf7"]
+========
 [ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/Gun.tscn" id="1_nelxh"]
 [ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/Magazin.tscn" id="2_t8ruf"]
 [ext_resource type="PackedScene" uid="uid://buudbdqk5jyut" path="res://scenes/gun/Projectil.tscn" id="3_fpcf7"]
+>>>>>>>> main:scenes/gun/GunTestScene.tscn
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nelxh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2vjw2cj8ey1p"]
+
+[ext_resource type="PackedScene" uid="uid://ok52g0hexugy" path="res://assets/props/CellingLamp.glb" id="1_mbw0w"]
+
+[node name="Celling-lamp" instance=ExtResource("1_mbw0w")]
+
+[node name="Deckenlampe" parent="." index="0"]
+transform = Transform3D(0.10702729, 0, 0, 0, 0.10702729, 0, 0, 0, 0.10702729, 0.0061768293, 0.0041657393, 0)

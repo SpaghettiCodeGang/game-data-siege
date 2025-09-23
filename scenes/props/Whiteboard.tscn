@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://db7yordknml1h"]
+
+[ext_resource type="PackedScene" uid="uid://b0khtldnuikw2" path="res://assets/furniture/whiteboard.glb" id="1_q8y3l"]
+
+[node name="whiteboard" instance=ExtResource("1_q8y3l")]
+
+[node name="Whiteboard" parent="." index="0"]
+transform = Transform3D(0.452272, 0, 0, 0, 0.623138, 0, 0, 0, 0.0302367, 0.0173588, 1.22766, -0.586095)

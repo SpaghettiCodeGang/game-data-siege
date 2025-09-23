@@ -1,16 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckw15ucmuo8ip"]
+[gd_scene load_steps=14 format=3 uid="uid://dry06jkfk4g51"]
 
-[ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/groundplate.tscn" id="1_87t0p"]
-[ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_c8lsh"]
-[ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="2_fn0ak"]
-[ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="3_q2tko"]
-[ext_resource type="PackedScene" uid="uid://dgkg54xv3w2t8" path="res://scenes/level-boundaries/WallPlain.tscn" id="4_khgfn"]
-[ext_resource type="PackedScene" uid="uid://dpsha5nbxipry" path="res://scenes/level-boundaries/celling.tscn" id="5_114vh"]
-[ext_resource type="PackedScene" uid="uid://c7gtwvx1q5nup" path="res://scenes/props/Coffee.tscn" id="6_k6ae4"]
-[ext_resource type="PackedScene" uid="uid://dr8ymgcuolh7" path="res://scenes/props/Laptop.tscn" id="7_yuxy0"]
-[ext_resource type="PackedScene" uid="uid://dmxwwasybswa3" path="res://scenes/props/Book.tscn" id="8_nb7d4"]
-[ext_resource type="PackedScene" uid="uid://b2vjw2cj8ey1p" path="res://scenes/props/CellingLamp.tscn" id="9_xyf3i"]
-[ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="10_x7bq6"]
+[ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/GroundPlate.tscn" id="1_umtil"]
+[ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="2_iqwuq"]
+[ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="3_xpo0d"]
+[ext_resource type="PackedScene" uid="uid://dgkg54xv3w2t8" path="res://scenes/level-boundaries/WallPlain.tscn" id="4_3uujp"]
+[ext_resource type="PackedScene" uid="uid://dpsha5nbxipry" path="res://scenes/level-boundaries/Celling.tscn" id="5_6f6xc"]
+[ext_resource type="PackedScene" uid="uid://b2vjw2cj8ey1p" path="res://scenes/props/CellingLamp.tscn" id="6_iqwuq"]
+[ext_resource type="PackedScene" uid="uid://c7gtwvx1q5nup" path="res://scenes/props/Coffee.tscn" id="7_6f6xc"]
+[ext_resource type="PackedScene" uid="uid://dr8ymgcuolh7" path="res://scenes/props/Laptop.tscn" id="8_u27ko"]
+[ext_resource type="PackedScene" uid="uid://dmxwwasybswa3" path="res://scenes/props/Book.tscn" id="9_l7jfi"]
+[ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="10_u27ko"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_iqwuq"]
 
@@ -24,25 +23,24 @@ glow_enabled = true
 glow_intensity = 0.15
 glow_bloom = 0.15
 
-[node name="TutorialStage" type="Node3D"]
-script = ExtResource("1_c8lsh")
+[node name="TestScene" type="Node3D"]
 
-[node name="Groundplate" parent="." instance=ExtResource("1_87t0p")]
+[node name="Groundplate" parent="." instance=ExtResource("1_umtil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022458315, -2.8148293e-05, -0.06760335)
 
-[node name="Wall-Door" parent="." instance=ExtResource("2_fn0ak")]
+[node name="Wall-Door" parent="." instance=ExtResource("2_iqwuq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.092430115, 0.024901152, 4.298388)
 
-[node name="Wall-Windows" parent="." instance=ExtResource("3_q2tko")]
+[node name="Wall-Windows" parent="." instance=ExtResource("3_xpo0d")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.024901152, -7.1041026)
 
-[node name="Wall-Plain" parent="." instance=ExtResource("4_khgfn")]
+[node name="Wall-Plain" parent="." instance=ExtResource("4_3uujp")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.5228434, 0.024901152, -0.018521309)
 
-[node name="Wall-Plain3" parent="." instance=ExtResource("4_khgfn")]
+[node name="Wall-Plain3" parent="." instance=ExtResource("4_3uujp")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.0127516, 0.024901152, -0.018521309)
 
-[node name="Celling2" parent="." instance=ExtResource("5_114vh")]
+[node name="Celling2" parent="." instance=ExtResource("5_6f6xc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5417569, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -80,28 +78,28 @@ mesh = SubResource("BoxMesh_iqwuq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_61edl")
 
-[node name="Coffee2" parent="MeshInstance3D" instance=ExtResource("6_k6ae4")]
+[node name="Coffee2" parent="MeshInstance3D" instance=ExtResource("7_6f6xc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3144307, 0.53995013, 0.18247676)
 
-[node name="Laptop2" parent="MeshInstance3D" instance=ExtResource("7_yuxy0")]
+[node name="Laptop2" parent="MeshInstance3D" instance=ExtResource("8_u27ko")]
 transform = Transform3D(-0.84362584, 0, 0.53693163, 0, 1, 0, -0.53693163, 0, -0.84362584, 0.07943466, 0.5062425, -0.016301274)
 
-[node name="Book2" parent="MeshInstance3D" instance=ExtResource("8_nb7d4")]
+[node name="Book2" parent="MeshInstance3D" instance=ExtResource("9_l7jfi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38802892, 0.515139, -0.20521569)
 
-[node name="Book3" parent="MeshInstance3D" instance=ExtResource("8_nb7d4")]
+[node name="Book3" parent="MeshInstance3D" instance=ExtResource("9_l7jfi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3732414, 0.5471066, -0.21014452)
 
-[node name="Coffee" parent="MeshInstance3D" instance=ExtResource("6_k6ae4")]
+[node name="Coffee" parent="MeshInstance3D" instance=ExtResource("7_6f6xc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15820503, 0.53995013, 0.33628058)
 
-[node name="Coffee3" parent="MeshInstance3D" instance=ExtResource("6_k6ae4")]
+[node name="Coffee3" parent="MeshInstance3D" instance=ExtResource("7_6f6xc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34099248, 0.53995013, 0.37536216)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_umtil")
 
-[node name="Celling-lamp" parent="." instance=ExtResource("9_xyf3i")]
+[node name="Celling-lamp" parent="." instance=ExtResource("6_iqwuq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8812854, 2.9539676, -1.3587983)
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="Celling-lamp"]
@@ -113,7 +111,7 @@ spot_range = 8.263466
 spot_attenuation = 2.0
 spot_angle = 85.0
 
-[node name="Celling-lamp2" parent="." instance=ExtResource("9_xyf3i")]
+[node name="Celling-lamp2" parent="." instance=ExtResource("6_iqwuq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0073421, 2.9539676, -1.3587983)
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="Celling-lamp2"]
@@ -126,7 +124,7 @@ spot_range = 14.244
 spot_attenuation = 0.21
 spot_angle = 75.36
 
-[node name="Celling-lamp3" parent="." instance=ExtResource("9_xyf3i")]
+[node name="Celling-lamp3" parent="." instance=ExtResource("6_iqwuq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.578494, 2.9539676, -1.3587983)
 
 [node name="SpotLight3D6" type="SpotLight3D" parent="Celling-lamp3"]
@@ -138,5 +136,5 @@ spot_range = 8.263466
 spot_attenuation = 2.0
 spot_angle = 85.0
 
-[node name="whiteboard" parent="." instance=ExtResource("10_x7bq6")]
+[node name="whiteboard" parent="." instance=ExtResource("10_u27ko")]
 transform = Transform3D(0.73695886, 0, -0.6759376, 0, 1, 0, 0.6759376, 0, 0.73695886, 2.0220385, 2.3841858e-07, -0.73524857)

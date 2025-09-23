@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0q0oi6040isq"]
 
 [ext_resource type="Script" uid="uid://mo1m2maa8fix" path="res://scripts/menu/Menu.cs" id="1_klgdb"]
-[ext_resource type="PackedScene" uid="uid://2hb4shfe77fw" path="res://scenes/tutorial/TutorialStage.tscn" id="2_mcvr8"]
+[ext_resource type="PackedScene" uid="uid://ckw15ucmuo8ip" path="res://scenes/tutorial/TutorialStage.tscn" id="2_mcvr8"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr8ymgcuolh7"]
+
+[ext_resource type="PackedScene" uid="uid://fi7vcdpykm36" path="res://assets/props/Laptop.glb" id="1_yimhr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yimhr"]
+points = PackedVector3Array(-0.15146665, 0.006033332, -0.08866666, 0.15146665, 0.006033332, -0.08866666, -0.15146665, 0.006033332, 0.086466655, 0.1467222, -0.008166666, -0.08866666, -0.1467222, -0.008166666, 0.086466655, 0.15146665, 0.006033332, 0.086466655, -0.1467222, -0.008166666, -0.08866666, 0.1467222, -0.008166666, 0.086466655)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8dct2"]
+points = PackedVector3Array(0.15207618, 0.0054285713, 0.10668095, -0.15207618, -0.0040761903, -0.10717619, -0.15207618, 0.0054285713, -0.10717619, 0.15207618, -0.0040761903, -0.10717619, -0.15207618, -0.0040761903, 0.10668095, -0.15207618, 0.0054285713, 0.10668095, 0.15207618, 0.0054285713, -0.10717619, 0.15207618, -0.0040761903, 0.10668095)
+
+[node name="Laptop2" instance=ExtResource("1_yimhr")]
+
+[node name="Laptop" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004122257, 0, -0.0039639175)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laptop/Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laptop/Cube/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_yimhr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Laptop/Cube_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laptop/Cube_001/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_8dct2")

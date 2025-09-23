@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwiirf2apvhjp"]
+
+[ext_resource type="PackedScene" uid="uid://la3waijaakaw" path="res://assets/level-boundaries/WallWindows.glb" id="1_d2ndu"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d2ndu"]
+points = PackedVector3Array(7.499999, 3.5, 0.5, 7.499999, 0, 0.5, 7.499999, 3.5, -0.5000784, -7.5, 3.5, 0.5, 7.499999, 0, -0.5285715, -7.5, 0, 0.5, 7.499999, 0.11990994, -0.5285715, -7.5, 3.5, -0.5000784, -7.5, 0, -0.5285715, -7.5, 0.11990994, -0.5285715)
+
+[node name="Wall-Windows" instance=ExtResource("1_d2ndu")]
+
+[node name="Wall-windows" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.037427425)
+
+[node name="Outsidelight" parent="Wall-windows" index="0"]
+transform = Transform3D(2.5156107, 0, 0, 0, 0.71428573, 0, 0, 0, 0.03635554, -0.008032799, 1.8250003, 0.39512062)
+gi_mode = 2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall-windows/Wand_windows" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall-windows/Wand_windows/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_d2ndu")
