@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://w2p0s701u5hy"]
+
+[ext_resource type="PackedScene" uid="uid://dd5mspo175cmv" path="res://assets/furniture/WallWhiteboard.glb" id="1_2b5iw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mde8p"]
+size = Vector3(1.8720703, 1.2612915, 0.13745117)
+
+[node name="WallWhiteboard" instance=ExtResource("1_2b5iw")]
+
+[node name="whiteboard_wall" parent="." index="0"]
+transform = Transform3D(1.1920929e-07, 0.09498558, 0.99547863, -7.450581e-09, 0.99547863, -0.09498558, -1, 0, 1.1920929e-07, -0.0018650293, 1.0928711, -0.004783809)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="whiteboard_wall" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="whiteboard_wall/StaticBody3D" index="0"]
+transform = Transform3D(1, -1.189598e-08, -5.9324634e-10, 1.1895738e-08, 0.9950235, 0.099790715, -5.959322e-10, -0.099790715, 0.9950235, -5.075708e-08, 0.24065983, 0.011343516)
+shape = SubResource("BoxShape3D_mde8p")
