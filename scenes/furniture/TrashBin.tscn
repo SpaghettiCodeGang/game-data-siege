@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://besci3x1k83bb"]
+[gd_scene load_steps=4 format=3 uid="uid://besci3x1k83bb"]
 
 [ext_resource type="PackedScene" uid="uid://dwnfmh0ivkvxv" path="res://assets/furniture/TrashBin.glb" id="1_0l16q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0l16q"]
+albedo_color = Color(0.32915837, 0.3291584, 0.3291584, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cugw3"]
 height = 0.50634766
@@ -10,6 +13,7 @@ radius = 0.1772461
 
 [node name="bucket" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02909553, 0.38058016, 0.0017244816)
+surface_material_override/0 = SubResource("StandardMaterial3D_0l16q")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="bucket" index="0"]
 
