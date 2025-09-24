@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://besci3x1k83bb"]
+
+[ext_resource type="PackedScene" uid="uid://dwnfmh0ivkvxv" path="res://assets/furniture/TrashBin.glb" id="1_0l16q"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cugw3"]
+height = 0.50634766
+radius = 0.1772461
+
+[node name="TrashBin" instance=ExtResource("1_0l16q")]
+
+[node name="bucket" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02909553, 0.38058016, 0.0017244816)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="bucket" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bucket/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0067172647, -0.12963867, 0)
+shape = SubResource("CylinderShape3D_cugw3")

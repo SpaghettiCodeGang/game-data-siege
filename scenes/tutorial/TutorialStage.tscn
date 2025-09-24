@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckw15ucmuo8ip"]
+[gd_scene load_steps=19 format=3 uid="uid://ckw15ucmuo8ip"]
 
 [ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/groundplate.tscn" id="1_87t0p"]
 [ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_c8lsh"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://dmxwwasybswa3" path="res://scenes/props/Book.tscn" id="8_nb7d4"]
 [ext_resource type="PackedScene" uid="uid://b2vjw2cj8ey1p" path="res://scenes/props/CellingLamp.tscn" id="9_xyf3i"]
 [ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="10_x7bq6"]
+[ext_resource type="PackedScene" uid="uid://dnilx33hvhcq" path="res://scenes/furniture/Desk.tscn" id="12_lyfkk"]
+[ext_resource type="PackedScene" uid="uid://besci3x1k83bb" path="res://scenes/furniture/TrashBin.tscn" id="13_4uwkg"]
+[ext_resource type="PackedScene" uid="uid://c6dmfv5ty8whd" path="res://scenes/props/Bottle.tscn" id="14_8x03w"]
+[ext_resource type="PackedScene" uid="uid://c66pgwa8mbx0" path="res://scenes/props/Drink.tscn" id="15_7576v"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_iqwuq"]
 
@@ -28,7 +32,7 @@ glow_bloom = 0.15
 script = ExtResource("1_c8lsh")
 
 [node name="Groundplate" parent="." instance=ExtResource("1_87t0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022458315, -2.8148293e-05, -0.06760335)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02458024, -2.8148293e-05, -0.06382346)
 
 [node name="Wall-Door" parent="." instance=ExtResource("2_fn0ak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.092430115, 0.024901152, 4.298388)
@@ -140,3 +144,27 @@ spot_angle = 85.0
 
 [node name="whiteboard" parent="." instance=ExtResource("10_x7bq6")]
 transform = Transform3D(0.73695886, 0, -0.6759376, 0, 1, 0, 0.6759376, 0, 0.73695886, 2.0220385, 2.3841858e-07, -0.73524857)
+
+[node name="Desk" parent="." instance=ExtResource("12_lyfkk")]
+transform = Transform3D(-0.65790117, 0, -0.75310427, 0, 1, 0, 0.75310427, 0, -0.65790117, -0.18072641, -0.0074149445, -2.5098572)
+
+[node name="TrashBin" parent="." instance=ExtResource("13_4uwkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5695449, 0.012964807, -1.8764718)
+
+[node name="Bottle" parent="." instance=ExtResource("14_8x03w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2357312, 0.834644, -2.3495646)
+
+[node name="Bottle2" parent="." instance=ExtResource("14_8x03w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.056290478, 0.83474994, -2.6284626)
+
+[node name="Drink" parent="." instance=ExtResource("15_7576v")]
+transform = Transform3D(0.91523415, 0, 0.40292242, 0, 1, 0, -0.40292242, 0, 0.91523415, 0.41183925, 0.84351116, -1.5770029)
+
+[node name="Drink2" parent="." instance=ExtResource("15_7576v")]
+transform = Transform3D(-0.21019872, 0, -0.9776587, 0, 1, 0, 0.9776587, 0, -0.21019872, 0.434356, 0.84351116, -1.9471103)
+
+[node name="Drink3" parent="." instance=ExtResource("15_7576v")]
+transform = Transform3D(0.12791288, 0, 0.9917854, 0, 1, 0, -0.9917854, 0, 0.12791288, 0.54591596, 0.84351116, -1.8707862)
+
+[node name="Drink4" parent="." instance=ExtResource("15_7576v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29382116, 0.84351116, -1.8839927)

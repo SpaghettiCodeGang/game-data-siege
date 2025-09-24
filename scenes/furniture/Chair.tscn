@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://be2eoj2qbbd2o"]
+
+[ext_resource type="PackedScene" uid="uid://bl734l7m26mki" path="res://assets/furniture/Chair.glb" id="1_wvr05"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvr05"]
+size = Vector3(0.5, 0.5208206, 0.10473633)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o53jj"]
+height = 0.14600372
+radius = 0.32421875
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a0a8e"]
+height = 0.4187317
+radius = 0.049804688
+
+[node name="Chair" instance=ExtResource("1_wvr05")]
+
+[node name="seat" parent="." index="0"]
+transform = Transform3D(0, -0.039649434, 0.9992137, 0, 0.99921364, 0.039649434, -1, 0, 0, 0.023292303, 0.5993203, -0.015946388)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="seat" index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="seat/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -0.044526484, -0.99900824, 0, 0.99900824, -0.044526484, -0.0056185275, -0.006286323, 0.041384526)
+shape = SubResource("BoxShape3D_wvr05")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="seat/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.957375, -0.28884915, 0, 0.28884798, 0.95737433, -0.004227221, 0.32015985, 0.2699206)
+shape = SubResource("BoxShape3D_wvr05")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="seat/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0006197691, -0.52331966, 0.017180212)
+shape = SubResource("CylinderShape3D_o53jj")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="seat/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035905853, -0.22985014, 0.03093607)
+shape = SubResource("CylinderShape3D_a0a8e")

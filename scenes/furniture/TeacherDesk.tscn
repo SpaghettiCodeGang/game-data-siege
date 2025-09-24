@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbfseba8srqxw"]
+
+[ext_resource type="PackedScene" uid="uid://cpkry530ofea" path="res://assets/furniture/TeacherDesk.glb" id="1_ud24l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6docf"]
+size = Vector3(1.130127, 0.94091797, 4.1853027)
+
+[node name="TeacherDesk" instance=ExtResource("1_ud24l")]
+
+[node name="teacher_desk_tabletop" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61095977, 0.85951006, -0.09722471)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="teacher_desk_tabletop" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teacher_desk_tabletop/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006958008, -0.40897572, -0.00012207031)
+shape = SubResource("BoxShape3D_6docf")
