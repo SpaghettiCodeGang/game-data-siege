@@ -10,6 +10,7 @@ public partial class TutorialStage : BaseStage
 {
     public override void OnEnter()
     {
+        if (Player == null) return;
         Player.SpawnGun();
         Player.SpawnMagazine();
         
@@ -18,6 +19,7 @@ public partial class TutorialStage : BaseStage
 
     public override void OnExit()
     {
+        if (Player == null) return;
         Player.RemoveGun();
         Player.RemoveMagazine();
     }
