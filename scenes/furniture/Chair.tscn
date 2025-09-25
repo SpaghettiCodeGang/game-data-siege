@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://be2eoj2qbbd2o"]
+[gd_scene load_steps=6 format=3 uid="uid://be2eoj2qbbd2o"]
 
 [ext_resource type="PackedScene" uid="uid://bl734l7m26mki" path="res://assets/furniture/Chair.glb" id="1_wvr05"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvr05"]
+albedo_color = Color(0.5631198, 0.6285757, 0.7453014, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wvr05"]
 size = Vector3(0.5, 0.5208206, 0.10473633)
@@ -16,7 +19,10 @@ radius = 0.049804688
 [node name="Chair" instance=ExtResource("1_wvr05")]
 
 [node name="seat" parent="." index="0"]
-transform = Transform3D(0, -0.039649434, 0.9992137, 0, 0.99921364, 0.039649434, -1, 0, 0, 0.023292303, 0.5993203, -0.015946388)
+transform = Transform3D(0, -0.039649434, 0.9992137, 0, 0.99921364, 0.039649434, -1, 0, 0, -0.0032129288, 0.5993203, -0.002693653)
+
+[node name="chairback" parent="seat" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wvr05")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="seat" index="3"]
 
