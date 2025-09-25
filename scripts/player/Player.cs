@@ -1,12 +1,13 @@
 using Godot;
 
 /// <summary>
-/// Represents the Player entity in the game.
-/// Handles spawning and removing weapons and magazines,
-/// as well as basic input for returning to the main menu.
+/// Represents the player entity in the game.
+/// Acts as a central interface for player-related actions, abilities, and input handling.
+/// Provides methods for spawning/removing items, interacting with the environment,
+/// and reacting to controller input.
 /// </summary>
 /// <author>Sören Lehmann</author>
-public partial class Player : Node
+public partial class Player : Node3D
 {
     [Export] public Node3D RightHolster;
     [Export] public Node3D LeftMagBox;
