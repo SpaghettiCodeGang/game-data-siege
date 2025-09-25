@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf147h8vsga17"]
+[gd_scene load_steps=7 format=3 uid="uid://cf147h8vsga17"]
 
 [ext_resource type="PackedScene" uid="uid://deqh5jpbp80nn" path="res://assets/furniture/Chair2.glb" id="1_it4dd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_it4dd"]
+albedo_color = Color(0.70752496, 0.68463635, 0.626465, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du74i"]
+albedo_color = Color(0.5461132, 0.54611325, 0.54611325, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_du74i"]
 size = Vector3(0.5227051, 0.05041504, 0.45507813)
@@ -13,6 +19,12 @@ height = 0.48651123
 radius = 0.026367188
 
 [node name="Chair2" instance=ExtResource("1_it4dd")]
+
+[node name="body" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_it4dd")
+
+[node name="fabric" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_du74i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
 
