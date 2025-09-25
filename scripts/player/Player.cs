@@ -1,7 +1,5 @@
 using Godot;
 
-namespace gamedatasiege.scripts.player;
-
 /// <summary>
 /// Represents the Player entity in the game.
 /// Handles spawning and removing weapons and magazines,
@@ -28,7 +26,7 @@ public partial class Player : Node
     {
         if (_leftController != null && _leftController.IsButtonPressed("menu_button"))
         {
-            core.GameManager.Instance.ReturnToMenu();
+            GameManager.Instance.ReturnToMenu();
         }
     }
 

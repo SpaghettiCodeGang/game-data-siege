@@ -1,7 +1,5 @@
 using Godot;
 
-namespace gamedatasiege.scripts.core;
-
 /// <summary>
 /// Base class for a game stage/level.
 /// Provides lifecycle hooks and a reference to the active player.
@@ -12,13 +10,13 @@ public partial class BaseStage : Node3D
     /// <summary>
     /// Reference to the player assigned to this stage.
     /// </summary>
-    protected player.Player Player;
+    protected Player Player;
 
     /// <summary>
     /// Assigns the player instance to the stage.
     /// </summary>
     /// <param name="player">The player instance.</param>
-    public virtual void SetPlayer(player.Player player)
+    public virtual void SetPlayer(Player player)
     {
         Player = player;
     }
