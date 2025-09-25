@@ -1,7 +1,5 @@
 using Godot;
 
-namespace gamedatasiege.scripts.core;
-
 /// <summary>
 /// Central game manager implemented as a singleton.
 /// Handles loading and unloading of stages (levels),
@@ -13,7 +11,7 @@ public partial class GameManager : Node
     [Export] public PackedScene MenuStage;
     
     [Export] private Node3D _currentStage;
-    [Export] private gamedatasiege.scripts.player.Player _player;
+    [Export] private Player _player;
 
     public static GameManager Instance { get; private set; }
 
@@ -38,7 +36,7 @@ public partial class GameManager : Node
         // Clean up existing stage
         foreach (var child in _currentStage.GetChildren())
         {
-            if (child is gamedatasiege.scripts.core.BaseStage baseStageOld) baseStageOld.OnExit();
+            if (child is BaseStage baseStageOld) baseStageOld.OnExit();
             child.QueueFree();
         }
 
@@ -47,7 +45,7 @@ public partial class GameManager : Node
         _currentStage.AddChild(instance);
 
         // If the stage derives from BaseStage, pass the player and call OnEnter
-        if (instance is not gamedatasiege.scripts.core.BaseStage baseStage || _player == null) return;
+        if (instance is not BaseStage baseStage || _player == null) return;
         baseStage.SetPlayer(_player);
         baseStage.OnEnter();
     }
@@ -63,7 +61,7 @@ public partial class GameManager : Node
         var currentSceneNode = _currentStage.GetChild(0);
 
         // Prevent reloading if we are already in the menu
-        if (currentSceneNode is gamedatasiege.scripts.menu.Menu) return;
+        if (currentSceneNode is Menu) return;
         LoadStage(MenuStage);
     }
 }

@@ -37,7 +37,6 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("7_pn6s4")]
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_0owmy")]
-player_height_max = 1.8
 
 [node name="RightHolster" type="Node3D" parent="XROrigin3D/PlayerBody"]
 transform = Transform3D(-1, 0, -8.74228e-08, 7.571036e-08, 0.5, -0.8660254, 4.3711402e-08, -0.8660254, -0.5, 0.2, 1, 0)

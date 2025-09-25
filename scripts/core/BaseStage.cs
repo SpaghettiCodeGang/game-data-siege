@@ -1,7 +1,5 @@
 using Godot;
 
-namespace gamedatasiege.scripts.core;
-
 /// <summary>
 /// Base class for a game stage/level.
 /// Provides lifecycle hooks and a reference to the active player.
@@ -10,17 +8,32 @@ namespace gamedatasiege.scripts.core;
 public partial class BaseStage : Node3D
 {
     /// <summary>
-    /// Reference to the player assigned to this stage.
+    /// Optional spawn point for the player in this stage.
+    /// If set in the scene, the player will be moved to this marker on stage enter.
     /// </summary>
-    protected player.Player Player;
+    [Export] protected Marker3D PlayerPositionMarker;
+    
+    /// <summary>
+    /// Reference to the player instance currently active in this stage.
+    /// Set by <see cref="SetPlayer"/> when the GameManager loads the stage.
+    /// </summary>
+    protected Player Player;
 
     /// <summary>
-    /// Assigns the player instance to the stage.
+    /// Assigns the player instance to the stage and optionally repositions them.
     /// </summary>
     /// <param name="player">The player instance.</param>
-    public virtual void SetPlayer(player.Player player)
+    /// <remarks>
+    /// If the stage has a <see cref="Marker3D"/> assigned to <c>PlayerPositionMarker</c>,
+    /// the player will be teleported to that position and orientation when entering the stage.
+    /// This allows each stage to define its own spawn point.
+    /// </remarks>
+    public virtual void SetPlayer(Player player)
     {
         Player = player;
+        
+        if (PlayerPositionMarker == null) return;
+        Player.GlobalTransform = PlayerPositionMarker.GlobalTransform;
     }
 
     /// <summary>
