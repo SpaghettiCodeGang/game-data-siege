@@ -8,6 +8,8 @@ using Godot;
 /// <author>Sören Lehmann</author>
 public partial class TutorialStage : BaseStage
 {
+    [Export] public Whiteboard Whiteboard;
+    
     public override void OnEnter()
     {
         if (Player == null) return;
