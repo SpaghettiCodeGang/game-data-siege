@@ -47,4 +47,11 @@ public partial class BaseStage : Node3D
     /// Override in derived classes to clean up resources or state.
     /// </summary>
     public virtual void OnExit() { }
+    
+    /// <summary>
+    /// Called when the player presses a button on their controller while this stage is active.
+    /// Override this method in derived stages to implement custom behavior for different buttons.
+    /// </summary>
+    /// <param name="buttonName">The name or identifier of the button that was pressed.</param>
+    public virtual void OnPlayerButtonPressed(string buttonName) { }
 }
