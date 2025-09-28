@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 /// <summary>
 /// Represents a Whiteboard in the game, responsible for displaying instructional or narrative text.
@@ -17,7 +16,7 @@ public partial class Whiteboard : Node3D
     private string _fullText = "";
     private int _currentIndex;
     private float _timer;
-    private float _charInterval = 0.05f; // Time per character in seconds
+    private float _charInterval = 0.04f; // Time per character in seconds
     private bool _isTyping;
 
     /// <summary>
