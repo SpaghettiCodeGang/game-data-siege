@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://h2rba55iph3v"]
+[gd_scene load_steps=4 format=3 uid="uid://h2rba55iph3v"]
 
 [ext_resource type="PackedScene" uid="uid://cfiqjsca2gmq6" path="res://assets/gun_assets/Gun-Model.glb" id="1_b36h4"]
 [ext_resource type="Script" uid="uid://bjteyo4mdelg4" path="res://scripts/gun/Gun.cs" id="2_j0jhc"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kk1qa"]
+size = Vector3(0.024935912, 0.14136963, 0.23720093)
+
 [node name="Gun-Model" instance=ExtResource("1_b36h4")]
 script = ExtResource("2_j0jhc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008041356, 0.0017028749, 0.036277357)
+shape = SubResource("BoxShape3D_kk1qa")

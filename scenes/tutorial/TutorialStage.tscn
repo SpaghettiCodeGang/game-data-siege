@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckw15ucmuo8ip"]
+[gd_scene load_steps=16 format=3 uid="uid://ckw15ucmuo8ip"]
 
 [ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/groundplate.tscn" id="1_87t0p"]
 [ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_c8lsh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dr8ymgcuolh7" path="res://scenes/props/Laptop.tscn" id="7_yuxy0"]
 [ext_resource type="PackedScene" uid="uid://dmxwwasybswa3" path="res://scenes/props/Book.tscn" id="8_nb7d4"]
 [ext_resource type="PackedScene" uid="uid://b2vjw2cj8ey1p" path="res://scenes/props/CellingLamp.tscn" id="9_xyf3i"]
+[ext_resource type="PackedScene" uid="uid://barag4jaresgt" path="res://scenes/gun_test.tscn" id="10_cd07v"]
 [ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="10_x7bq6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_iqwuq"]
@@ -71,7 +72,7 @@ spot_attenuation = 2.0
 spot_angle = 70.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25141057, 0, 0.96788055, 0, 1, 0, -0.96788055, 0, 0.25141057, -1.9530013, 0.48594144, -0.49172604)
+transform = Transform3D(0.25141057, 0, 0.96788055, 0, 1, 0, -0.96788055, 0, 0.25141057, -0.033573627, 0.48594144, -0.7790196)
 gi_mode = 2
 mesh = SubResource("BoxMesh_iqwuq")
 
@@ -97,6 +98,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15820503, 0.53995013, 0.336
 
 [node name="Coffee3" parent="MeshInstance3D" instance=ExtResource("6_k6ae4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34099248, 0.53995013, 0.37536216)
+
+[node name="Gun" parent="MeshInstance3D" instance=ExtResource("10_cd07v")]
+transform = Transform3D(0.06470738, 0.96865964, 0.23981701, -0.9942594, 0.04206034, 0.09838247, 0.08521234, -0.24480641, 0.9658205, -0.19351864, 0.6144222, 0.3040852)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_umtil")
