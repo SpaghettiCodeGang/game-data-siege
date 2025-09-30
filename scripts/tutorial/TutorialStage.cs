@@ -8,12 +8,18 @@ using Godot;
 /// <author>Sören Lehmann</author>
 public partial class TutorialStage : BaseStage
 {
+    /// <summary>
+    /// Spawn point for the enemy in this stage.
+    /// </summary>
+    [Export] protected Marker3D EnemyPositionMarker;
+    
     public override void OnEnter()
     {
         if (Player == null) return;
         Player.SpawnGun();
         Player.SpawnMagazine();
-        
+        SpawnEnemy(EnemyPositionMarker);
+
         // TODO: Add whiteboard, instructions, etc.
     }
 

@@ -7,6 +7,8 @@ using Godot;
 /// <author>Sören Lehmann</author>
 public partial class BaseStage : Node3D
 {
+    [Export] protected PackedScene EnemyScene;
+    
     /// <summary>
     /// Optional spawn point for the player in this stage.
     /// If set in the scene, the player will be moved to this marker on stage enter.
@@ -28,14 +30,35 @@ public partial class BaseStage : Node3D
     /// the player will be teleported to that position and orientation when entering the stage.
     /// This allows each stage to define its own spawn point.
     /// </remarks>
-    public virtual void SetPlayer(Player player)
+    public void SetPlayer(Player player)
     {
         Player = player;
         
         if (PlayerPositionMarker == null) return;
         Player.GlobalTransform = PlayerPositionMarker.GlobalTransform;
     }
-
+    
+    /// <summary>
+    /// Spawns an enemy instance at the given spawn point and initializes it with the specified health.
+    /// </summary>
+    /// <param name="enemyPositionMarker">The Marker3D defining where the enemy should spawn.</param>
+    /// <param name="maxHealth">
+    /// The maximum health to assign to the spawned enemy. Defaults to 10 if not specified.
+    /// </param>
+    /// <returns>The instantiated <see cref="Enemy"/> instance, or null if spawning failed.</returns>
+    protected Enemy SpawnEnemy(Marker3D enemyPositionMarker, int maxHealth = 10)
+    {
+        if (enemyPositionMarker == null || EnemyScene == null) 
+            return null;
+    
+        var enemy = EnemyScene.Instantiate<Enemy>();
+        enemy.GlobalTransform = enemyPositionMarker.GlobalTransform;
+        enemy.Initialize(Player, maxHealth);
+        AddChild(enemy);
+    
+        return enemy;
+    }
+    
     /// <summary>
     /// Called when entering the stage. 
     /// Override in derived classes to set up the stage.
