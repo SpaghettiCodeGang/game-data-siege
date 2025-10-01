@@ -1,7 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://h2rba55iph3v"]
+[gd_scene load_steps=7 format=3 uid="uid://chssgw0io0gvy"]
 
 [ext_resource type="PackedScene" uid="uid://cfiqjsca2gmq6" path="res://assets/gun_assets/Gun-Model.glb" id="1_b36h4"]
 [ext_resource type="Script" uid="uid://bjteyo4mdelg4" path="res://scripts/gun/Gun.cs" id="2_j0jhc"]
+[ext_resource type="Script" uid="uid://blm3hswpmbi8r" path="res://scripts/gun/pickable_wrapper.gd" id="2_mysnh"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="4_52a0a"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="5_1uhvc"]
 
-[node name="Gun-Model" instance=ExtResource("1_b36h4")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_084rm"]
+size = Vector3(0.036071777, 0.14759827, 0.24020386)
+
+[node name="Gun" type="Node3D"]
 script = ExtResource("2_j0jhc")
+
+[node name="PickableWrapper" type="RigidBody3D" parent="."]
+collision_layer = 65536
+script = ExtResource("2_mysnh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickableWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0011291504, 0.0029525757, 0.032424927)
+shape = SubResource("BoxShape3D_084rm")
+
+[node name="Gun-Model" parent="PickableWrapper" instance=ExtResource("1_b36h4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="GrabPointHandRight" parent="PickableWrapper" instance=ExtResource("4_52a0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010501713, 0.0219169, -0.06522094)
+
+[node name="GrabPointHandLeft" parent="PickableWrapper" instance=ExtResource("5_1uhvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013613097, 0.022667255, -0.06522094)
