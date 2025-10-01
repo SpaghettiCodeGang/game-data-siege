@@ -47,6 +47,7 @@ public partial class GameManager : Node
         // If the stage derives from BaseStage, pass the player and call OnEnter
         if (instance is not BaseStage baseStage || _player == null) return;
         baseStage.SetPlayer(_player);
+        _player.SetCurrentStage(baseStage);
         baseStage.OnEnter();
     }
     
