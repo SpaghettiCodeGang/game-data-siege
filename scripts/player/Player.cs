@@ -55,6 +55,11 @@ public partial class Player : Node3D
         
         _currentGun = GunScene.Instantiate<Gun>();
         RightHolster.AddChild(_currentGun);
+        
+        // Hole den PickableWrapper und friere ihn ein
+        var pickableWrapper = _currentGun.GetNode<RigidBody3D>("PickableWrapper");
+        if (pickableWrapper == null) return;
+        pickableWrapper.Freeze = true;
     }
     
     public void RemoveGun()

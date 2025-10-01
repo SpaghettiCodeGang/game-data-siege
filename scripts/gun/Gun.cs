@@ -7,7 +7,7 @@ public partial class Gun : Node3D
     
     public override void _Ready()
     {
-        // Finde den Pickable-Node (muss als Child existieren)
+        // Finde den PickableWrapper (muss als Child existieren)
         _pickableNode = GetNode("PickableWrapper");
         
         // Verbinde die Signale
@@ -20,14 +20,12 @@ public partial class Gun : Node3D
     private void OnPickedUp(Variant controller)
     {
         _isHeld = true;
-        GD.Print("Waffe wurde aufgehoben!");
-        // Hier deine Logik
+        //TODO: Waffenlogik
     }
     
     private void OnDropped()
     {
         _isHeld = false;
-        GD.Print("Waffe wurde fallen gelassen!");
-        // Hier deine Logik
+        //TODO: Waffenlogik
     }
 }
