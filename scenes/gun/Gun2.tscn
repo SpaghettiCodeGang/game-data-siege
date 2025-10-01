@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://nj4r2j0n7yhi"]
+
+[ext_resource type="Script" uid="uid://cfxir1qreno5g" path="res://scripts/gun/Gun2.cs" id="1_3lmfa"]
+[ext_resource type="PackedScene" uid="uid://cfiqjsca2gmq6" path="res://assets/gun_assets/Gun-Model.glb" id="1_h72vj"]
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="2_3lmfa"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_8gpr4"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_ygl17"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4d7xs"]
+size = Vector3(0.025, 0.141, 0.237)
+
+[node name="Gun2" type="Node"]
+script = ExtResource("1_3lmfa")
+
+[node name="Gun-Model" parent="." instance=ExtResource("1_h72vj")]
+
+[node name="PickableObject" parent="." instance=ExtResource("2_3lmfa")]
+
+[node name="GrabPointHandRight" parent="." instance=ExtResource("3_8gpr4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.00030287728, 0.03580817, 0.045583017)
+visible = false
+
+[node name="GrabPointHandLeft" parent="." instance=ExtResource("4_ygl17")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.0051702773, 0.038958818, 0.049271807)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019623153, 0.036342524)
+shape = SubResource("BoxShape3D_4d7xs")
