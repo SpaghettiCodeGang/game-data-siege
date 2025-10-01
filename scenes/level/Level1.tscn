@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://3hi723ixw7ph"]
+[gd_scene load_steps=24 format=3 uid="uid://3hi723ixw7ph"]
 
 [ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_bl884"]
 [ext_resource type="PackedScene" uid="uid://bcv2tle0qu0oi" path="res://scenes/enemy/Enemy.tscn" id="2_571ng"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="4_rfu2a"]
 [ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="5_ir4d2"]
 [ext_resource type="PackedScene" uid="uid://dgkg54xv3w2t8" path="res://scenes/level-boundaries/WallPlain.tscn" id="6_7caai"]
+[ext_resource type="PackedScene" uid="uid://dccfvj67b7vf6" path="res://scenes/props/Poster1.tscn" id="7_e33kh"]
 [ext_resource type="PackedScene" uid="uid://dpsha5nbxipry" path="res://scenes/level-boundaries/celling.tscn" id="7_yp4n7"]
+[ext_resource type="PackedScene" uid="uid://pydlv8tr54k6" path="res://scenes/props/Poster2.tscn" id="8_aotmh"]
 [ext_resource type="PackedScene" uid="uid://b2vjw2cj8ey1p" path="res://scenes/props/CellingLamp.tscn" id="8_gkxe5"]
+[ext_resource type="PackedScene" uid="uid://vocfo32xgjvq" path="res://scenes/props/Poster3.tscn" id="9_58gpe"]
 [ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="9_823b8"]
 [ext_resource type="PackedScene" uid="uid://dnilx33hvhcq" path="res://scenes/furniture/Desk.tscn" id="10_dehcb"]
 [ext_resource type="PackedScene" uid="uid://c6dmfv5ty8whd" path="res://scenes/props/Bottle.tscn" id="11_ue7s6"]
@@ -38,6 +41,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1775257, 0.04339628, 0.009
 
 [node name="Groundplate2" parent="Groundplate" instance=ExtResource("3_erfms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.885541, -0.001246646, 0.009620905)
+
+[node name="Chair" parent="Groundplate" instance=ExtResource("17_lu7t4")]
+transform = Transform3D(-0.8444308, 0, 0.5356647, 0, 1, 0, -0.5356647, 0, -0.8444308, -12.601971, 0.011746429, -5.646984)
+
+[node name="Chair2" parent="Groundplate" instance=ExtResource("17_lu7t4")]
+transform = Transform3D(-0.9809721, 0, -0.19414875, 0, 1, 0, 0.19414875, 0, -0.9809721, -12.685157, 0.011746429, -4.7085238)
 
 [node name="Wall-Door" parent="." instance=ExtResource("4_rfu2a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.092430115, 0.024901152, 7.3716893)
@@ -123,6 +132,15 @@ light_specular = 3.139
 spot_range = 8.263466
 spot_attenuation = 2.0
 spot_angle = 85.0
+
+[node name="Poster1" parent="Celling-lamps/Celling-lamp6" instance=ExtResource("7_e33kh")]
+transform = Transform3D(-2.5, 0, -2.1855695e-07, 0, 2.5, 0, 2.1855695e-07, 0, -2.5, 4.769803, -1.2027268, 3.701847)
+
+[node name="Poster2" parent="Celling-lamps/Celling-lamp6" instance=ExtResource("8_aotmh")]
+transform = Transform3D(-2.5, 0, -2.1855695e-07, 0, 2.5, 0, 2.1855695e-07, 0, -2.5, 3.4203696, -1.1940471, 3.702631)
+
+[node name="Poster3" parent="Celling-lamps/Celling-lamp6" instance=ExtResource("9_58gpe")]
+transform = Transform3D(-2.5, 0, -2.1855695e-07, 0, 2.5, 0, 2.1855695e-07, 0, -2.5, 2.014709, -1.1963295, 3.7022934)
 
 [node name="Celling-lamp4" parent="Celling-lamps" instance=ExtResource("8_gkxe5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.8580766)
@@ -257,7 +275,7 @@ transform = Transform3D(-0.22069754, 0, -0.97534233, 0, 1, 0, 0.97534233, 0, -0.
 transform = Transform3D(-0.99999994, 0, -1.539353e-07, 0, 1.5978553, 0, 8.742277e-08, 0, -1.7608147, 6.999644, 1.619561, -2.0853746)
 
 [node name="TrashBin2" parent="." instance=ExtResource("13_pi5o2")]
-transform = Transform3D(-0.96132904, 0, -0.27540243, 0, 1, 0, 0.27540243, 0, -0.96132904, -12.47856, 0.012964688, 6.0860996)
+transform = Transform3D(-0.96132904, 0, -0.27540243, 0, 1, 0, 0.27540243, 0, -0.96132904, -12.996661, 0.012964569, 6.32385)
 
 [node name="Chair" parent="." instance=ExtResource("17_lu7t4")]
 transform = Transform3D(0.84844553, 0, 0.5292827, 0, 1, 0, -0.5292827, 0, 0.84844553, 6.1393747, 0.012964688, -5.523581)
@@ -266,10 +284,25 @@ transform = Transform3D(0.84844553, 0, 0.5292827, 0, 1, 0, -0.5292827, 0, 0.8484
 transform = Transform3D(0.9997006, 0, -0.024467051, 0, 1, 0, 0.024467051, 0, 0.9997006, 6.0544386, 0.012964688, -3.3637822)
 
 [node name="WallWhiteboard2" parent="." instance=ExtResource("16_itc87")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.9423623, 1.8102502, 6.8697996)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.854629, 1.8102502, 6.8697996)
 
 [node name="WallWhiteboard3" parent="." instance=ExtResource("16_itc87")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.423775, 1.8102502, 6.8697996)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.937855, 1.8102502, 6.8697996)
+
+[node name="Poster3" parent="WallWhiteboard3" instance=ExtResource("9_58gpe")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.04365015, 0.2043258, -0.026171684)
+
+[node name="Poster2" parent="WallWhiteboard3" instance=ExtResource("8_aotmh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.041165352, 0.28968394, -0.51605606)
+
+[node name="Poster1" parent="WallWhiteboard3" instance=ExtResource("7_e33kh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.039191246, 0.27302468, 0.5918646)
+
+[node name="Poster4" parent="WallWhiteboard3" instance=ExtResource("7_e33kh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.046120167, -0.26286972, -0.4403534)
+
+[node name="Poster6" parent="WallWhiteboard3" instance=ExtResource("9_58gpe")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.044612408, -0.2555796, 0.39042377)
 
 [node name="Column-assets" parent="." instance=ExtResource("21_g4ilq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.562083, 0.01035466, -6.8041964)
@@ -423,3 +456,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.665755, 0.056389593, 5.52
 
 [node name="whiteboard" parent="." instance=ExtResource("9_823b8")]
 transform = Transform3D(-0.40603775, 0, -0.9790489, 0, 0.9999999, 0, 1.9522729, 0, -0.2036246, 5.3945003, 0.056389295, 3.110501)
+
+[node name="Poster7" parent="." instance=ExtResource("7_e33kh")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.156945, 1.8161213, -6.596308)

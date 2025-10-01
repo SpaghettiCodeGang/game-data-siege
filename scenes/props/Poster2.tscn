@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://pydlv8tr54k6"]
+
+[ext_resource type="PackedScene" uid="uid://bq767eykr1yot" path="res://assets/props/Poster2.glb" id="1_jkf8h"]
+
+[node name="Poster2" instance=ExtResource("1_jkf8h")]
