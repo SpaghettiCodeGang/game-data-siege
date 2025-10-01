@@ -25,6 +25,8 @@ public partial class TutorialStage : BaseStage
         InitTutorialSteps();
         _currentStepIndex = 0;
         StartCurrentStep();
+        Player.SpawnGun();
+        Player.SpawnMagazine();
     }
 
     /// <summary>
@@ -70,22 +72,22 @@ public partial class TutorialStage : BaseStage
                 "Du hast eine Waffe am Holster. Nimm sie in die Hand.",
                 "Ziehe die Waffe, um fortzufahren, oder B zum Zurückgehen.",
                 ["A"], // TODO
-                ["B"],
-                () => Player.SpawnGun()
+                ["B"]
+                // () => Player.SpawnGun()
             ),
             
             new TutorialStep(
                 "Dein Magazin ist leer. Nimm ein neues Magazin vom Gürtel und setze es in die Waffe",
                 "Lade die Waffe, um fortzufahren, oder B zum Zurückgehen.",
                 ["A"], // TODO
-                ["B"],
-                () => Player.SpawnMagazine()
+                ["B"]
+                // () => Player.SpawnMagazine()
             ),
             
             new TutorialStep(
                 "Hilf uns! Du bist unsere einzige Hoffnung.",
                 "Menü Taste um ins Hauptmenü zurück zukehren, oder B zum Zurückgehen.",
-                [""], // TODO
+                [],
                 ["B"]
             )
         ];
