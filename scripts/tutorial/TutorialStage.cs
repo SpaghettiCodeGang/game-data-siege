@@ -15,7 +15,7 @@ public partial class TutorialStage : BaseStage
     
     public override void OnEnter()
     {
-        if (Player == null) return;
+        //if (Player == null) return;
         Player.SpawnGun();
         Player.SpawnMagazine();
         SpawnEnemy(EnemyPositionMarker);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ckw15ucmuo8ip"]
+[gd_scene load_steps=22 format=3 uid="uid://ckw15ucmuo8ip"]
 
 [ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/groundplate.tscn" id="1_87t0p"]
 [ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_c8lsh"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dr8ymgcuolh7" path="res://scenes/props/Laptop.tscn" id="7_yuxy0"]
 [ext_resource type="PackedScene" uid="uid://dmxwwasybswa3" path="res://scenes/props/Book.tscn" id="8_nb7d4"]
 [ext_resource type="PackedScene" uid="uid://b2vjw2cj8ey1p" path="res://scenes/props/CellingLamp.tscn" id="9_xyf3i"]
-[ext_resource type="PackedScene" uid="uid://barag4jaresgt" path="res://scenes/gun_test.tscn" id="10_cd07v"]
 [ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="10_x7bq6"]
 [ext_resource type="PackedScene" uid="uid://dnilx33hvhcq" path="res://scenes/furniture/Desk.tscn" id="12_lyfkk"]
 [ext_resource type="PackedScene" uid="uid://besci3x1k83bb" path="res://scenes/furniture/TrashBin.tscn" id="13_4uwkg"]
@@ -81,9 +80,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.2
 
 [node name="Celling2" parent="." instance=ExtResource("5_114vh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3241944, 3.5417569, -1.5826435)
-
-[node name="Gun" parent="MeshInstance3D" instance=ExtResource("10_cd07v")]
-transform = Transform3D(0.06470738, 0.96865964, 0.23981701, -0.9942594, 0.04206034, 0.09838247, 0.08521234, -0.24480641, 0.9658205, -0.19351864, 0.6144222, 0.3040852)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_umtil")

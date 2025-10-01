@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4xohn6b0gx8h"]
+[gd_scene load_steps=12 format=3 uid="uid://b4xohn6b0gx8h"]
 
 [ext_resource type="Script" uid="uid://66uptlvba263" path="res://scripts/Main.cs" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://blbgb5w7goe71" path="res://scripts/core/GameManager.cs" id="2_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://d37yu22av1kym" path="res://scenes/player/Player.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ivc14ibjckj1" path="res://scenes/player/Player.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://flkgi54xe6gb" path="res://scenes/menu/MenuStage.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="5_85g3d"]
+[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/Gun.tscn" id="6_c01mt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jyhfs"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -45,6 +46,7 @@ _player = NodePath("../Player")
 [node name="CurrentStage" type="Node3D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_sugp2")]
+GunScene = ExtResource("6_c01mt")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 

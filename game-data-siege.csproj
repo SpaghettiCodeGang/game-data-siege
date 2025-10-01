@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>gamedatasiege</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="scenes\gun\" />
+  </ItemGroup>
 </Project>
