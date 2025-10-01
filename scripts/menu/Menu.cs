@@ -1,7 +1,5 @@
 using Godot;
 
-namespace gamedatasiege.scripts.menu;
-
 /// <summary>
 /// Represents the main menu UI.
 /// Provides buttons to start the game, launch the tutorial, or exit the application.
@@ -28,7 +26,7 @@ public partial class Menu : VBoxContainer
 
 	private void OnTutorialPressed()
 	{
-		core.GameManager.Instance.LoadStage(TutorialStage);
+		GameManager.Instance.LoadStage(TutorialStage);
 	}
 
 	private void OnPlayPressed()

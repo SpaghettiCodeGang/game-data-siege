@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c66pgwa8mbx0"]
+
+[ext_resource type="PackedScene" uid="uid://yb1nar5epw2y" path="res://assets/props/Drink.glb" id="1_u4nrm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_62r0b"]
+height = 0.14990234
+radius = 0.051757813
+
+[node name="Drink" instance=ExtResource("1_u4nrm")]
+
+[node name="can" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033676624, 0.002915427, -0.00043214858)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="can" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="can/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07006836, 0)
+shape = SubResource("CylinderShape3D_62r0b")

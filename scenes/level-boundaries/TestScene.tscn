@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dry06jkfk4g51"]
 
-[ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/GroundPlate.tscn" id="1_umtil"]
+[ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/Groundplate.tscn" id="1_umtil"]
 [ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="2_iqwuq"]
 [ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="3_xpo0d"]
 [ext_resource type="PackedScene" uid="uid://dgkg54xv3w2t8" path="res://scenes/level-boundaries/WallPlain.tscn" id="4_3uujp"]
