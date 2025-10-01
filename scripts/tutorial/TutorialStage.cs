@@ -14,6 +14,11 @@ using System.Collections.Generic;
 /// <author>Sören Lehmann</author>
 public partial class TutorialStage : BaseStage
 {
+    /// <summary>
+    /// Spawn point for the enemy in this stage.
+    /// </summary>
+    [Export] protected Marker3D EnemyPositionMarker;
+    
     [Export] public Whiteboard Whiteboard;
     
     private int _currentStepIndex;
@@ -27,6 +32,7 @@ public partial class TutorialStage : BaseStage
         StartCurrentStep();
         Player.SpawnGun();
         Player.SpawnMagazine();
+        SpawnEnemy(EnemyPositionMarker);
     }
 
     /// <summary>
