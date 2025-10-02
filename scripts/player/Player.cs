@@ -9,14 +9,14 @@ using Godot;
 /// <author>Sören Lehmann</author>
 public partial class Player : Node3D
 {
-    [Export] public Node3D RightHolster;
-    [Export] public Node3D LeftMagBox;
+    [Export] public Area3D RightHolster;
+    [Export] public Area3D LeftMagBox;
     [Export] public PackedScene GunScene;
     [Export] public PackedScene MagazineScene;
     [Export] private XRController3D _rightController;
     [Export] private XRController3D _leftController;
     
-    private Gun _currentGun;
+    private RigidBody3D _currentGun;
     private Magazin _currentMagazine;
     private BaseStage _currentStage;
     
@@ -52,14 +52,13 @@ public partial class Player : Node3D
     {
         // Return early if required resources are not assigned
         if (GunScene == null || RightHolster == null) return;
-        
-        _currentGun = GunScene.Instantiate<Gun>();
+
+        _currentGun = GunScene.Instantiate<RigidBody3D>();
         RightHolster.AddChild(_currentGun);
-        
-        // Hole den PickableWrapper und friere ihn ein
-        var pickableWrapper = _currentGun.GetNode<RigidBody3D>("PickableWrapper");
-        if (pickableWrapper == null) return;
-        pickableWrapper.Freeze = true;
+    
+        _currentGun.Position = Vector3.Zero;
+        _currentGun.Rotation = Vector3.Zero;
+        _currentGun.Freeze = true;
     }
     
     public void RemoveGun()

@@ -28,19 +28,12 @@ glow_enabled = true
 glow_intensity = 0.15
 glow_bloom = 0.15
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wmdlw"]
-radius = 0.4
-height = 1.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xvvn"]
-albedo_color = Color(0.99378234, 0.30044764, 0.39283112, 1)
-
-[node name="TutorialStage" type="Node3D" node_paths=PackedStringArray("Whiteboard", "PlayerPositionMarker", "EnemyPositionMarker")]
+[node name="TutorialStage" type="Node3D" node_paths=PackedStringArray("EnemyPositionMarker", "Whiteboard", "PlayerPositionMarker")]
 script = ExtResource("1_c8lsh")
-PlayerPositionMarker = NodePath("PlayerPositionMarker")
 EnemyPositionMarker = NodePath("EnemyPositionMarker")
-EnemyScene = ExtResource("2_o6wnn")
 Whiteboard = NodePath("Whiteboard")
+EnemyScene = ExtResource("2_o6wnn")
+PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.4667516, 0.07735634, -1.7322125)
