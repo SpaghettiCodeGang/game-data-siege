@@ -3,7 +3,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_foos2"]
 transparency = 1
 cull_mode = 1
-albedo_color = Color(0.3837377, 0.699513, 0.9627841, 1)
+albedo_color = Color(0.6649312, 0.67001003, 0.68392056, 1)
 
 [resource]
 material = SubResource("StandardMaterial3D_foos2")
