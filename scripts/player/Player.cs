@@ -17,7 +17,7 @@ public partial class Player : Node3D
     [Export] private XRController3D _leftController;
     
     private RigidBody3D _currentGun;
-    private Magazin _currentMagazine;
+    private RigidBody3D _currentMagazine;
     private BaseStage _currentStage;
     
     private bool _prevAButton;
@@ -72,8 +72,12 @@ public partial class Player : Node3D
         // Return early if required resources are not assigned
         if (MagazineScene == null || LeftMagBox == null) return;
         
-        _currentMagazine = MagazineScene.Instantiate<Magazin>();
+        _currentMagazine = MagazineScene.Instantiate<RigidBody3D>();
         LeftMagBox.AddChild(_currentMagazine);
+    
+        _currentMagazine.Position = Vector3.Zero;
+        _currentMagazine.Rotation = Vector3.Zero;
+        _currentMagazine.Freeze = true;
     }
     
     public void RemoveMagazine()

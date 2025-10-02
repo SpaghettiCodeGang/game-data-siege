@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
 [ext_resource type="PackedScene" uid="uid://bdi6wt3tyvw3a" path="res://scenes/gun/Gun.tscn" id="2_7oing"]
-[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/Magazin.tscn" id="3_75vfm"]
+[ext_resource type="PackedScene" uid="uid://1l2ja703b70c" path="res://scenes/gun/Magazin.tscn" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="6_v42im"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_0owmy"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_7oing"]
@@ -12,9 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bthudyiwu72bx" path="res://scenes/player/GunSnapZone.tscn" id="9_pn6s4"]
 [ext_resource type="PackedScene" uid="uid://d2p58ierxfjq0" path="res://scenes/player/MagazinSnapZone.tscn" id="11_5stf6"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "_rightController", "_leftController")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "_rightController", "_leftController")]
 script = ExtResource("1_lvxji")
 RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
+LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
 GunScene = ExtResource("2_7oing")
 MagazineScene = ExtResource("3_75vfm")
 _rightController = NodePath("XROrigin3D/XRController3D_Right")
