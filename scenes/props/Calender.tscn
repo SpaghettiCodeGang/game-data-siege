@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://h8efto8p3tnc"]
+
+[ext_resource type="PackedScene" uid="uid://dm4qr40fyxbga" path="res://assets/props/Calender.glb" id="1_qn5ql"]
+
+[node name="Calender" instance=ExtResource("1_qn5ql")]
