@@ -1,9 +1,15 @@
 using Godot;
+using System.Collections.Generic;
 
 /// <summary>
 /// Stage for the tutorial sequence.
-/// Spawns basic equipment (gun and magazine) on enter
-/// and cleans them up on exit.
+/// 
+/// Manages a linear sequence of <see cref="TutorialStep"/> objects,
+/// displays their text and button hints on the <see cref="Whiteboard"/>,
+/// and reacts to player inputs passed from the <see cref="Player"/> to move
+/// forward or backward through the sequence.
+/// 
+/// Each step may also define an optional start action (e.g. spawning items).
 /// </summary>
 /// <author>Sören Lehmann</author>
 public partial class TutorialStage : BaseStage
@@ -13,14 +19,122 @@ public partial class TutorialStage : BaseStage
     /// </summary>
     [Export] protected Marker3D EnemyPositionMarker;
     
+    [Export] public Whiteboard Whiteboard;
+    
+    private int _currentStepIndex;
+    private List<TutorialStep> _tutorialSteps;
+    
     public override void OnEnter()
     {
         if (Player == null) return;
+        InitTutorialSteps();
+        _currentStepIndex = 0;
+        StartCurrentStep();
         Player.SpawnGun();
         Player.SpawnMagazine();
         SpawnEnemy(EnemyPositionMarker);
+    }
 
-        // TODO: Add whiteboard, instructions, etc.
+    /// <summary>
+    /// Initializes the full sequence of <see cref="TutorialStep"/> objects
+    /// that define the tutorial flow for this stage.
+    /// </summary>
+    private void InitTutorialSteps()
+    {
+        _tutorialSteps =
+        [
+            new TutorialStep(
+                "Willkommen im virtuellen Wissenshub der DHSN. " +
+                "Hier haben Sie Zugriff auf den gesamten Wissensschatz der Menschheit. " +
+                "Unsere freundlichen Bots sind stets an Ihrer Seite und stehen für Fragen offen.",
+                "A zum Fortfahren.",
+                ["A"]
+            ),
+
+            new TutorialStep(
+                "Du hast bei deiner Recherche zur Fouriertransformation die Zeit aus den " +
+                "Augen verloren und bist als einzige Person im Wissenshub eingelockt. Als Plötzlich ...",
+                "A zum Fortfahren, B zum Zurückgehen.",
+                ["A"],
+                ["B"]
+            ),
+
+            new TutorialStep(
+                "SYSTEMALARM ... BOTS von KI infiziert ... keine KONTROLLE ... AKTIVIERUNG NOTFALLPROTOKOLL",
+                "A zum Fortfahren, B zum Zurückgehen.",
+                ["A"],
+                ["B"]
+            ),
+            
+            new TutorialStep(
+                "Wir haben die Kontrolle über die Bots verloren. Und sie haben dich als Eindringling erfasst. " +
+                "Die Laserpointer der Bots erhielten ein Upgrade. Wir haben noch Zugriff auf die Replikatoren.",
+                "A zum Fortfahren, B zum Zurückgehen.",
+                ["A"],
+                ["B"]
+            ),
+
+            new TutorialStep(
+                "Du hast eine Waffe am Holster. Nimm sie in die Hand.",
+                "Ziehe die Waffe, um fortzufahren, oder B zum Zurückgehen.",
+                ["A"], // TODO
+                ["B"]
+                // () => Player.SpawnGun()
+            ),
+            
+            new TutorialStep(
+                "Dein Magazin ist leer. Nimm ein neues Magazin vom Gürtel und setze es in die Waffe",
+                "Lade die Waffe, um fortzufahren, oder B zum Zurückgehen.",
+                ["A"], // TODO
+                ["B"]
+                // () => Player.SpawnMagazine()
+            ),
+            
+            new TutorialStep(
+                "Hilf uns! Du bist unsere einzige Hoffnung.",
+                "Menü Taste um ins Hauptmenü zurück zukehren, oder B zum Zurückgehen.",
+                [],
+                ["B"]
+            )
+        ];
+    }
+    
+    /// <summary>
+    /// Starts (or restarts) the currently selected tutorial step.
+    /// Displays the step text and button hint on the <see cref="Whiteboard"/>
+    /// and executes the step’s optional start action if defined.
+    /// </summary>
+    private void StartCurrentStep()
+    {
+        var tutorialStep = _tutorialSteps[_currentStepIndex];
+        
+        if (Whiteboard == null) return;
+        Whiteboard.SetMainText(tutorialStep.MainText);
+        Whiteboard.SetButtonHint(tutorialStep.ButtonHint);
+        
+        tutorialStep.OnStepStart?.Invoke();
+    }
+    
+    public override void OnPlayerButtonPressed(string buttonName)
+    {
+        if (_tutorialSteps == null || _currentStepIndex >= _tutorialSteps.Count) return;
+
+        var tutorialStep = _tutorialSteps[_currentStepIndex];
+
+        // Backward navigation
+        if (tutorialStep.BackInputs.Contains(buttonName) && _currentStepIndex > 0)
+        {
+            _currentStepIndex--;
+            StartCurrentStep();
+            return;
+        }
+
+        // Forward navigation
+        if (tutorialStep.NextInputs.Contains(buttonName) && _currentStepIndex < _tutorialSteps.Count - 1)
+        {
+            _currentStepIndex++;
+            StartCurrentStep();
+        }
     }
 
     public override void OnExit()

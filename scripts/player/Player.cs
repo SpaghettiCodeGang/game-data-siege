@@ -18,17 +18,34 @@ public partial class Player : Node3D
     
     private Gun _currentGun;
     private Magazin _currentMagazine;
+    private BaseStage _currentStage;
+    
+    private bool _prevAButton;
+    private bool _prevBButton;
     
     /// <summary>
-    /// Called every frame. Checks for input to return to the menu.
+    /// Called every frame. Handles input from the VR controllers.
     /// </summary>
     /// <param name="delta">Time since the last frame.</param>
     public override void _Process(double delta)
     {
-        if (_leftController != null && _leftController.IsButtonPressed("menu_button"))
-        {
-            GameManager.Instance.ReturnToMenu();
-        }
+        if (_leftController == null) return;
+        if (_leftController.IsButtonPressed("menu_button")) GameManager.Instance.ReturnToMenu();
+        
+        if (_rightController == null) return;
+        var aPressed = _rightController.IsButtonPressed("ax_button");
+        var bPressed = _rightController.IsButtonPressed("by_button");
+
+        if (aPressed && !_prevAButton) _currentStage.OnPlayerButtonPressed("A");
+        if (bPressed && !_prevBButton) _currentStage.OnPlayerButtonPressed("B");
+
+        _prevAButton = aPressed;
+        _prevBButton = bPressed;
+    }
+
+    public void SetCurrentStage(BaseStage stage)
+    {
+        _currentStage = stage;
     }
 
     public void SpawnGun()
