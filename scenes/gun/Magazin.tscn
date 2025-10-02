@@ -54,28 +54,32 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_j6n4l")
 
 [node name="Magazin" groups=["Magazin"] instance=ExtResource("1_bbdpn")]
+collision_layer = 65536
+collision_mask = 196609
 script = ExtResource("2_oa5aq")
 
 [node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00018310547, -0.0010528564, -0.00039672852)
+transform = Transform3D(1, 0, 0, 0, 0.9781476, -0.2079117, 0, 0.2079117, 0.9781476, 0, -0.025, -0.035)
 shape = SubResource("BoxShape3D_5evtx")
 
 [node name="Gun-Mag" parent="." index="1" instance=ExtResource("1_aw3ya")]
+transform = Transform3D(1, 0, 0, 0, 0.9781476, -0.2079117, 0, 0.2079117, 0.9781476, 0, -0.025, -0.035)
 
 [node name="GrabPointHandLeft" parent="." index="2" instance=ExtResource("3_pwukd")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.011277316, 0, 0.08896187)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.011277316, 0, 0.05610176)
 
 [node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("4_67w6n")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.012237705, 0, 0.088260815)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.012237705, 0, 0.053067572)
 
 [node name="GrabPointSnap" parent="." index="4" instance=ExtResource("5_pwukd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, -0.03)
 
 [node name="XRToolsHighlightVisible" type="Node3D" parent="." index="5"]
 script = ExtResource("6_5evtx")
 metadata/_custom_type_script = "uid://b81p4oganc5jk"
 
 [node name="Batterymag BodyHL" type="MeshInstance3D" parent="XRToolsHighlightVisible" index="0" groups=["Magazin"]]
+transform = Transform3D(1, 0, 0, 0, 0.9781476, -0.2079117, 0, 0.2079117, 0.9781476, 0, -0.025, -0.035)
 mesh = SubResource("ArrayMesh_il14c")
 surface_material_override/0 = ExtResource("7_oa5aq")
 
