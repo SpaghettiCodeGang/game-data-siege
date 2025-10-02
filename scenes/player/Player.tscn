@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
 [ext_resource type="PackedScene" uid="uid://bdi6wt3tyvw3a" path="res://scenes/gun/Gun.tscn" id="2_7oing"]
-[ext_resource type="PackedScene" uid="uid://1l2ja703b70c" path="res://scenes/gun/Magazin.tscn" id="3_75vfm"]
+[ext_resource type="PackedScene" uid="uid://1l2ja703b70c" path="res://scenes/gun/Magazine.tscn" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="6_v42im"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_0owmy"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_7oing"]
 [ext_resource type="PackedScene" uid="uid://njx823gyk04n" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_hand.tscn" id="7_pn6s4"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qek5x"]
 [ext_resource type="PackedScene" uid="uid://bthudyiwu72bx" path="res://scenes/player/GunSnapZone.tscn" id="9_pn6s4"]
-[ext_resource type="PackedScene" uid="uid://d2p58ierxfjq0" path="res://scenes/player/MagazinSnapZone.tscn" id="11_5stf6"]
+[ext_resource type="PackedScene" uid="uid://d2p58ierxfjq0" path="res://scenes/player/MagazineSnapZone.tscn" id="11_5stf6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5stf6"]
 resource_local_to_scene = true

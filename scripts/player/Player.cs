@@ -30,17 +30,21 @@ public partial class Player : Node3D
     public override void _Process(double delta)
     {
         if (_leftController == null) return;
-        if (_leftController.IsButtonPressed("menu_button")) GameManager.Instance.ReturnToMenu();
+        if (_leftController.IsButtonPressed("menu_button"))
+        {
+            _currentGun?.Call("on_magazine_ejected");
+            GameManager.Instance.ReturnToMenu();
+        }
+        
+        var bPressed = _leftController.IsButtonPressed("ax_button");
+        if (bPressed && !_prevBButton) _currentStage.OnPlayerButtonPressed("X");
+        _prevBButton = bPressed;
+        
         
         if (_rightController == null) return;
         var aPressed = _rightController.IsButtonPressed("ax_button");
-        var bPressed = _rightController.IsButtonPressed("by_button");
-
         if (aPressed && !_prevAButton) _currentStage.OnPlayerButtonPressed("A");
-        if (bPressed && !_prevBButton) _currentStage.OnPlayerButtonPressed("B");
-
         _prevAButton = aPressed;
-        _prevBButton = bPressed;
     }
 
     public void SetCurrentStage(BaseStage stage)
@@ -59,6 +63,32 @@ public partial class Player : Node3D
         _currentGun.Position = Vector3.Zero;
         _currentGun.Rotation = Vector3.Zero;
         _currentGun.Freeze = true;
+        
+        // Verbinde Signal
+        _currentGun.Connect("gun_picked_up", 
+            Callable.From(OnGunPickedUp));
+        _currentGun.Connect("gun_loaded",
+            Callable.From(OnGunLoaded));
+    }
+    
+    private void OnGunPickedUp()
+    {
+        if (_currentGun.GetParent() != RightHolster) return;
+        RightHolster.RemoveChild(_currentGun);
+        _currentStage.AddChild(_currentGun);
+
+        if (_currentStage is TutorialStage)
+        {
+            _currentStage.OnPlayerButtonPressed("Picked");
+        }
+    }
+
+    private void OnGunLoaded()
+    {
+        if (_currentStage is TutorialStage)
+        {
+            _currentStage.OnPlayerButtonPressed("Loaded");
+        }
     }
     
     public void RemoveGun()
@@ -78,6 +108,17 @@ public partial class Player : Node3D
         _currentMagazine.Position = Vector3.Zero;
         _currentMagazine.Rotation = Vector3.Zero;
         _currentMagazine.Freeze = true;
+        
+        // Verbinde Signal
+        _currentMagazine.Connect("magazine_picked_up", 
+            Callable.From(OnMagazinePickedUp));
+    }
+    
+    private void OnMagazinePickedUp()
+    {
+        if (_currentMagazine.GetParent() != LeftMagBox) return;
+        LeftMagBox.RemoveChild(_currentMagazine);
+        _currentStage.AddChild(_currentMagazine);
     }
     
     public void RemoveMagazine()
@@ -85,4 +126,6 @@ public partial class Player : Node3D
         _currentMagazine?.QueueFree();
         _currentMagazine = null;
     }
+    
+    
 }
