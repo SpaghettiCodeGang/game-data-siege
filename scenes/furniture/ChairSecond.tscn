@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf147h8vsga17"]
+
+[ext_resource type="PackedScene" uid="uid://deqh5jpbp80nn" path="res://assets/furniture/Chair2.glb" id="1_it4dd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_it4dd"]
+albedo_color = Color(0.70752496, 0.68463635, 0.626465, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du74i"]
+albedo_color = Color(0.5461132, 0.54611325, 0.54611325, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_du74i"]
+size = Vector3(0.5227051, 0.05041504, 0.45507813)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ijnxv"]
+size = Vector3(0.015075684, 0.54486084, 0.41503906)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wcqis"]
+height = 0.48651123
+radius = 0.026367188
+
+[node name="Chair2" instance=ExtResource("1_it4dd")]
+
+[node name="body" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_it4dd")
+
+[node name="fabric" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_du74i")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004760742, 0.49331862, 0)
+shape = SubResource("BoxShape3D_du74i")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(0.9962583, -0.08642547, 0, 0.08642547, 0.9962583, 0, 0, 0, 1, -0.27516985, 0.7891905, 0)
+shape = SubResource("BoxShape3D_ijnxv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(0.97537696, 0.22054419, 0, -0.21776594, 0.9630899, 0.15822698, 0.03489605, -0.15433098, 0.98740274, -0.2390118, 0.2363259, 0.1606596)
+shape = SubResource("CylinderShape3D_wcqis")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(0.9734729, 0.2199792, 0.06292756, -0.2113738, 0.9699226, -0.120711155, -0.08758883, 0.104207866, 0.99069124, -0.2404736, 0.24052468, -0.1753028)
+shape = SubResource("CylinderShape3D_wcqis")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(-0.95663583, -0.19778754, -0.21384096, -0.21945167, 0.9721209, 0.082594, 0.19154324, 0.12594013, -0.9733705, 0.23323032, 0.23464978, -0.1732941)
+shape = SubResource("CylinderShape3D_wcqis")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+transform = Transform3D(-0.93514234, -0.21943079, -0.278135, -0.17159489, 0.9673961, -0.18627864, 0.30994204, -0.12647057, -0.9423063, 0.23150328, 0.23492056, 0.16500688)
+shape = SubResource("CylinderShape3D_wcqis")

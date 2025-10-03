@@ -1,6 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbfseba8srqxw"]
+[gd_scene load_steps=6 format=3 uid="uid://cbfseba8srqxw"]
 
 [ext_resource type="PackedScene" uid="uid://cpkry530ofea" path="res://assets/furniture/TeacherDesk.glb" id="1_ud24l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ud24l"]
+albedo_color = Color(0.7694836, 0.73885196, 0.69737726, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6docf"]
+albedo_color = Color(0.6751102, 0.62483996, 0.5747972, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqdfx"]
+albedo_color = Color(0.80535007, 0.80535024, 0.8053502, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6docf"]
 size = Vector3(1.130127, 0.94091797, 4.1853027)
@@ -9,6 +18,11 @@ size = Vector3(1.130127, 0.94091797, 4.1853027)
 
 [node name="teacher_desk_tabletop" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61095977, 0.85951006, -0.09722471)
+surface_material_override/0 = SubResource("StandardMaterial3D_ud24l")
+surface_material_override/1 = SubResource("StandardMaterial3D_6docf")
+
+[node name="teacher_desk_body" parent="teacher_desk_tabletop" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gqdfx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="teacher_desk_tabletop" index="1"]
 
