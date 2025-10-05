@@ -39,8 +39,6 @@ glow_bloom = 0.15
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_bl884")
 EnemyScene = ExtResource("2_571ng")
-EnemyPositionMarker = null
-PlayerPositionMarker = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_umtil")
