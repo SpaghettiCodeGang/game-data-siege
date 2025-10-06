@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://vocfo32xgjvq"]
+
+[ext_resource type="PackedScene" uid="uid://baktfdkxw16s7" path="res://assets/props/Poster3.glb" id="1_mfpb5"]
+
+[node name="Poster3" instance=ExtResource("1_mfpb5")]
