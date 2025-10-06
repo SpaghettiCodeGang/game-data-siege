@@ -1,19 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://d37yu22av1kym"]
+[gd_scene load_steps=13 format=3 uid="uid://d37yu22av1kym"]
 
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
-[ext_resource type="PackedScene" uid="uid://h2rba55iph3v" path="res://scenes/gun/Gun.tscn" id="2_p47bc"]
-[ext_resource type="PackedScene" uid="uid://jd1yrwu0h7se" path="res://scenes/gun/Magazin.tscn" id="3_75vfm"]
+[ext_resource type="PackedScene" uid="uid://bdi6wt3tyvw3a" path="res://scenes/gun/Gun.tscn" id="2_7oing"]
+[ext_resource type="PackedScene" uid="uid://1l2ja703b70c" path="res://scenes/gun/Magazine.tscn" id="3_75vfm"]
 [ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="6_v42im"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_0owmy"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_7oing"]
 [ext_resource type="PackedScene" uid="uid://njx823gyk04n" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_hand.tscn" id="7_pn6s4"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qek5x"]
+[ext_resource type="PackedScene" uid="uid://bthudyiwu72bx" path="res://scenes/player/GunSnapZone.tscn" id="9_pn6s4"]
+[ext_resource type="PackedScene" uid="uid://d2p58ierxfjq0" path="res://scenes/player/MagazineSnapZone.tscn" id="11_5stf6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5stf6"]
+resource_local_to_scene = true
+radius = 0.1
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "_rightController", "_leftController")]
 script = ExtResource("1_lvxji")
 RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
 LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
-GunScene = ExtResource("2_p47bc")
+GunScene = ExtResource("2_7oing")
 MagazineScene = ExtResource("3_75vfm")
 _rightController = NodePath("XROrigin3D/XRController3D_Right")
 _leftController = NodePath("XROrigin3D/XRController3D_Left")
@@ -31,15 +38,27 @@ tracker = &"right_hand"
 
 [node name="RightHand" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("6_v42im")]
 
+[node name="FunctionPickup" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("7_7oing")]
+ranged_collision_mask = 65540
+
 [node name="XRController3D_Left" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
 [node name="LeftHand" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("7_pn6s4")]
 
+[node name="FunctionPickup" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("7_7oing")]
+
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_0owmy")]
+collision_layer = 3
+collision_mask = 1
 
-[node name="RightHolster" type="Node3D" parent="XROrigin3D/PlayerBody"]
-transform = Transform3D(-1, 0, -8.74228e-08, 7.571036e-08, 0.5, -0.8660254, 4.3711402e-08, -0.8660254, -0.5, 0.2, 1, 0)
+[node name="RightHolster" parent="XROrigin3D/PlayerBody" instance=ExtResource("9_pn6s4")]
+transform = Transform3D(-1, -7.5710346e-08, -4.3711385e-08, 0, 0.49999997, -0.86602545, 8.742278e-08, -0.86602545, -0.49999997, 0.2, 1, -0.2)
 
-[node name="LeftMagBox" type="Node3D" parent="XROrigin3D/PlayerBody"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.2, 1, 0)
+[node name="LeftMagBox" parent="XROrigin3D/PlayerBody" instance=ExtResource("11_5stf6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.2, 1, -0.2)
+
+[node name="CollisionShape3D" parent="XROrigin3D/PlayerBody/LeftMagBox" index="0"]
+shape = SubResource("SphereShape3D_5stf6")
+
+[editable path="XROrigin3D/PlayerBody/LeftMagBox"]

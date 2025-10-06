@@ -9,15 +9,16 @@ using Godot;
 /// <author>Sören Lehmann</author>
 public partial class Player : Node3D
 {
-    [Export] public Node3D RightHolster;
-    [Export] public Node3D LeftMagBox;
+    [Export] public Area3D RightHolster;
+    [Export] public Area3D LeftMagBox;
     [Export] public PackedScene GunScene;
     [Export] public PackedScene MagazineScene;
     [Export] private XRController3D _rightController;
     [Export] private XRController3D _leftController;
     
-    private Gun _currentGun;
-    private Magazin _currentMagazine;
+    private RigidBody3D _currentGun;
+    private RigidBody3D _currentMagazine;
+    private RigidBody3D _loadedMagazine;
     private BaseStage _currentStage;
     
     private bool _prevAButton;
@@ -30,51 +31,149 @@ public partial class Player : Node3D
     public override void _Process(double delta)
     {
         if (_leftController == null) return;
-        if (_leftController.IsButtonPressed("menu_button")) GameManager.Instance.ReturnToMenu();
+        if (_leftController.IsButtonPressed("menu_button"))
+        {
+            _currentGun?.Call("on_magazine_ejected");
+            GameManager.Instance.ReturnToMenu();
+        }
+        
+        var bPressed = _leftController.IsButtonPressed("ax_button");
+        if (bPressed && !_prevBButton) _currentStage.OnPlayerButtonPressed("X");
+        _prevBButton = bPressed;
+        
         
         if (_rightController == null) return;
         var aPressed = _rightController.IsButtonPressed("ax_button");
-        var bPressed = _rightController.IsButtonPressed("by_button");
-
         if (aPressed && !_prevAButton) _currentStage.OnPlayerButtonPressed("A");
-        if (bPressed && !_prevBButton) _currentStage.OnPlayerButtonPressed("B");
-
         _prevAButton = aPressed;
-        _prevBButton = bPressed;
     }
 
-    public void SetCurrentStage(BaseStage stage)
-    {
-        _currentStage = stage;
-    }
+    /// <summary>
+    /// Assigns the current stage the player is in.
+    /// </summary>
+    /// <param name="stage">The stage to associate with the player.</param>
+    public void SetCurrentStage(BaseStage stage) => _currentStage = stage;
 
+    /// <summary>
+    /// Spawns a gun at the right holster position.
+    /// Connects relevant signals for pickup and loading events.
+    /// </summary>
     public void SpawnGun()
     {
         // Return early if required resources are not assigned
         if (GunScene == null || RightHolster == null) return;
-        
-        _currentGun = GunScene.Instantiate<Gun>();
+
+        _currentGun = GunScene.Instantiate<RigidBody3D>();
         RightHolster.AddChild(_currentGun);
+    
+        _currentGun.Position = Vector3.Zero;
+        _currentGun.Rotation = Vector3.Zero;
+        _currentGun.Freeze = true;
+        
+        // Connect signals
+        _currentGun.Connect("gun_picked_up", 
+            Callable.From(OnGunPickedUp));
+        _currentGun.Connect("gun_loaded",
+            Callable.From(OnGunLoaded));
+        _currentGun.Connect("magazine_ejected",
+            Callable.From(() => _loadedMagazine = null));
     }
     
+    /// <summary>
+    /// Triggered when the gun is picked up by the player.
+    /// Moves the gun from the holster to the active stage.
+    /// </summary>
+    private void OnGunPickedUp()
+    {
+        if (_currentGun  == null) return;
+        if (_currentGun.GetParent() != RightHolster) return;
+        RightHolster.RemoveChild(_currentGun);
+        _currentStage.AddChild(_currentGun);
+
+        if (_currentStage is TutorialStage)
+        {
+            _currentStage.OnPlayerButtonPressed("Picked");
+        }
+    }
+
+    /// <summary>
+    /// Triggered when the gun is loaded with a magazine.
+    /// Sends a signal to the current stage (used in TutorialStage).
+    /// </summary>
+    private void OnGunLoaded()
+    {
+        _loadedMagazine = _currentMagazine;
+        SpawnMagazine();
+        if (_currentStage is TutorialStage)
+        {
+            _currentStage.OnPlayerButtonPressed("Loaded");
+        }
+    }
+    
+    /// <summary>
+    /// Removes the currently spawned gun from the game.
+    /// </summary>
     public void RemoveGun()
     {
-        _currentGun?.QueueFree();
+        if (_currentGun == null || _currentGun.IsQueuedForDeletion()) return;
+        _currentGun.QueueFree();
         _currentGun = null;
     }
 
+    /// <summary>
+    /// Spawns a magazine at the left magazine box position.
+    /// Connects the pickup signal for interaction.
+    /// </summary>
     public void SpawnMagazine()
     {
         // Return early if required resources are not assigned
         if (MagazineScene == null || LeftMagBox == null) return;
         
-        _currentMagazine = MagazineScene.Instantiate<Magazin>();
+        _currentMagazine = MagazineScene.Instantiate<RigidBody3D>();
         LeftMagBox.AddChild(_currentMagazine);
+    
+        _currentMagazine.Position = Vector3.Zero;
+        _currentMagazine.Rotation = Vector3.Zero;
+        _currentMagazine.Freeze = true;
+        
+        // Connect signals
+        _currentMagazine.Connect("magazine_picked_up", 
+            Callable.From(OnMagazinePickedUp));
+        _currentMagazine.Connect("magazine_despawned", 
+            Callable.From(OnMagazineDespawned));
     }
     
+    /// <summary>
+    /// Triggered when the magazine is picked up by the player.
+    /// Moves the magazine from the mag box to the active stage.
+    /// </summary>
+    private void OnMagazinePickedUp()
+    {
+        if (_currentMagazine == null) return;
+        if (_currentMagazine.GetParent() != LeftMagBox) return;
+        LeftMagBox.RemoveChild(_currentMagazine);
+        _currentStage.AddChild(_currentMagazine);
+    }
+    
+    /// <summary>
+    /// Triggered when the currently active magazine despawns.
+    /// Clears the reference and spawns a new magazine unless the player is in the menu stage.
+    /// </summary>
+    private void OnMagazineDespawned()
+    {
+        if (_currentStage is MenuStage) return;
+        _currentMagazine = null;
+        SpawnMagazine();
+    }
+    
+    /// <summary>
+    /// Removes the currently spawned magazine from the game.
+    /// </summary>
     public void RemoveMagazine()
     {
-        _currentMagazine?.QueueFree();
+        if (_currentMagazine == null || _currentMagazine.IsQueuedForDeletion()) return;
+        _currentMagazine.QueueFree();
         _currentMagazine = null;
     }
+    
 }
