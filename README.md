@@ -127,10 +127,10 @@ Damit der Code konsistent bleibt, halten wir uns an die folgenden Regeln:
 ```csharp
 public void DoSomething()
 {
-    if (condition)
-    {
-        // code
-    }
+	if (condition)
+	{
+		// code
+	}
 }
 ```
 
@@ -144,9 +144,9 @@ public class PlayerController { }
 public void MoveForward() { }
 public enum GameState
 {
-    MainMenu,
-    Playing,
-    Paused
+	MainMenu,
+	Playing,
+	Paused
 }
 ```
 
@@ -179,7 +179,7 @@ private Sprite3D playerSprite;
 
 public override void _Ready()
 {
-    playerSprite = GetNode<Sprite3D>("PlayerSprite");
+	playerSprite = GetNode<Sprite3D>("PlayerSprite");
 }
 ```
 

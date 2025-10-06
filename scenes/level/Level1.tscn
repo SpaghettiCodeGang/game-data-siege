@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://3hi723ixw7ph"]
+[gd_scene load_steps=28 format=3 uid="uid://3hi723ixw7ph"]
 
 [ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_bl884"]
 [ext_resource type="PackedScene" uid="uid://bcv2tle0qu0oi" path="res://scenes/enemy/Enemy.tscn" id="2_571ng"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://56uhluo1yfdy" path="res://scenes/level-boundaries/Column.tscn" id="21_g4ilq"]
 [ext_resource type="PackedScene" uid="uid://c7gtwvx1q5nup" path="res://scenes/props/Coffee.tscn" id="23_58gpe"]
 [ext_resource type="PackedScene" uid="uid://dr8ymgcuolh7" path="res://scenes/props/Laptop.tscn" id="24_ft6nd"]
+[ext_resource type="AudioStream" uid="uid://bdob87orxyqcf" path="res://assets/audio/background/CybernaticDreamscape.mp3" id="26_ixdpk"]
 
 [sub_resource type="Environment" id="Environment_umtil"]
 background_mode = 1
@@ -696,3 +697,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.
 
 [node name="EnemyPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(-4.371138e-08, 0, 0.9999998, 0, 1, 0, -0.9999998, 0, -4.371138e-08, 4.4057126, 1.0291039, -0.30189148)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_ixdpk")
+volume_db = -50.0
