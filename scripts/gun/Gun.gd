@@ -1,6 +1,17 @@
 @tool
 extends XRToolsPickable
 
+## Represents a gun that can be picked up, loaded with a magazine, and fired.
+## Handles XR controller input, magazine loading and ejection, and projectile instantiation.
+## Designed for use with XR Tools and compatible magazine snap zones.
+## @author Sören Lehmann
+
+## Signals for player interaction and weapon state changes.
+## They enable communication with the C# player script.
+signal gun_picked_up()
+signal gun_loaded()
+signal magazine_ejected()
+
 @export var projectile_scene: PackedScene
 
 @onready var magazine_snapzone = $GunModel/MagazineSnapZone
@@ -9,24 +20,25 @@ extends XRToolsPickable
 var magazine
 var trigger_pressed_last_frame: bool = false
 
-signal gun_picked_up()
-signal gun_loaded()
-signal magazine_ejected()
-
+## Called when the gun enters the scene tree.
+## Connects XR Tools pickup and drop events.
 func _ready():
 	super._ready()
 	
-	# Verbinde die XR Tools Signale
 	picked_up.connect(_on_gun_picked_up)
 	dropped.connect(_on_gun_dropped)
 
+## Called every frame.
+## Handles input for magazine ejection using the controller’s "by_button".
 func _process(_delta: float):
 	if is_picked_up() and get_picked_up_by_controller() and get_picked_up_by_controller().is_button_pressed("by_button"):
 		if magazine and is_instance_valid(magazine):
 			magazine.is_loaded_in_gun = false
 			magazine.get_node("LifetimeTimer").start()
 			$AnimationPlayer.play("EjectMagazin")
-			
+		
+## Called every physics frame.
+## Handles trigger input and fires a projectile when the trigger is pressed.	
 func _physics_process(_delta: float):
 	if is_picked_up() and get_picked_up_by_controller():
 		var controller: XRController3D = get_picked_up_by_controller()
@@ -37,15 +49,24 @@ func _physics_process(_delta: float):
 
 		trigger_pressed_last_frame = pressed
 
+## Called when the gun is picked up.
+## Emits the `gun_picked_up` signal.
 func _on_gun_picked_up(_pickable):
 	gun_picked_up.emit()
 	
+## Called when the gun is dropped.
+## Resets physics freeze state.
 func _on_gun_dropped(_pickable):
 	freeze = false
 	
+## Called when a magazine has been loaded.
+## Currently unused, but reserved for future logic.
 func on_magazine_loaded():
 	pass
 	
+## Handles magazine ejection.
+## Marks the magazine as unloaded, starts its lifetime timer, drops it from the snap zone,
+## and emits the `magazine_ejected` signal.
 func on_magazine_ejected():
 	if magazine and is_instance_valid(magazine):
 		magazine.is_loaded_in_gun = false
@@ -54,6 +75,9 @@ func on_magazine_ejected():
 	magazine = null
 	magazine_ejected.emit()
 
+## Triggered when the magazine snap zone picks up a magazine object.
+## Loads the magazine, plays a load animation, and emits the `gun_loaded` signal.
+## @param what: The picked-up magazine instance.
 func _on_magazine_snap_zone_has_picked_up(what: Variant) -> void:
 	if magazine != null:
 		return
@@ -63,16 +87,16 @@ func _on_magazine_snap_zone_has_picked_up(what: Variant) -> void:
 	$AnimationPlayer.play("LoadMagazin")
 	gun_loaded.emit()
 	
+## Fires a projectile from the muzzle if a valid magazine is inserted and has ammunition.
+## Consumes one round from the magazine and spawns a projectile instance in the scene.
 func fire() -> void:
 	if projectile_scene == null:
 		return
 		
 	if magazine == null or not is_instance_valid(magazine):
-		print("Kein Magazin eingesetzt!")
 		return
 		
 	if not magazine.consume_round():
-		print("Magazin leer!")
 		return
 	
 	var direction = muzzle.global_transform.basis.z

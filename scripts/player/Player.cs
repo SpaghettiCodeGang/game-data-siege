@@ -70,7 +70,7 @@ public partial class Player : Node3D
         _currentGun.Rotation = Vector3.Zero;
         _currentGun.Freeze = true;
         
-        // Connect signals
+        // Connect signals from Gun.gd
         _currentGun.Connect("gun_picked_up", 
             Callable.From(OnGunPickedUp));
         _currentGun.Connect("gun_loaded",
@@ -136,7 +136,7 @@ public partial class Player : Node3D
         _currentMagazine.Rotation = Vector3.Zero;
         _currentMagazine.Freeze = true;
         
-        // Connect signals
+        // Connect signals from Magazine.gd
         _currentMagazine.Connect("magazine_picked_up", 
             Callable.From(OnMagazinePickedUp));
         _currentMagazine.Connect("magazine_despawned", 
@@ -176,6 +176,12 @@ public partial class Player : Node3D
         _currentMagazine = null;
     }
     
+
+    /// <summary>
+    /// Shows the laser pointer on both VR controllers.
+    /// This manipulates the `FunctionPointer` node from Godot XR Tools.
+    /// A value of 2 sets the laser to collide.
+    /// </summary>
     public void ShowAllLasers()
     {
         foreach (var controller in new[] { RightController, LeftController })
@@ -189,6 +195,11 @@ public partial class Player : Node3D
         }
     }
     
+    /// <summary>
+    /// Hides the laser pointer on both VR controllers.
+    /// This manipulates the `FunctionPointer` node from Godot XR Tools.
+    /// A value of 0 disables the laser.
+    /// </summary>
     public void HideAllLasers()
     {
         foreach (var controller in new[] { RightController, LeftController })
