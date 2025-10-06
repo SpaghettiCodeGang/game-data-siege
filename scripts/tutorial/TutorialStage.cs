@@ -30,8 +30,6 @@ public partial class TutorialStage : BaseStage
         InitTutorialSteps();
         _currentStepIndex = 0;
         StartCurrentStep();
-        Player.SpawnGun();
-        Player.SpawnMagazine();
         SpawnEnemy(EnemyPositionMarker);
     }
 
@@ -53,41 +51,52 @@ public partial class TutorialStage : BaseStage
 
             new TutorialStep(
                 "Du hast bei deiner Recherche zur Fouriertransformation die Zeit aus den " +
-                "Augen verloren und bist als einzige Person im Wissenshub eingelockt. Als Plötzlich ...",
-                "A zum Fortfahren, B zum Zurückgehen.",
+                "Augen verloren und bist als einzige Person im Wissenshub eingeloggt. Als plötzlich ...",
+                "A zum Fortfahren, X zum Zurückgehen.",
                 ["A"],
-                ["B"]
+                ["X"]
             ),
 
             new TutorialStep(
                 "SYSTEMALARM ... BOTS von KI infiziert ... keine KONTROLLE ... AKTIVIERUNG NOTFALLPROTOKOLL",
-                "A zum Fortfahren, B zum Zurückgehen.",
+                "A zum Fortfahren, X zum Zurückgehen.",
                 ["A"],
-                ["B"]
+                ["X"]
             ),
             
             new TutorialStep(
                 "Wir haben die Kontrolle über die Bots verloren. Und sie haben dich als Eindringling erfasst. " +
                 "Die Laserpointer der Bots erhielten ein Upgrade. Wir haben noch Zugriff auf die Replikatoren.",
-                "A zum Fortfahren, B zum Zurückgehen.",
+                "A zum Fortfahren, X zum Zurückgehen.",
                 ["A"],
-                ["B"]
+                ["X"],
+                () =>
+                {
+                    Player.RemoveGun();
+                }
             ),
 
             new TutorialStep(
                 "Du hast eine Waffe am Holster. Nimm sie in die Hand.",
-                "Ziehe die Waffe, um fortzufahren, oder B zum Zurückgehen.",
-                ["A"], // TODO
-                ["B"]
-                // () => Player.SpawnGun()
+                "Ziehe die Waffe, um fortzufahren, oder X zum Zurückgehen.",
+                ["Picked"],
+                ["X"],
+                () =>
+                {
+                    Player.SpawnGun();
+                    Player.RemoveMagazine();
+                }
             ),
             
             new TutorialStep(
-                "Dein Magazin ist leer. Nimm ein neues Magazin vom Gürtel und setze es in die Waffe",
-                "Lade die Waffe, um fortzufahren, oder B zum Zurückgehen.",
-                ["A"], // TODO
-                ["B"]
-                // () => Player.SpawnMagazine()
+                "Dein Magazin ist leer. Nimm ein neues Magazin vom Gürtel und setze es in die Waffe.",
+                "Lade die Waffe, um fortzufahren, oder X zum Zurückgehen.",
+                ["Loaded"],
+                ["X"],
+                () =>
+                {
+                    Player.SpawnMagazine();
+                }
             ),
             
             new TutorialStep(
