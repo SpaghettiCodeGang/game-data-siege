@@ -16,14 +16,14 @@
 resource_local_to_scene = true
 radius = 0.1
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "_rightController", "_leftController")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController")]
 script = ExtResource("1_lvxji")
 RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
 LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
 GunScene = ExtResource("2_7oing")
 MagazineScene = ExtResource("3_75vfm")
-_rightController = NodePath("XROrigin3D/XRController3D_Right")
-_leftController = NodePath("XROrigin3D/XRController3D_Left")
+RightController = NodePath("XROrigin3D/XRController3D_Right")
+LeftController = NodePath("XROrigin3D/XRController3D_Left")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -34,12 +34,13 @@ _leftController = NodePath("XROrigin3D/XRController3D_Left")
 [node name="XRController3D_Right" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 
-[node name="FunctionPointer" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("7_qek5x")]
-
 [node name="RightHand" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("6_v42im")]
 
 [node name="FunctionPickup" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("7_7oing")]
 ranged_collision_mask = 65540
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("7_qek5x")]
+show_laser = 0
 
 [node name="XRController3D_Left" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
@@ -47,6 +48,9 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("7_pn6s4")]
 
 [node name="FunctionPickup" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("7_7oing")]
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("7_qek5x")]
+show_laser = 0
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_0owmy")]
 collision_layer = 3
