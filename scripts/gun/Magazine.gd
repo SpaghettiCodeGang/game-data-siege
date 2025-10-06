@@ -4,10 +4,14 @@ extends XRToolsPickable
 signal magazine_picked_up()
 signal magazine_despawned()
 
+@export var capacity: int = 8
+
+var remaining_rounds: int
 var is_loaded_in_gun: bool = false
 
 func _ready():
 	super._ready()
+	remaining_rounds = capacity;
 	
 	# Verbinde die XR Tools Signale
 	picked_up.connect(_on_magazine_picked_up)
@@ -28,3 +32,9 @@ func _on_magazine_dropped(_pickable):
 func _on_lifetime_timer_timeout():
 	magazine_despawned.emit()
 	queue_free()
+	
+func consume_round() -> bool:
+	if remaining_rounds > 0:
+		remaining_rounds -= 1
+		return true
+	return false

@@ -66,6 +66,14 @@ func _on_magazine_snap_zone_has_picked_up(what: Variant) -> void:
 func fire() -> void:
 	if projectile_scene == null:
 		return
+		
+	if magazine == null or not is_instance_valid(magazine):
+		print("Kein Magazin eingesetzt!")
+		return
+		
+	if not magazine.consume_round():
+		print("Magazin leer!")
+		return
 	
 	var direction = muzzle.global_transform.basis.z
 	var projectile = projectile_scene.instantiate()

@@ -14,6 +14,7 @@ emission = Color(0.0509804, 0.396078, 0.784314, 1)
 emission_energy_multiplier = 5.0
 
 [node name="Projectile" type="RigidBody3D"]
+mass = 0.01
 script = ExtResource("1_irxvo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
