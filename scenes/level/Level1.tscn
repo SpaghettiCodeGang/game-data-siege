@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://56uhluo1yfdy" path="res://scenes/level-boundaries/Column.tscn" id="21_g4ilq"]
 [ext_resource type="PackedScene" uid="uid://c7gtwvx1q5nup" path="res://scenes/props/Coffee.tscn" id="23_58gpe"]
 [ext_resource type="PackedScene" uid="uid://dr8ymgcuolh7" path="res://scenes/props/Laptop.tscn" id="24_ft6nd"]
-[ext_resource type="AudioStream" uid="uid://bdob87orxyqcf" path="res://assets/audio/background/CybernaticDreamscape.mp3" id="26_ixdpk"]
+[ext_resource type="AudioStream" uid="uid://c0s8pi2kghg7u" path="res://assets/audio/background/WelcomeToMyDoom.mp3" id="26_ixdpk"]
 
 [sub_resource type="Environment" id="Environment_umtil"]
 background_mode = 1
