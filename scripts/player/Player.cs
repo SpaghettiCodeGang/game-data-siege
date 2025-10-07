@@ -13,8 +13,8 @@ public partial class Player : Node3D
     [Export] public Area3D LeftMagBox;
     [Export] public PackedScene GunScene;
     [Export] public PackedScene MagazineScene;
-    [Export] private XRController3D _rightController;
-    [Export] private XRController3D _leftController;
+    [Export] public XRController3D RightController;
+    [Export] public XRController3D LeftController;
     
     private RigidBody3D _currentGun;
     private RigidBody3D _currentMagazine;
@@ -30,20 +30,20 @@ public partial class Player : Node3D
     /// <param name="delta">Time since the last frame.</param>
     public override void _Process(double delta)
     {
-        if (_leftController == null) return;
-        if (_leftController.IsButtonPressed("menu_button"))
+        if (LeftController == null) return;
+        if (LeftController.IsButtonPressed("menu_button"))
         {
             _currentGun?.Call("on_magazine_ejected");
             GameManager.Instance.ReturnToMenu();
         }
         
-        var bPressed = _leftController.IsButtonPressed("ax_button");
+        var bPressed = LeftController.IsButtonPressed("ax_button");
         if (bPressed && !_prevBButton) _currentStage.OnPlayerButtonPressed("X");
         _prevBButton = bPressed;
         
         
-        if (_rightController == null) return;
-        var aPressed = _rightController.IsButtonPressed("ax_button");
+        if (RightController == null) return;
+        var aPressed = RightController.IsButtonPressed("ax_button");
         if (aPressed && !_prevAButton) _currentStage.OnPlayerButtonPressed("A");
         _prevAButton = aPressed;
     }
@@ -70,7 +70,7 @@ public partial class Player : Node3D
         _currentGun.Rotation = Vector3.Zero;
         _currentGun.Freeze = true;
         
-        // Connect signals
+        // Connect signals from Gun.gd
         _currentGun.Connect("gun_picked_up", 
             Callable.From(OnGunPickedUp));
         _currentGun.Connect("gun_loaded",
@@ -136,7 +136,7 @@ public partial class Player : Node3D
         _currentMagazine.Rotation = Vector3.Zero;
         _currentMagazine.Freeze = true;
         
-        // Connect signals
+        // Connect signals from Magazine.gd
         _currentMagazine.Connect("magazine_picked_up", 
             Callable.From(OnMagazinePickedUp));
         _currentMagazine.Connect("magazine_despawned", 
@@ -174,6 +174,43 @@ public partial class Player : Node3D
         if (_currentMagazine == null || _currentMagazine.IsQueuedForDeletion()) return;
         _currentMagazine.QueueFree();
         _currentMagazine = null;
+    }
+    
+
+    /// <summary>
+    /// Shows the laser pointer on both VR controllers.
+    /// This manipulates the `FunctionPointer` node from Godot XR Tools.
+    /// A value of 2 sets the laser to collide.
+    /// </summary>
+    public void ShowAllLasers()
+    {
+        foreach (var controller in new[] { RightController, LeftController })
+        {
+            var fp = controller.GetNodeOrNull<Node>("FunctionPointer");
+            if (fp != null)
+            {
+                fp.Call("set_show_laser", 2);
+                fp.Call("_update_pointer");
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Hides the laser pointer on both VR controllers.
+    /// This manipulates the `FunctionPointer` node from Godot XR Tools.
+    /// A value of 0 disables the laser.
+    /// </summary>
+    public void HideAllLasers()
+    {
+        foreach (var controller in new[] { RightController, LeftController })
+        {
+            var fp = controller.GetNodeOrNull<Node>("FunctionPointer");
+            if (fp != null)
+            {
+                fp.Call("set_show_laser", 0);
+                fp.Call("_update_pointer");
+            }
+        }
     }
     
 }
