@@ -145,8 +145,10 @@ alpha_curve = SubResource("CurveTexture_5bbim")
 
 [node name="MuzzlePlanes" type="GPUParticles3D" parent="MuzzleFlash"]
 material_override = SubResource("StandardMaterial3D_usunq")
+emitting = false
 amount = 1
 lifetime = 0.1
+one_shot = true
 randomness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nlq07")
@@ -154,8 +156,10 @@ draw_pass_1 = ExtResource("1_abwvw")
 
 [node name="MuzzleCone" type="GPUParticles3D" parent="MuzzleFlash"]
 material_override = SubResource("StandardMaterial3D_6oq7n")
+emitting = false
 amount = 1
 lifetime = 0.1
+one_shot = true
 randomness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_x1aop")
@@ -163,8 +167,10 @@ draw_pass_1 = ExtResource("4_ust0o")
 
 [node name="BeamFlash" type="GPUParticles3D" parent="MuzzleFlash"]
 material_override = SubResource("StandardMaterial3D_nlq07")
+emitting = false
 amount = 1
 lifetime = 0.1
+one_shot = true
 randomness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_5fjsd")
@@ -173,8 +179,10 @@ draw_pass_1 = SubResource("QuadMesh_n3rsx")
 [node name="Sparks" type="GPUParticles3D" parent="MuzzleFlash"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_y0ppw")
+emitting = false
 amount = 10
 lifetime = 0.2
+one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_4cfkr")

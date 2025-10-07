@@ -1,17 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://buudbdqk5jyut"]
+[gd_scene load_steps=11 format=3 uid="uid://buudbdqk5jyut"]
 
 [ext_resource type="Script" uid="uid://dmuvcb873lpk5" path="res://scripts/gun/Projectile.cs" id="1_irxvo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8ftho"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_oulbh"]
-size = Vector3(0.005, 0.005, 0.05)
+size = Vector3(0.02, 0.02, 0.02)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vc17"]
-albedo_color = Color(0.0789586, 0.419031, 0.636739, 1)
+transparency = 1
+albedo_color = Color(0.07846785, 0.4195712, 0.6366402, 0.48000002)
 emission_enabled = true
 emission = Color(0.0509804, 0.396078, 0.784314, 1)
-emission_energy_multiplier = 5.0
+emission_energy_multiplier = 2.52
+
+[sub_resource type="Gradient" id="Gradient_4rp1d"]
+offsets = PackedFloat32Array(0, 0.005479452, 0.3041096, 1)
+colors = PackedColorArray(0, 0.39151636, 0.74060166, 0, 0, 0.39151636, 0.74060166, 1, 0.22658296, 0.887035, 0.940048, 0.558, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g5xln"]
+gradient = SubResource("Gradient_4rp1d")
+height = 256
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xirki"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("GradientTexture2D_g5xln")
+emission_enabled = true
+emission = Color(0.18579459, 0.627735, 0.8829741, 1)
+emission_energy_multiplier = 4.11
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_kja17"]
+material = SubResource("StandardMaterial3D_xirki")
+size = 0.013
+sections = 2
+section_length = 0.1
+section_segments = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_j37tr"]
+size = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osmrn"]
+albedo_color = Color(0.08450269, 0.23818988, 0.5306668, 1)
+emission_enabled = true
+emission = Color(0.62152386, 0.62152386, 0.6215238, 1)
+emission_energy_multiplier = 5.69
 
 [node name="Projectile" type="RigidBody3D"]
 mass = 0.01
@@ -23,6 +59,17 @@ transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 shape = SubResource("SphereShape3D_8ftho")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000350222, -0.000510052, 0.00190387)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000350222, 0.00027480518, 5.802035e-05)
 mesh = SubResource("BoxMesh_oulbh")
 surface_material_override/0 = SubResource("StandardMaterial3D_1vc17")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0.000350222, -0.00027480518, -0.09012728)
+mesh = SubResource("RibbonTrailMesh_kja17")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000350222, -0.00027480518, -5.802035e-05)
+mesh = SubResource("BoxMesh_j37tr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_osmrn")
