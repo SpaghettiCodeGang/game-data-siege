@@ -34,7 +34,8 @@ folder_colors={
 "res://addons/": "gray",
 "res://assets/": "yellow",
 "res://scenes/": "blue",
-"res://scripts/": "red"
+"res://scripts/": "red",
+"res://vfx/": "teal"
 }
 
 [layer_names]
