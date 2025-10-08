@@ -91,9 +91,11 @@ func _on_magazine_snap_zone_has_picked_up(what: Variant) -> void:
 ## Consumes one round from the magazine and spawns a projectile instance in the scene.
 func fire() -> void:
 	if projectile_scene == null:
+		$SoundEmpty.playing
 		return
 		
 	if magazine == null or not is_instance_valid(magazine):
+		$SoundEmpty.playing
 		return
 		
 	if not magazine.consume_round():
@@ -104,4 +106,5 @@ func fire() -> void:
 	
 	projectile.global_transform = muzzle.global_transform
 	projectile.Fire(direction)
+	$SoundShot.playing
 	get_tree().current_scene.add_child(projectile)
