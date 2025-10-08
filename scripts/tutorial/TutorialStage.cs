@@ -12,12 +12,18 @@ using System.Collections.Generic;
 /// Each step may also define an optional start action (e.g. spawning items).
 /// </summary>
 /// <author>Sören Lehmann</author>
+/// <coauthor>Elias Kugel</coauthor>
 public partial class TutorialStage : BaseStage
 {
     /// <summary>
     /// Spawn point for the enemy in this stage.
     /// </summary>
     [Export] protected Marker3D EnemyPositionMarker;
+    
+    /// <summary>
+    /// Reference to the spawned enemy in this stage.
+    /// </summary>
+    protected Enemy Enemy { get; private set; }
     
     [Export] public Whiteboard Whiteboard;
     
@@ -29,8 +35,8 @@ public partial class TutorialStage : BaseStage
         if (Player == null) return;
         InitTutorialSteps();
         _currentStepIndex = 0;
+        Enemy = SpawnEnemy(EnemyPositionMarker);
         StartCurrentStep();
-        SpawnEnemy(EnemyPositionMarker);
     }
 
     /// <summary>
@@ -103,7 +109,7 @@ public partial class TutorialStage : BaseStage
                 "Hilf uns! Du bist unsere einzige Hoffnung.",
                 "Menü Taste um ins Hauptmenü zurück zukehren, oder B zum Zurückgehen.",
                 [],
-                ["B"]
+                ["X"]
             )
         ];
     }
@@ -122,6 +128,19 @@ public partial class TutorialStage : BaseStage
         Whiteboard.SetButtonHint(tutorialStep.ButtonHint);
         
         tutorialStep.OnStepStart?.Invoke();
+
+        if (Enemy != null)
+        {
+            if (_currentStepIndex == 6)
+            {
+                Enemy.CurrentState = Enemy.EnemyState.Aggressive;
+                GD.Print("Enemy set to Aggressive state");
+            }
+            else
+            {
+                Enemy.CurrentState = Enemy.EnemyState.Passive;
+            }
+        }
     }
     
     public override void OnPlayerButtonPressed(string buttonName)
@@ -130,7 +149,6 @@ public partial class TutorialStage : BaseStage
 
         var tutorialStep = _tutorialSteps[_currentStepIndex];
 
-        // Backward navigation
         if (tutorialStep.BackInputs.Contains(buttonName) && _currentStepIndex > 0)
         {
             _currentStepIndex--;
@@ -138,7 +156,6 @@ public partial class TutorialStage : BaseStage
             return;
         }
 
-        // Forward navigation
         if (tutorialStep.NextInputs.Contains(buttonName) && _currentStepIndex < _tutorialSteps.Count - 1)
         {
             _currentStepIndex++;

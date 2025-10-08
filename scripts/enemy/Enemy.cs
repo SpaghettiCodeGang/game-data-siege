@@ -5,12 +5,19 @@ using Godot;
 /// Handles movement, hovering, facing the player, and state transitions.
 /// </summary>
 /// /// <author>Sören Lehmann</author>
+/// /// <coauthor>Elias Kugel</coauthor>
 public partial class Enemy : CharacterBody3D
 {
     [Export] public float MaxRadius = 1.0f;
     [Export] public float HoverAmplitude = 0.2f;
     [Export] public float WanderSpeed = 0.5f;
     [Export] public float TurnSpeed = 1.0f;
+    [Export] public int maxHealth = 10;
+    
+    // Combat accuracy settings
+    [Export] public float MaxSpreadAngle = 15.0f;
+    [Export] public float AccurateShotChance = 0.7f;
+    [Export] public float AccurateSpreadAngle = 5.0f;
     
     /// <summary>
     /// Current state of the enemy.
@@ -39,7 +46,7 @@ public partial class Enemy : CharacterBody3D
     public void Initialize(Player player, int maxHealth)
     {
         _player = player;
-        _combat = new EnemyCombat(this, maxHealth);
+        _combat = new EnemyCombat(this, maxHealth, MaxSpreadAngle, AccurateShotChance, AccurateSpreadAngle);
     }
 
     /// <summary>
@@ -59,7 +66,10 @@ public partial class Enemy : CharacterBody3D
             case EnemyState.Aggressive:
                 _movement.Hover((float)delta);
                 FacePlayer();
-                // _combat.Attack(_player);
+                if (_combat != null)
+                {
+                    _combat.Update(delta);
+                }
                 break;
 
             case EnemyState.Dead:
