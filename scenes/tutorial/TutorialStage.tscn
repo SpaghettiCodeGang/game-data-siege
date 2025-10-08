@@ -41,7 +41,7 @@ EnemyScene = ExtResource("2_o6wnn")
 PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.4667516, 0.07735634, -1.7322125)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.467, 0.045, -1.732)
 
 [node name="Whiteboard" parent="." instance=ExtResource("10_x7bq6")]
 transform = Transform3D(-0.6893541, 0, -0.7244246, 0, 1, 0, 0.7244246, 0, -0.6893541, -2.0079784, 0.034638166, 0.70472074)
@@ -260,6 +260,7 @@ transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kl2ug")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_d44cl")
 volume_db = -50.0

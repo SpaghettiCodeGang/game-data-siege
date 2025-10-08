@@ -50,9 +50,12 @@ emission = Color(0.62152386, 0.62152386, 0.6215238, 1)
 emission_energy_multiplier = 5.69
 
 [node name="Projectile" type="RigidBody3D"]
+collision_layer = 2048
+collision_mask = 1025
 mass = 0.001
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_irxvo")
-LifeTime = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
