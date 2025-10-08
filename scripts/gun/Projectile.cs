@@ -9,22 +9,17 @@ using System;
 /// <author>Sören Lehmann</author>
 public partial class Projectile : RigidBody3D
 {
-    [Export] public float Speed = 30f;   // Base speed of the projectile
     [Export] public int Damage = 1;      // Base damage dealt on impact
-    [Export] public float LifeTime = 5f; // Time in seconds before the projectile is automatically removed
 
     private Vector3 _direction = Vector3.Zero;
+	[Export] public float Speed = 80f;   // Base speed of the projectile
 
     /// <summary>
     /// Called when the node enters the scene tree for the first time.
-    /// Sets up lifetime handling and connects physics collision signals.
+    /// Cconnects physics collision signals.
     /// </summary>
     public override void _Ready()
     {
-        // Remove projectile after its lifetime expires
-        GetTree().CreateTimer(LifeTime).Timeout += QueueFree;
-
-        // Connect collision signal
         BodyEntered += OnBodyEntered;
     }
 
