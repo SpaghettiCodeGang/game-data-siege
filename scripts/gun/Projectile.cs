@@ -14,6 +14,7 @@ public partial class Projectile : RigidBody3D
     [Export] public float LifeTime = 5f; // Time in seconds before the projectile is automatically removed
 
     private Vector3 _direction = Vector3.Zero;
+    private AudioStreamPlayer3D _soundImpact;
 
     /// <summary>
     /// Called when the node enters the scene tree for the first time.
@@ -26,6 +27,9 @@ public partial class Projectile : RigidBody3D
 
         // Connect collision signal
         BodyEntered += OnBodyEntered;
+        
+        // Sound player for the impact sound
+        _soundImpact = GetNode<AudioStreamPlayer3D>("SoundImpact");
     }
 
     /// <summary>
@@ -46,6 +50,7 @@ public partial class Projectile : RigidBody3D
     /// <param name="body">The body node that was hit by the projectile.</param>
     private void OnBodyEntered(Node body)
     {
+        _soundImpact.Play();
         QueueFree();
     }
     

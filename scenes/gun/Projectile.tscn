@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://buudbdqk5jyut"]
+[gd_scene load_steps=12 format=3 uid="uid://buudbdqk5jyut"]
 
 [ext_resource type="Script" uid="uid://dmuvcb873lpk5" path="res://scripts/gun/Projectile.cs" id="1_irxvo"]
+[ext_resource type="AudioStream" uid="uid://bckip6n7v0apc" path="res://assets/audio/sounds/Impact.mp3" id="2_6wppf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8ftho"]
 
@@ -73,3 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000350222, -0.00027480518, 
 mesh = SubResource("BoxMesh_j37tr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_osmrn")
+
+[node name="SoundImpact" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_6wppf")
