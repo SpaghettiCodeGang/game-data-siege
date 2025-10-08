@@ -50,7 +50,7 @@ emission = Color(0.62152386, 0.62152386, 0.6215238, 1)
 emission_energy_multiplier = 5.69
 
 [node name="Projectile" type="RigidBody3D"]
-mass = 0.01
+mass = 0.001
 script = ExtResource("1_irxvo")
 LifeTime = 1.0
 
