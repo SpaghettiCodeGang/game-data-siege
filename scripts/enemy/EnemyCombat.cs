@@ -11,48 +11,18 @@ using Godot;
 public class EnemyCombat
 {
     private readonly Enemy _enemy;
-    private readonly int _maxHealth;
-    private int _currentHealth;
-    private Node3D _muzzle;
-    private float _attackCooldown = 1.0f;
-    private float _currentCooldown = 0.0f;
-    private PackedScene _projectileScene;
+    private float _currentCooldown;
     private readonly RandomNumberGenerator _rng;
-    
-    // Accuracy settings
-    private readonly float _maxSpreadAngle;     // Maximum deviation angle in degrees
-    private readonly float _accurateShotChance; // Chance for accurate shots
-    private readonly float _accurateSpreadAngle; // Small spread for "accurate" shots
 
     /// <summary>
-    /// Initializes a new instance of EnemyCombat with the specified enemy, health values, and accuracy settings.
-    /// Sets up projectile scene, muzzle reference, and initializes the random number generator.
+    /// Initializes a new instance of EnemyCombat with the specified enemy.
     /// </summary>
     /// <param name="enemy">The enemy instance this combat system belongs to.</param>
-    /// <param name="maxHealth">The maximum health points for this enemy.</param>
-    /// <param name="maxSpreadAngle">Maximum spread angle for inaccurate shots in degrees.</param>
-    /// <param name="accurateShotChance">Probability (0-1) of firing an accurate shot.</param>
-    /// <param name="accurateSpreadAngle">Spread angle for accurate shots in degrees.</param>
-    public EnemyCombat(Enemy enemy, int maxHealth, float maxSpreadAngle = 15.0f, 
-                      float accurateShotChance = 0.7f, float accurateSpreadAngle = 5.0f)
+    public EnemyCombat(Enemy enemy)
     {
         _enemy = enemy;
-        _maxHealth = maxHealth;
-        _currentHealth = _maxHealth;
-        _maxSpreadAngle = maxSpreadAngle;
-        _accurateShotChance = accurateShotChance;
-        _accurateSpreadAngle = accurateSpreadAngle;
-        
         _rng = new RandomNumberGenerator();
         _rng.Randomize();
-
-        _projectileScene = GD.Load<PackedScene>("res://scenes/gun/Projectile.tscn");
-        
-        _muzzle = _enemy.GetNode<Node3D>("L Arm Turn/Muzzle");
-        if (_muzzle == null)
-        {
-            GD.PrintErr("Muzzle node not found at 'L Arm Turn/Muzzle'!");
-        }
     }
 
     /// <summary>
@@ -62,15 +32,12 @@ public class EnemyCombat
     /// <param name="delta">Time elapsed since the last frame.</param>
     public void Update(double delta)
     {
-        if (_enemy.CurrentState == Enemy.EnemyState.Aggressive)
-        {
-            _currentCooldown -= (float)delta;
-            if (_currentCooldown <= 0)
-            {
-                FireProjectile();
-                _currentCooldown = _attackCooldown;
-            }
-        }
+        if (_enemy.CurrentState != Enemy.EnemyState.Aggressive) return;
+        _currentCooldown -= (float)delta;
+        
+        if (!(_currentCooldown <= 0)) return;
+        FireProjectile();
+        _currentCooldown = _enemy.AttackCooldown;
     }
 
     /// <summary>
@@ -81,12 +48,12 @@ public class EnemyCombat
     /// <returns>A new direction vector with random spread applied.</returns>
     private Vector3 CalculateSpreadDirection(Vector3 baseDirection)
     {
-        bool isAccurateShot = _rng.Randf() < _accurateShotChance;
+        var isAccurateShot = _rng.Randf() < _enemy.AccurateShotChance;
         
-        float maxSpread = isAccurateShot ? _accurateSpreadAngle : _maxSpreadAngle;
+        var maxSpread = isAccurateShot ? _enemy.AccurateSpreadAngle : _enemy.MaxSpreadAngle;
         
-        float horizontalAngle = _rng.RandfRange(-maxSpread, maxSpread);
-        float verticalAngle = _rng.RandfRange(-maxSpread, maxSpread);
+        var horizontalAngle = _rng.RandfRange(-maxSpread, maxSpread);
+        var verticalAngle = _rng.RandfRange(-maxSpread, maxSpread);
         
         var horizontalRot = Transform3D.Identity.Rotated(Vector3.Up, Mathf.DegToRad(horizontalAngle));
         var verticalRot = Transform3D.Identity.Rotated(Vector3.Right, Mathf.DegToRad(verticalAngle));
@@ -100,16 +67,16 @@ public class EnemyCombat
     /// </summary>
     private void FireProjectile()
     {
-        if (_muzzle == null || _projectileScene == null) return;
+        if (_enemy.Muzzle == null || _enemy.ProjectileScene == null) return;
 
-        var projectile = _projectileScene.Instantiate<Node3D>();
+        var projectile = _enemy.ProjectileScene.Instantiate<Projectile>();
         _enemy.GetTree().CurrentScene.AddChild(projectile);
         
-        projectile.GlobalTransform = _muzzle.GlobalTransform;
+        projectile.GlobalTransform = _enemy.Muzzle.GlobalTransform;
         
         var baseDirection = -_enemy.GlobalTransform.Basis.Z;
         var spreadDirection = CalculateSpreadDirection(baseDirection);
         
-        projectile.Call("Fire", spreadDirection);
+        projectile.Fire(spreadDirection);
     }
 }

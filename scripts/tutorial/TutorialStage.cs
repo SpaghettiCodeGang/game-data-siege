@@ -15,18 +15,11 @@ using System.Collections.Generic;
 /// <coauthor>Elias Kugel</coauthor>
 public partial class TutorialStage : BaseStage
 {
-    /// <summary>
-    /// Spawn point for the enemy in this stage.
-    /// </summary>
-    [Export] protected Marker3D EnemyPositionMarker;
-    
-    /// <summary>
-    /// Reference to the spawned enemy in this stage.
-    /// </summary>
-    protected Enemy Enemy { get; private set; }
-    
+    [Export] public PackedScene EnemyScene;
+    [Export] public Marker3D EnemyPositionMarker;
     [Export] public Whiteboard Whiteboard;
     
+    private Enemy _enemy;
     private int _currentStepIndex;
     private List<TutorialStep> _tutorialSteps;
     
@@ -35,8 +28,26 @@ public partial class TutorialStage : BaseStage
         if (Player == null) return;
         InitTutorialSteps();
         _currentStepIndex = 0;
-        Enemy = SpawnEnemy(EnemyPositionMarker);
+        _enemy = SpawnEnemy(EnemyPositionMarker);
         StartCurrentStep();
+    }
+    
+    /// <summary>
+    /// Spawns an enemy instance at the given spawn point.
+    /// </summary>
+    /// <param name="enemyPositionMarker">The Marker3D defining where the enemy should spawn.</param>
+    /// <returns>The instantiated <see cref="Enemy"/> instance, or null if spawning failed.</returns>
+    private Enemy SpawnEnemy(Marker3D enemyPositionMarker)
+    {
+        if (enemyPositionMarker == null || EnemyScene == null) 
+            return null;
+    
+        var enemy = EnemyScene.Instantiate<Enemy>();
+        enemy.GlobalTransform = enemyPositionMarker.GlobalTransform;
+        enemy.Player = Player;
+        AddChild(enemy);
+    
+        return enemy;
     }
 
     /// <summary>
@@ -102,7 +113,7 @@ public partial class TutorialStage : BaseStage
                 () =>
                 {
                     Player.SpawnMagazine();
-                    Enemy.CurrentState = Enemy.EnemyState.Passive;
+                    _enemy.CurrentState = Enemy.EnemyState.Passive;
                 }
             ),
             
@@ -113,7 +124,7 @@ public partial class TutorialStage : BaseStage
                 ["X"],
                 () =>
                 {
-                    Enemy.CurrentState = Enemy.EnemyState.Aggressive;
+                    _enemy.CurrentState = Enemy.EnemyState.Aggressive;
                 }
             )
         ];
@@ -141,6 +152,7 @@ public partial class TutorialStage : BaseStage
 
         var tutorialStep = _tutorialSteps[_currentStepIndex];
 
+        // Backward navigation
         if (tutorialStep.BackInputs.Contains(buttonName) && _currentStepIndex > 0)
         {
             _currentStepIndex--;
@@ -148,6 +160,7 @@ public partial class TutorialStage : BaseStage
             return;
         }
 
+        // Forward navigation
         if (tutorialStep.NextInputs.Contains(buttonName) && _currentStepIndex < _tutorialSteps.Count - 1)
         {
             _currentStepIndex++;
