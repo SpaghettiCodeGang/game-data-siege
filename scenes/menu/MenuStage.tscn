@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://flkgi54xe6gb"]
+[gd_scene load_steps=17 format=3 uid="uid://flkgi54xe6gb"]
 
 [ext_resource type="Script" uid="uid://c6ebq4dasxhyp" path="res://scripts/menu/MenuStage.cs" id="1_h4mjy"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_wsfis"]
@@ -13,23 +13,24 @@
 [ext_resource type="PackedScene" uid="uid://c6dmfv5ty8whd" path="res://scenes/props/Bottle.tscn" id="11_q7tqu"]
 [ext_resource type="PackedScene" uid="uid://besci3x1k83bb" path="res://scenes/furniture/TrashBin.tscn" id="12_3lk1m"]
 [ext_resource type="PackedScene" uid="uid://w2p0s701u5hy" path="res://scenes/furniture/WallWhiteboard.tscn" id="13_3lk1m"]
+[ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="14_valbw"]
+[ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="15_h63ly"]
 
-[sub_resource type="Environment" id="Environment_rysu2"]
-ambient_light_source = 2
-ambient_light_color = Color(0.8941247, 0.9089353, 0.93762743, 1)
-ambient_light_energy = 0.7
+[sub_resource type="Environment" id="Environment_3lk1m"]
+background_mode = 1
+background_color = Color(0.50996834, 0.55153495, 0.5883236, 1)
+background_energy_multiplier = 0.65
 glow_enabled = true
-glow_bloom = 0.15
+glow_intensity = 0.2
+glow_bloom = 0.2
 fog_enabled = true
-fog_light_color = Color(0.79012936, 0.8111249, 0.8437929, 1)
-fog_light_energy = 0.66
-fog_sun_scatter = 0.2
-fog_sky_affect = 0.838
-fog_depth_begin = 0.0
-fog_depth_end = 4000.0
+fog_light_color = Color(0.7078427, 0.7357314, 0.7791171, 1)
 
 [node name="MenuStage" type="Node3D"]
 script = ExtResource("1_h4mjy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3lk1m")
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("2_wsfis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9924829, -3.8624082)
@@ -37,12 +38,9 @@ screen_size = Vector2(1.5, 1)
 scene = ExtResource("3_sny8h")
 scene_properties_keys = PackedStringArray()
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rysu2")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.48516068, 0.874425, 0, -0.874425, -0.48516068, 0, 7, 0)
-light_energy = 0.3
+transform = Transform3D(1, 0, 0, 0, 0.106958255, 0.9942636, 0, -0.9942636, 0.106958255, 0, 8.106989, 1.958808)
+light_energy = 0.23
 shadow_enabled = true
 shadow_opacity = 0.65
 directional_shadow_max_distance = 584.2
@@ -105,3 +103,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061393738, 0.016047716, 0.
 
 [node name="WallWhiteboard" parent="Props" instance=ExtResource("13_3lk1m")]
 transform = Transform3D(-6.119594e-08, 0, -1.4, 0, 1.4, 0, 1.4, 0, -6.119594e-08, 0.0010331869, 1.9551977, -3.9194589)
+
+[node name="Wall-Door" parent="Props" instance=ExtResource("14_valbw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 7.4)
+
+[node name="Wall-Windows" parent="Props" instance=ExtResource("15_h63ly")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.7000003, 0, 1.6)
+
+[node name="Wall-Windows2" parent="Props" instance=ExtResource("15_h63ly")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.7999997, 0, 1.6)
