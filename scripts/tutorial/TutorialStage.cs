@@ -102,6 +102,7 @@ public partial class TutorialStage : BaseStage
                 () =>
                 {
                     Player.SpawnMagazine();
+                    Enemy.CurrentState = Enemy.EnemyState.Passive;
                 }
             ),
             
@@ -109,7 +110,11 @@ public partial class TutorialStage : BaseStage
                 "Hilf uns! Du bist unsere einzige Hoffnung.",
                 "Menü Taste um ins Hauptmenü zurück zukehren, oder B zum Zurückgehen.",
                 [],
-                ["X"]
+                ["X"],
+                () =>
+                {
+                    Enemy.CurrentState = Enemy.EnemyState.Aggressive;
+                }
             )
         ];
     }
@@ -128,19 +133,6 @@ public partial class TutorialStage : BaseStage
         Whiteboard.SetButtonHint(tutorialStep.ButtonHint);
         
         tutorialStep.OnStepStart?.Invoke();
-
-        if (Enemy != null)
-        {
-            if (_currentStepIndex == 6)
-            {
-                Enemy.CurrentState = Enemy.EnemyState.Aggressive;
-                GD.Print("Enemy set to Aggressive state");
-            }
-            else
-            {
-                Enemy.CurrentState = Enemy.EnemyState.Passive;
-            }
-        }
     }
     
     public override void OnPlayerButtonPressed(string buttonName)
