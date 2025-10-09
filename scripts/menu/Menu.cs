@@ -14,8 +14,6 @@ public partial class Menu : VBoxContainer
 	[Export] private Button _btnTutorial;
 	[Export] private Button _btnExit;
 
-	private AudioStreamPlayer2D _soundClicked;
-
 	/// <summary>
 	/// Connects button signals to their respective handler methods.
 	/// </summary>
@@ -24,26 +22,20 @@ public partial class Menu : VBoxContainer
 		_btnPlay.Connect("pressed", new Callable(this, nameof(OnPlayPressed)));
 		_btnTutorial.Connect("pressed", new Callable(this, nameof(OnTutorialPressed)));
 		_btnExit.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
-		
-		// Sound player for the button clicked sound
-		_soundClicked = GetNode<AudioStreamPlayer2D>("ButtonClick");
 	}
 
 	private void OnTutorialPressed()
 	{
-		_soundClicked.Play();
 		GameManager.Instance.LoadStage(TutorialStage);
 	}
 
 	private void OnPlayPressed()
 	{
-		_soundClicked.Play();
 		// TODO: GameManager.Instance.LoadStage(GameStage);
 	}
 
 	private void OnExitPressed()
 	{
-		_soundClicked.Play();
 		GetTree().Quit();
 	}
 }
