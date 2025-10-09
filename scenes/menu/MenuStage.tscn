@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://flkgi54xe6gb"]
+[gd_scene load_steps=16 format=3 uid="uid://flkgi54xe6gb"]
 
 [ext_resource type="Script" uid="uid://c6ebq4dasxhyp" path="res://scripts/menu/MenuStage.cs" id="1_h4mjy"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_wsfis"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c6dmfv5ty8whd" path="res://scenes/props/Bottle.tscn" id="11_q7tqu"]
 [ext_resource type="PackedScene" uid="uid://besci3x1k83bb" path="res://scenes/furniture/TrashBin.tscn" id="12_3lk1m"]
 [ext_resource type="PackedScene" uid="uid://w2p0s701u5hy" path="res://scenes/furniture/WallWhiteboard.tscn" id="13_3lk1m"]
+[ext_resource type="AudioStream" uid="uid://drs2mo28whbbt" path="res://assets/audio/background/Ambient.mp3" id="14_p25dg"]
 
 [sub_resource type="Environment" id="Environment_rysu2"]
 ambient_light_source = 2
@@ -105,3 +106,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061393738, 0.016047716, 0.
 
 [node name="WallWhiteboard" parent="Props" instance=ExtResource("13_3lk1m")]
 transform = Transform3D(-6.119594e-08, 0, -1.4, 0, 1.4, 0, 1.4, 0, -6.119594e-08, 0.0010331869, 1.9551977, -3.9194589)
+
+[node name="BackgroundAmbient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_p25dg")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
