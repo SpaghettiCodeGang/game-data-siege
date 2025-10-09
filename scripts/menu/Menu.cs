@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -18,6 +20,7 @@ public partial class Menu : VBoxContainer
 
 	/// <summary>
 	/// Connects button signals to their respective handler methods.
+	/// Loads the audio player
 	/// </summary>
 	public override void _Ready()
 	{
@@ -29,21 +32,44 @@ public partial class Menu : VBoxContainer
 		_soundClicked = GetNode<AudioStreamPlayer2D>("ButtonClick");
 	}
 
-	private void OnTutorialPressed()
+	private async void OnTutorialPressed()
 	{
-		_soundClicked.Play();
-		GameManager.Instance.LoadStage(TutorialStage);
+		try
+		{
+			await LoadStage(TutorialStage);
+		}
+		catch (Exception e)
+		{
+			GD.Print("Loading Tutorial Failed");
+		}
 	}
 
 	private void OnPlayPressed()
 	{
-		_soundClicked.Play();
 		// TODO: GameManager.Instance.LoadStage(GameStage);
 	}
 
 	private void OnExitPressed()
 	{
-		_soundClicked.Play();
 		GetTree().Quit();
+	}
+	
+	/// <summary>
+	/// Starts the sound player and waits before loading the stage.
+	/// </summary>
+	/// <param name="stage">Name of the stage to be loaded.</param>
+	private async Task LoadStage(PackedScene stage)
+	{
+		if (stage == null)
+		{
+			return;
+		}
+		if (_soundClicked != null)
+		{
+			_soundClicked.Play();
+			await ToSignal(_soundClicked, AudioStreamPlayer2D.SignalName.Finished);
+		}
+		
+		GameManager.Instance.LoadStage(stage);
 	}
 }
