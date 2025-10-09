@@ -701,10 +701,10 @@ transform = Transform3D(-4.371138e-08, 0, 0.9999998, 0, 1, 0, -0.9999998, 0, -4.
 
 [node name="BackgrundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_ixdpk")
-volume_db = -10.0
+volume_db = -50.0
 autoplay = true
 
 [node name="BackgrundAmbient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_ttqo4")
-volume_db = 3.0
+volume_db = -10.0
 autoplay = true

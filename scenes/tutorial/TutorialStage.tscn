@@ -264,10 +264,12 @@ environment = SubResource("Environment_kl2ug")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_d44cl")
-volume_db = -30.0
+volume_db = -50.0
 autoplay = true
+parameters/looping = true
 
 [node name="BackgrundAmbient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_slxy7")
-volume_db = -3.0
+volume_db = -10.0
 autoplay = true
+parameters/looping = true
