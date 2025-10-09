@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d37yu22av1kym"]
+[gd_scene load_steps=15 format=3 uid="uid://d37yu22av1kym"]
 
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_qek5x"]
 [ext_resource type="PackedScene" uid="uid://bthudyiwu72bx" path="res://scenes/player/GunSnapZone.tscn" id="9_pn6s4"]
 [ext_resource type="PackedScene" uid="uid://d2p58ierxfjq0" path="res://scenes/player/MagazineSnapZone.tscn" id="11_5stf6"]
+[ext_resource type="Script" uid="uid://xemm3f5dssyw" path="res://scripts/core/Hitbox.cs" id="12_20koh"]
+[ext_resource type="Script" uid="uid://cc7wnhcki8t8o" path="res://scripts/player/PlayerHeightAttachmentSync.cs" id="13_20koh"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_5stf6"]
-resource_local_to_scene = true
-radius = 0.1
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rn7t0"]
 
 [node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController")]
 script = ExtResource("1_lvxji")
@@ -53,7 +53,6 @@ tracker = &"left_hand"
 show_laser = 0
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("7_0owmy")]
-collision_layer = 3
 collision_mask = 1
 
 [node name="RightHolster" parent="XROrigin3D/PlayerBody" instance=ExtResource("9_pn6s4")]
@@ -62,7 +61,18 @@ transform = Transform3D(-1, -7.5710346e-08, -4.3711385e-08, 0, 0.49999997, -0.86
 [node name="LeftMagBox" parent="XROrigin3D/PlayerBody" instance=ExtResource("11_5stf6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.2, 1, -0.2)
 
-[node name="CollisionShape3D" parent="XROrigin3D/PlayerBody/LeftMagBox" index="0"]
-shape = SubResource("SphereShape3D_5stf6")
+[node name="Hitbox" type="Area3D" parent="XROrigin3D/PlayerBody" node_paths=PackedStringArray("Owner")]
+collision_layer = 1024
+collision_mask = 2048
+script = ExtResource("12_20koh")
+Owner = NodePath("../../..")
 
-[editable path="XROrigin3D/PlayerBody/LeftMagBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/PlayerBody/Hitbox"]
+shape = SubResource("CapsuleShape3D_rn7t0")
+
+[node name="PlayerHeightAttachmentSync" type="Node" parent="XROrigin3D/PlayerBody" node_paths=PackedStringArray("PlayerBody", "HitboxCollisionShape", "RightHolster", "LeftMagBox")]
+script = ExtResource("13_20koh")
+PlayerBody = NodePath("..")
+HitboxCollisionShape = NodePath("../Hitbox/CollisionShape3D")
+RightHolster = NodePath("../RightHolster")
+LeftMagBox = NodePath("../LeftMagBox")
