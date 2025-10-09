@@ -12,21 +12,17 @@ public class EnemyMovement
     private Vector3 _currentDir = Vector3.Zero;
     private Vector3 _targetDir = Vector3.Zero;
     private float _changeDirTimer;
-    private readonly RandomNumberGenerator _rng = new();
+    private readonly RandomNumberGenerator _rng;
 
-    private readonly float _maxRadius;
-    private readonly float _hoverAmplitude;
-    private readonly float _wanderSpeed;
-    private readonly float _turnSpeed;
-
-    public EnemyMovement(Enemy enemy, float maxRadius, float hoverAmplitude, float wanderSpeed, float turnSpeed)
+    /// <summary>
+    /// Initializes a new instance of EnemyMovement with the specified enemy.
+    /// </summary>
+    /// <param name="enemy">The enemy instance this combat system belongs to.</param>
+    public EnemyMovement(Enemy enemy)
     {
         _enemy = enemy;
         _basePos = _enemy.GlobalPosition;
-        _maxRadius = maxRadius;
-        _hoverAmplitude = hoverAmplitude;
-        _wanderSpeed = wanderSpeed;
-        _turnSpeed = turnSpeed;
+        _rng = new RandomNumberGenerator();
         _rng.Randomize();
     }
 
@@ -60,15 +56,15 @@ public class EnemyMovement
             _changeDirTimer = _rng.RandfRange(2.0f, 5.0f);
         }
 
-        _currentDir = _currentDir.Slerp(_targetDir, _turnSpeed * delta);
-        var horizontalVel = _currentDir * _wanderSpeed;
+        _currentDir = _currentDir.Slerp(_targetDir, _enemy.TurnSpeed * delta);
+        var horizontalVel = _currentDir * _enemy.WanderSpeed;
 
         Vector3 flatPos = new(_enemy.GlobalPosition.X, 0, _enemy.GlobalPosition.Z);
         Vector3 flatBase = new(_basePos.X, 0, _basePos.Z);
         var flatOffset = flatPos - flatBase;
 
-        if (flatOffset.Length() > _maxRadius)
-            horizontalVel += (_basePos - _enemy.GlobalPosition).Normalized() * _wanderSpeed;
+        if (flatOffset.Length() > _enemy.MaxRadius)
+            horizontalVel += (_basePos - _enemy.GlobalPosition).Normalized() * _enemy.WanderSpeed;
 
         return horizontalVel;
     }
@@ -80,7 +76,7 @@ public class EnemyMovement
     /// <returns>The vertical velocity in meters per second.</returns>
     private float VerticalVelocity(float delta)
     {
-        var targetY = _basePos.Y + Mathf.Sin(Time.GetTicksMsec() / 1000f) * _hoverAmplitude;
+        var targetY = _basePos.Y + Mathf.Sin(Time.GetTicksMsec() / 1000f) * _enemy.HoverAmplitude;
         return Mathf.Lerp(_enemy.Velocity.Y, (targetY - _enemy.GlobalPosition.Y) / delta, 0.5f);
     }
 }

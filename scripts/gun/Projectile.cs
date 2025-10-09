@@ -10,9 +10,9 @@ using System;
 public partial class Projectile : RigidBody3D
 {
     [Export] public int Damage = 1;      // Base damage dealt on impact
+    [Export] public float Speed = 50f;   // Base speed of the projectile
 
     private Vector3 _direction = Vector3.Zero;
-	[Export] public float Speed = 80f;   // Base speed of the projectile
 
     /// <summary>
     /// Called when the node enters the scene tree for the first time.
