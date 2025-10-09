@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://2pve8123aecl"]
+[gd_scene load_steps=30 format=3 uid="uid://2pve8123aecl"]
 
 [ext_resource type="Texture2D" uid="uid://dvh1cshbs3mg5" path="res://vfx/impact-vfx/Circle.png" id="1_rh07c"]
 [ext_resource type="Texture2D" uid="uid://ck1fvrgnexit0" path="res://vfx/impact-vfx/Flare.png" id="2_domr5"]
 [ext_resource type="Texture2D" uid="uid://d0d35fwu7j27b" path="res://vfx/impact-vfx/HollowCircle.png" id="3_cixp7"]
+[ext_resource type="AudioStream" uid="uid://bckip6n7v0apc" path="res://assets/audio/sounds/Impact.mp3" id="4_cixp7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wo5i"]
 transparency = 1
@@ -162,7 +163,7 @@ alpha_curve = SubResource("CurveTexture_t15e2")
 material_override = SubResource("StandardMaterial3D_6wo5i")
 emitting = false
 amount = 1
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_t15e2")
@@ -198,3 +199,6 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_obry6")
 draw_pass_1 = SubResource("QuadMesh_hkc6q")
+
+[node name="SoundImpact" type="AudioStreamPlayer3D" parent="ImpactEffect"]
+stream = ExtResource("4_cixp7")
