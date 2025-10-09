@@ -36,18 +36,18 @@ glow_intensity = 0.12
 [node name="TutorialStage" type="Node3D" node_paths=PackedStringArray("EnemyPositionMarker", "Whiteboard", "PlayerPositionMarker")]
 script = ExtResource("1_c8lsh")
 EnemyPositionMarker = NodePath("EnemyPositionMarker")
-Whiteboard = NodePath("Whiteboard")
 EnemyScene = ExtResource("2_o6wnn")
+Whiteboard = NodePath("Whiteboard")
 PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.467, 0.045, -1.732)
 
-[node name="Whiteboard" parent="." instance=ExtResource("10_x7bq6")]
-transform = Transform3D(-0.6893541, 0, -0.7244246, 0, 1, 0, 0.7244246, 0, -0.6893541, -2.0079784, 0.034638166, 0.70472074)
-
 [node name="EnemyPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(-4.371138e-08, 0, 0.9999998, 0, 1, 0, -0.9999998, 0, -4.371138e-08, 3.7336712, 1.0291039, -0.4336944)
+
+[node name="Whiteboard" parent="." instance=ExtResource("10_x7bq6")]
+transform = Transform3D(-0.6893541, 0, -0.7244246, 0, 1, 0, 0.7244246, 0, -0.6893541, -2.0079784, 0.034638166, 0.70472074)
 
 [node name="TrashBin" parent="." instance=ExtResource("13_4uwkg")]
 transform = Transform3D(0.23941468, 0, -0.9709174, 0, 1, 0, 0.9709174, 0, 0.23941468, 6.486961, 0.012965046, 2.0033083)
