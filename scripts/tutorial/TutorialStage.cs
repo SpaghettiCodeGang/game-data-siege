@@ -12,15 +12,14 @@ using System.Collections.Generic;
 /// Each step may also define an optional start action (e.g. spawning items).
 /// </summary>
 /// <author>Sören Lehmann</author>
+/// <coauthor>Elias Kugel</coauthor>
 public partial class TutorialStage : BaseStage
 {
-    /// <summary>
-    /// Spawn point for the enemy in this stage.
-    /// </summary>
-    [Export] protected Marker3D EnemyPositionMarker;
-    
+    [Export] public PackedScene EnemyScene;
+    [Export] public Marker3D EnemyPositionMarker;
     [Export] public Whiteboard Whiteboard;
     
+    private Enemy _enemy;
     private int _currentStepIndex;
     private List<TutorialStep> _tutorialSteps;
     
@@ -29,8 +28,26 @@ public partial class TutorialStage : BaseStage
         if (Player == null) return;
         InitTutorialSteps();
         _currentStepIndex = 0;
+        _enemy = SpawnEnemy(EnemyPositionMarker);
         StartCurrentStep();
-        SpawnEnemy(EnemyPositionMarker);
+    }
+    
+    /// <summary>
+    /// Spawns an enemy instance at the given spawn point.
+    /// </summary>
+    /// <param name="enemyPositionMarker">The Marker3D defining where the enemy should spawn.</param>
+    /// <returns>The instantiated <see cref="Enemy"/> instance, or null if spawning failed.</returns>
+    private Enemy SpawnEnemy(Marker3D enemyPositionMarker)
+    {
+        if (enemyPositionMarker == null || EnemyScene == null) 
+            return null;
+    
+        var enemy = EnemyScene.Instantiate<Enemy>();
+        enemy.GlobalTransform = enemyPositionMarker.GlobalTransform;
+        enemy.Player = Player;
+        AddChild(enemy);
+    
+        return enemy;
     }
 
     /// <summary>
@@ -96,6 +113,7 @@ public partial class TutorialStage : BaseStage
                 () =>
                 {
                     Player.SpawnMagazine();
+                    _enemy.CurrentState = Enemy.EnemyState.Passive;
                 }
             ),
             
@@ -103,7 +121,11 @@ public partial class TutorialStage : BaseStage
                 "Hilf uns! Du bist unsere einzige Hoffnung.",
                 "Menü Taste um ins Hauptmenü zurück zukehren, oder B zum Zurückgehen.",
                 [],
-                ["B"]
+                ["X"],
+                () =>
+                {
+                    _enemy.CurrentState = Enemy.EnemyState.Aggressive;
+                }
             )
         ];
     }

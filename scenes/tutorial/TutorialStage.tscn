@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ckw15ucmuo8ip"]
+[gd_scene load_steps=27 format=3 uid="uid://ckw15ucmuo8ip"]
 
 [ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/groundplate.tscn" id="1_87t0p"]
 [ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_c8lsh"]
@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://vocfo32xgjvq" path="res://scenes/props/Poster3.tscn" id="23_slxy7"]
 [ext_resource type="PackedScene" uid="uid://h8efto8p3tnc" path="res://scenes/props/Calender.tscn" id="24_soank"]
 [ext_resource type="AudioStream" uid="uid://bdob87orxyqcf" path="res://assets/audio/background/CybernaticDreamscape.mp3" id="25_d44cl"]
-[ext_resource type="AudioStream" uid="uid://drs2mo28whbbt" path="res://assets/audio/background/Ambient.mp3" id="26_slxy7"]
 
 [sub_resource type="Environment" id="Environment_kl2ug"]
 background_mode = 1
@@ -37,18 +36,18 @@ glow_intensity = 0.12
 [node name="TutorialStage" type="Node3D" node_paths=PackedStringArray("EnemyPositionMarker", "Whiteboard", "PlayerPositionMarker")]
 script = ExtResource("1_c8lsh")
 EnemyPositionMarker = NodePath("EnemyPositionMarker")
-Whiteboard = NodePath("Whiteboard")
 EnemyScene = ExtResource("2_o6wnn")
+Whiteboard = NodePath("Whiteboard")
 PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.4667516, 0.07735634, -1.7322125)
-
-[node name="Whiteboard" parent="." instance=ExtResource("10_x7bq6")]
-transform = Transform3D(-0.6893541, 0, -0.7244246, 0, 1, 0, 0.7244246, 0, -0.6893541, -2.0079784, 0.034638166, 0.70472074)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.467, 0.045, -1.732)
 
 [node name="EnemyPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(-4.371138e-08, 0, 0.9999998, 0, 1, 0, -0.9999998, 0, -4.371138e-08, 3.7336712, 1.0291039, -0.4336944)
+
+[node name="Whiteboard" parent="." instance=ExtResource("10_x7bq6")]
+transform = Transform3D(-0.6893541, 0, -0.7244246, 0, 1, 0, 0.7244246, 0, -0.6893541, -2.0079784, 0.034638166, 0.70472074)
 
 [node name="TrashBin" parent="." instance=ExtResource("13_4uwkg")]
 transform = Transform3D(0.23941468, 0, -0.9709174, 0, 1, 0, 0.9709174, 0, 0.23941468, 6.486961, 0.012965046, 2.0033083)
@@ -262,14 +261,7 @@ transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kl2ug")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_d44cl")
 volume_db = -50.0
 autoplay = true
-parameters/looping = true
-
-[node name="BackgrundAmbient" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("26_slxy7")
-volume_db = -10.0
-autoplay = true
-parameters/looping = true
