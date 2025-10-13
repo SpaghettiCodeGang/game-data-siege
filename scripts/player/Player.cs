@@ -20,9 +20,18 @@ public partial class Player : Node3D
     private RigidBody3D _currentMagazine;
     private RigidBody3D _loadedMagazine;
     private BaseStage _currentStage;
+    private PlayerCombat _combat;
     
     private bool _prevAButton;
     private bool _prevBButton;
+
+    public override void _Ready()
+    {
+        // Create and add the combat component
+        _combat = new PlayerCombat();
+        _combat.Name = "Combat"; // Important: This name must match the path in Hitbox
+        AddChild(_combat);
+    }
     
     /// <summary>
     /// Called every frame. Handles input from the VR controllers.

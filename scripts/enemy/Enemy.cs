@@ -19,6 +19,7 @@ public partial class Enemy : CharacterBody3D
 
     [ExportGroup("Combat")] 
     [Export] public int MaxHealth = 10;
+    [Export] public int BodyDamage = 2;
     [Export] public float MaxSpreadAngle = 15.0f;
     [Export] public float AccurateShotChance = 0.7f;
     [Export] public float AccurateSpreadAngle = 5.0f;
@@ -46,7 +47,11 @@ public partial class Enemy : CharacterBody3D
     public override void _Ready()
     {
         _movement = new EnemyMovement(this);
-        _combat = new EnemyCombat(this);
+        
+        // Create and add the combat component
+        _combat = new EnemyCombat(this, MaxHealth, MaxSpreadAngle, AccurateShotChance, AccurateSpreadAngle);
+        _combat.Name = "Combat"; // Important: This name must match the path in Hitbox
+        AddChild(_combat);
     }
 
     /// <summary>
