@@ -15,6 +15,9 @@ public partial class Player : Node3D
     [Export] public PackedScene MagazineScene;
     [Export] public XRController3D RightController;
     [Export] public XRController3D LeftController;
+    [Export] public int MaxHealth = 10;
+
+    public PlayerCombat _combat;
     
     private RigidBody3D _currentGun;
     private RigidBody3D _currentMagazine;

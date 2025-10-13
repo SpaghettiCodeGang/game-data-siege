@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -38,15 +41,20 @@ public partial class Enemy : CharacterBody3D
 
     public Player Player;
     private EnemyMovement _movement;
-    private EnemyCombat _combat;
+    public EnemyCombat _combat;
+    private AudioStreamPlayer3D _audioPlayer;
+    private RandomNumberGenerator _rng;
 
     /// <summary>
     /// Initializes the enemy's movement component.
+    /// Sets up random number generation for deathsequence variability.
     /// </summary>
     public override void _Ready()
     {
         _movement = new EnemyMovement(this);
         _combat = new EnemyCombat(this);
+        _rng = new RandomNumberGenerator();
+        _rng.Randomize();
     }
 
     /// <summary>
@@ -85,5 +93,20 @@ public partial class Enemy : CharacterBody3D
         var myPos = GlobalPosition;
         var target = new Vector3(Player.GlobalPosition.X, myPos.Y, Player.GlobalPosition.Z);
         LookAt(target, Vector3.Up);
+    }
+
+    /// <summary>
+    /// Initiates the death sequence for the enemy.
+    /// Plays a random death sound from available audio streams and waits for it to finish
+    /// before transitioning to the dead state.
+    /// </summary>
+    public async void DeathSequence()
+    {
+        int soundNumber = _rng.RandiRange(1, 4);
+        var deathSound = GetNode<AudioStreamPlayer3D>("Death" + soundNumber);
+        deathSound.Play();
+        await ToSignal(deathSound, "finished");
+        await Task.Delay(500);
+        CurrentState = EnemyState.Dead;
     }
 }
