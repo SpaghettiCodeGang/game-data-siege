@@ -16,6 +16,7 @@ signal magazine_ejected()
 
 @onready var magazine_snapzone = $GunModel/MagazineSnapZone
 @onready var muzzle = $GunModel/Muzzle
+@onready var muzzle_flash_effect: Node3D = $GunModel/VfxMuzzleFlash
 
 var magazine
 var trigger_pressed_last_frame: bool = false
@@ -91,20 +92,29 @@ func _on_magazine_snap_zone_has_picked_up(what: Variant) -> void:
 ## Consumes one round from the magazine and spawns a projectile instance in the scene.
 func fire() -> void:
 	if projectile_scene == null:
-		$SoundEmpty.play()
 		return
 		
 	if magazine == null or not is_instance_valid(magazine):
-		$SoundEmpty.play()
 		return
 		
 	if not magazine.consume_round():
 		return
+		
+	if muzzle_flash_effect:
+		enable_all_particles(muzzle_flash_effect)
 	
 	var direction = muzzle.global_transform.basis.z
 	var projectile = projectile_scene.instantiate()
 	
 	projectile.global_transform = muzzle.global_transform
 	projectile.Fire(direction)
-	$SoundShot.play()
 	get_tree().current_scene.add_child(projectile)
+
+## Recursively searches for and enables all GPUParticles3D nodes in the hierarchy.
+## @param node: The root node from GPUParticles3Ds 
+func enable_all_particles(node: Node) -> void:
+	for child in node.get_children():
+		if child is GPUParticles3D:
+			child.emitting = true
+		
+		enable_all_particles(child)
