@@ -95,6 +95,7 @@ func fire() -> void:
 		return
 		
 	if magazine == null or not is_instance_valid(magazine):
+		$SoundEmpty.play()
 		return
 		
 	if not magazine.consume_round():
@@ -108,6 +109,7 @@ func fire() -> void:
 	
 	projectile.global_transform = muzzle.global_transform
 	projectile.Fire(direction)
+	$SoundShot.play()
 	get_tree().current_scene.add_child(projectile)
 
 ## Recursively searches for and enables all GPUParticles3D nodes in the hierarchy.
