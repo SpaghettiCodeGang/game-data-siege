@@ -15,11 +15,11 @@ public partial class MenuStage : BaseStage
         Player.GlobalPosition = Vector3.Zero;
         Player.GlobalRotation = Vector3.Zero;
         
-        Player.ShowAllLasers();
+        Player.PlayerLaserHandler?.ShowAllLasers();
     }
 
     public override void OnExit()
     {
-        Player.HideAllLasers();
+        Player.PlayerLaserHandler?.HideAllLasers();
     }
 }
