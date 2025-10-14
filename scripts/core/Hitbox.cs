@@ -29,11 +29,10 @@ public partial class Hitbox : Area3D
     {
         if (body is not Projectile projectile || Owner == null) return;
 
-        if (Owner is Enemy enemy) enemy._combat.TakeDamage(projectile.Damage, IsHead);
-        if (Owner is Player player) player._combat.TakeDamage(projectile.Damage);
+        if (Owner is Enemy enemy) enemy.EnemyCombat.TakeDamage(projectile.Damage, IsHead);
+        if (Owner is Player player) player.PlayerCombat.TakeDamage(projectile.Damage);
 
         projectile.QueueFree();
     }
-    
     
 }

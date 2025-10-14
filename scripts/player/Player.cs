@@ -17,7 +17,7 @@ public partial class Player : Node3D
     [Export] public XRController3D LeftController;
     [Export] public int MaxHealth = 10;
 
-    public PlayerCombat _combat;
+    public PlayerCombat PlayerCombat;
     
     private RigidBody3D _currentGun;
     private RigidBody3D _currentMagazine;
@@ -26,6 +26,14 @@ public partial class Player : Node3D
     
     private bool _prevAButton;
     private bool _prevBButton;
+
+    /// <summary>
+    /// Initializes the enemy's combat component.
+    /// </summary>
+    public override void _Ready()
+    {
+        PlayerCombat = new PlayerCombat(this);
+    }
     
     /// <summary>
     /// Called every frame. Handles input from the VR controllers.

@@ -6,18 +6,20 @@ using System;
 /// Manages health, damage taking, and combat state.
 /// </summary>
 /// <author>Elias Kugel</author>
-public partial class PlayerCombat : Node
+public class PlayerCombat
 {
-    [Export] public Player Player { get; set; }
+    private readonly Player _player;
     private float _currentHealth;
-
+    
     /// <summary>
-    /// Called when the node enters the scene tree for the first time.
+    /// Initializes a new instance of PlayerCombat with the specified player.
     /// Initializes the player's health from the Player configuration.
     /// </summary>
-    public override void _Ready()
+    /// <param name="player">The player instance this combat system belongs to.</param>
+    public PlayerCombat(Player player)
     {
-        _currentHealth = Player.MaxHealth;
+        _player = player;
+        _currentHealth = _player.MaxHealth;
     }
 
     /// <summary>

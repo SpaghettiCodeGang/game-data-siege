@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Godot;
 
@@ -40,19 +38,20 @@ public partial class Enemy : CharacterBody3D
     public EnemyState CurrentState = EnemyState.Passive;
 
     public Player Player;
+    public EnemyCombat EnemyCombat;
     private EnemyMovement _movement;
-    public EnemyCombat _combat;
     private AudioStreamPlayer3D _audioPlayer;
     private RandomNumberGenerator _rng;
 
     /// <summary>
     /// Initializes the enemy's movement component.
+    /// Initializes the enemy's combat component.
     /// Sets up random number generation for deathsequence variability.
     /// </summary>
     public override void _Ready()
     {
+        EnemyCombat = new EnemyCombat(this);
         _movement = new EnemyMovement(this);
-        _combat = new EnemyCombat(this);
         _rng = new RandomNumberGenerator();
         _rng.Randomize();
     }
@@ -74,7 +73,7 @@ public partial class Enemy : CharacterBody3D
             case EnemyState.Aggressive:
                 FacePlayer();
                 _movement?.Hover((float)delta);
-                _combat?.Update(delta);
+                EnemyCombat?.Update(delta);
                 break;
 
             case EnemyState.Dead:
