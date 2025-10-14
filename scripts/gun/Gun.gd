@@ -99,6 +99,7 @@ func fire() -> void:
 		return
 		
 	if not magazine.consume_round():
+		$SoundEmpty.play()
 		return
 		
 	if muzzle_flash_effect:
