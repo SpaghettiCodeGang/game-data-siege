@@ -18,6 +18,7 @@ public partial class Whiteboard : Node3D
     private float _timer;
     private float _charInterval = 0.04f; // Time per character in seconds
     private bool _isTyping;
+    private AudioStreamPlayer3D _soundTyping;
 
     /// <summary>
     /// Sets the main text to be displayed on the whiteboard.
@@ -33,6 +34,9 @@ public partial class Whiteboard : Node3D
         
         // Clear previous text before starting
         MainText.Text = "";
+        
+        // Sound player for the typing sound
+        _soundTyping = GetNode<AudioStreamPlayer3D>("SoundTextTyping");
     }
 
     public void SetButtonHint(string text)
@@ -57,6 +61,7 @@ public partial class Whiteboard : Node3D
         {
             _timer -= _charInterval;
             MainText.Text += _fullText[_currentIndex];
+            _soundTyping.Play();
             _currentIndex++;
         }
 

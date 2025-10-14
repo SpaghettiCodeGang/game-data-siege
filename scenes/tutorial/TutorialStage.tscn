@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ckw15ucmuo8ip"]
+[gd_scene load_steps=28 format=3 uid="uid://ckw15ucmuo8ip"]
 
 [ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/groundplate.tscn" id="1_87t0p"]
 [ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_c8lsh"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://vocfo32xgjvq" path="res://scenes/props/Poster3.tscn" id="23_slxy7"]
 [ext_resource type="PackedScene" uid="uid://h8efto8p3tnc" path="res://scenes/props/Calender.tscn" id="24_soank"]
 [ext_resource type="AudioStream" uid="uid://bdob87orxyqcf" path="res://assets/audio/background/CybernaticDreamscape.mp3" id="25_d44cl"]
+[ext_resource type="AudioStream" uid="uid://drs2mo28whbbt" path="res://assets/audio/background/Ambient.mp3" id="26_slxy7"]
 
 [sub_resource type="Environment" id="Environment_kl2ug"]
 background_mode = 1
@@ -36,8 +37,8 @@ glow_intensity = 0.12
 [node name="TutorialStage" type="Node3D" node_paths=PackedStringArray("EnemyPositionMarker", "Whiteboard", "PlayerPositionMarker")]
 script = ExtResource("1_c8lsh")
 EnemyPositionMarker = NodePath("EnemyPositionMarker")
-EnemyScene = ExtResource("2_o6wnn")
 Whiteboard = NodePath("Whiteboard")
+EnemyScene = ExtResource("2_o6wnn")
 PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
@@ -261,7 +262,14 @@ transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kl2ug")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_d44cl")
 volume_db = -50.0
 autoplay = true
+parameters/looping = true
+
+[node name="BackgroundAmbient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_slxy7")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
