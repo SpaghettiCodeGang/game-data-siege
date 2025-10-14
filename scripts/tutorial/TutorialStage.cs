@@ -89,7 +89,7 @@ public partial class TutorialStage : BaseStage
                 ["X"],
                 () =>
                 {
-                    Player.RemoveGun();
+                    Player.PlayerInventory.RemoveGun();
                 }
             ),
 
@@ -100,8 +100,8 @@ public partial class TutorialStage : BaseStage
                 ["X"],
                 () =>
                 {
-                    Player.SpawnGun();
-                    Player.RemoveMagazine();
+                    Player.PlayerInventory.SpawnGun();
+                    Player.PlayerInventory.RemoveMagazine();
                 }
             ),
             
@@ -112,7 +112,7 @@ public partial class TutorialStage : BaseStage
                 ["X"],
                 () =>
                 {
-                    Player.SpawnMagazine();
+                    Player.PlayerInventory.SpawnMagazine();
                     _enemy.CurrentState = Enemy.EnemyState.Passive;
                 }
             ),
@@ -171,7 +171,7 @@ public partial class TutorialStage : BaseStage
     public override void OnExit()
     {
         if (Player == null) return;
-        Player.RemoveGun();
-        Player.RemoveMagazine();
+        Player.PlayerInventory.RemoveGun();
+        Player.PlayerInventory.RemoveMagazine();
     }
 }

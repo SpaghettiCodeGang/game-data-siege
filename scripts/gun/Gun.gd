@@ -10,7 +10,6 @@ extends XRToolsPickable
 ## They enable communication with the C# player script.
 signal gun_picked_up()
 signal gun_loaded()
-signal magazine_ejected()
 
 @export var projectile_scene: PackedScene
 
@@ -66,15 +65,13 @@ func on_magazine_loaded():
 	pass
 	
 ## Handles magazine ejection.
-## Marks the magazine as unloaded, starts its lifetime timer, drops it from the snap zone,
-## and emits the `magazine_ejected` signal.
+## Marks the magazine as unloaded, starts its lifetime timer, drops it from the snap zone.
 func on_magazine_ejected():
 	if magazine and is_instance_valid(magazine):
 		magazine.is_loaded_in_gun = false
 		magazine.get_node("LifetimeTimer").start()
 		magazine_snapzone.drop_object()
 	magazine = null
-	magazine_ejected.emit()
 
 ## Triggered when the magazine snap zone picks up a magazine object.
 ## Loads the magazine, plays a load animation, and emits the `gun_loaded` signal.
