@@ -13,6 +13,9 @@ public class EnemyCombat
     private readonly Enemy _enemy;
     private float _currentCooldown;
     private readonly RandomNumberGenerator _rng;
+    private float _currentHealth;
+    
+
 
     /// <summary>
     /// Initializes a new instance of EnemyCombat with the specified enemy.
@@ -21,6 +24,7 @@ public class EnemyCombat
     public EnemyCombat(Enemy enemy)
     {
         _enemy = enemy;
+        _currentHealth = _enemy.MaxHealth;
         _rng = new RandomNumberGenerator();
         _rng.Randomize();
     }
@@ -34,10 +38,31 @@ public class EnemyCombat
     {
         if (_enemy.CurrentState != Enemy.EnemyState.Aggressive) return;
         _currentCooldown -= (float)delta;
-        
+
         if (!(_currentCooldown <= 0)) return;
         FireProjectile();
         _currentCooldown = _enemy.AttackCooldown;
+    }
+
+    /// <summary>
+    /// Processes damage taken by the enemy and updates their health accordingly.
+    /// If the enemy's health drops to zero or below, initiates the death sequence.
+    /// Headshots result in instant death.
+    /// </summary>
+    /// <param name="damage">The amount of damage to be applied to the enemy.</param>
+    public void TakeDamage(float damage, bool isHeadshot)
+    {
+        if (_currentHealth <= 0) return;
+
+        if (isHeadshot) _currentHealth = 0;
+        else _currentHealth -= damage;
+           
+        
+        if (_currentHealth <= 0)
+        {
+            _enemy.CurrentState = Enemy.EnemyState.Passive;
+            _enemy.DeathSequence();
+        }
     }
 
     /// <summary>

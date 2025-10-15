@@ -10,7 +10,7 @@ using System;
 public partial class Projectile : RigidBody3D
 {
 	[Export] public float Speed = 50f;   // Base speed of the projectile
-	[Export] public int Damage = 1;      // Base damage dealt on impact
+	[Export] public float Damage = 1;      // Base damage dealt on impact
 	
 	[Export] public Node3D ImpactEffect;
 	
