@@ -62,13 +62,13 @@ public partial class TutorialStage : BaseStage
 				"Willkommen im virtuellen Wissenshub der DHSN. " +
 				"Ich bin Aurora, deine persönliche Lernhilfe. Zusammen mit meinen Helfer-Bots stehe ich dir bei allen Fragen zur Seite. " +
 				"Hier hast du Zugriff auf das gesamte Wissen der Menschheit.",
-				"Drücke A, um fortzufahren.",
+				"🅐 - Weiter",
 				["A"]
 			),
 
 			new TutorialStep(
 				"EINIGE STUNDEN SPÄTER ...",
-				"A zum Fortfahren, X zum Zurückgehen.",
+				"🅐 - Weiter | 🅧 - Zurück",
 				["A"],
 				["X"]
 			),
@@ -76,14 +76,14 @@ public partial class TutorialStage : BaseStage
 			new TutorialStep(
 				"Ah, du bist ja noch da! Alle anderen sind schon gegangen. " +
 				"Ich sehe, du beschäftigst dich schon eine ganze Weile mit der Fourier-Transformation. Hast du Fra... ",
-				"A zum Fortfahren, X zum Zurückgehen.",
+				"🅐 - Weiter | 🅧 - Zurück",
 				["A"],
 				["X"]
 			),
 
 			new TutorialStep(
 				"SYSTEMALARM ... BOTS VON KI INFIZIERT ... KEINE KONTROLLE ... AKTIVIERE NOTFALLPROTOKOLL!",
-				"A zum Fortfahren, X zum Zurückgehen.",
+				"🅐 - Weiter | 🅧 - Zurück.",
 				["A"],
 				["X"]
 			),
@@ -91,7 +91,7 @@ public partial class TutorialStage : BaseStage
 			new TutorialStep(
 				"Ich habe die Kontrolle über meine Bots verloren! Sie erkennen nun alle Personen in der DHSN als Eindringlinge. " +
 				"Ihre Laserpointer wurden umprogrammiert, ich befürchte, sie können jetzt als Waffen eingesetzt werden ...",
-				"A zum Fortfahren, X zum Zurückgehen.",
+				"🅐 - Weiter | 🅧 - Zurück",
 				["A"],
 				["X"],
 				() =>
@@ -104,7 +104,7 @@ public partial class TutorialStage : BaseStage
 				"Aber ich habe eine Idee. Mit meinen Replikatoren kann ich dich ebenfalls bewaffnen. " +
 				"Ich habe dir eine Elektro-Pistole erstellt, du solltest sie jetzt an deinem Holster finden. " +
 				"Nimm die Waffe in die Hand.",
-				"Ziehe die Waffe, um fortzufahren, oder X zum Zurückgehen.",
+				"Ziehe die Waffe mit 🅡❸ | 🅧 - Zurück",
 				["Picked"],
 				["X"],
 				() =>
@@ -116,8 +116,9 @@ public partial class TutorialStage : BaseStage
 
 			new TutorialStep(
 				"Deine Pistole ist noch nicht geladen. Das musst du selbst übernehmen, dabei kann ich leider nicht helfen. " +
-				"Nimm ein Batterie-Magazin von deinem Gürtel und lade deine Elektro-Pistole.",
-				"Lade die Waffe, um fortzufahren, oder X zum Zurückgehen.",
+				"Nimm ein Batterie-Magazin mit 🅡❸ von deinem Gürtel und lade deine Elektro-Pistole. " + 
+				"Mit 🅑 kannst du das Magazin wieder auswerfen.",
+				"Lade die Waffe | 🅧 - Zurück",
 				["Loaded"],
 				["X"],
 				() =>
@@ -129,7 +130,7 @@ public partial class TutorialStage : BaseStage
 
 			new TutorialStep(
 				"Bitte hilf mir, die infizierten Bots auszuschalten, bevor sie die gesamte DHSN übernehmen!",
-				"Drücke die Menü-Taste, um ins Hauptmenü zurückzukehren, oder B zum Zurückgehen.",
+				"Menü-Taste - Hauptmenü | 🅧 - Zurück",
 				[],
 				["X"],
 				() =>
