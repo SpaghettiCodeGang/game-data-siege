@@ -83,7 +83,7 @@ public partial class TutorialStage : BaseStage
 
 			new TutorialStep(
 				"SYSTEMALARM ... BOTS VON KI INFIZIERT ... KEINE KONTROLLE ... AKTIVIERE NOTFALLPROTOKOLL!",
-				"🅐 - Weiter | 🅧 - Zurück.",
+				"🅐 - Weiter | 🅧 - Zurück",
 				["A"],
 				["X"]
 			),
@@ -104,7 +104,7 @@ public partial class TutorialStage : BaseStage
 				"Aber ich habe eine Idee. Mit meinen Replikatoren kann ich dich ebenfalls bewaffnen. " +
 				"Ich habe dir eine Elektro-Pistole erstellt, du solltest sie jetzt an deinem Holster finden. " +
 				"Nimm die Waffe in die Hand.",
-				"Ziehe die Waffe mit 🅡❸ | 🅧 - Zurück",
+				"🅡❸ - Ziehe die Waffe | 🅧 - Zurück",
 				["Picked"],
 				["X"],
 				() =>
@@ -116,8 +116,8 @@ public partial class TutorialStage : BaseStage
 
 			new TutorialStep(
 				"Deine Pistole ist noch nicht geladen. Das musst du selbst übernehmen, dabei kann ich leider nicht helfen. " +
-				"Nimm ein Batterie-Magazin mit 🅡❸ von deinem Gürtel und lade deine Elektro-Pistole. " + 
-				"Mit 🅑 kannst du das Magazin wieder auswerfen.",
+				"Nimm ein Batterie-Magazin mit R3 von deinem Gürtel und lade deine Elektro-Pistole. " + 
+				"Mit B kannst du das Magazin wieder auswerfen.",
 				"Lade die Waffe | 🅧 - Zurück",
 				["Loaded"],
 				["X"],
@@ -130,7 +130,8 @@ public partial class TutorialStage : BaseStage
 
 			new TutorialStep(
 				"Bitte hilf mir, die infizierten Bots auszuschalten, bevor sie die gesamte DHSN übernehmen!",
-				"Menü-Taste - Hauptmenü | 🅧 - Zurück",
+				"Menü-Taste - Hauptmenü " +
+				"🅧 - Zurück",
 				[],
 				["X"],
 				() =>

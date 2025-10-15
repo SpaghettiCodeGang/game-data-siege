@@ -1,4 +1,4 @@
-susing Godot;
+using Godot;
 
 /// <summary>
 /// Represents a Whiteboard in the game, responsible for displaying instructional or narrative text.
