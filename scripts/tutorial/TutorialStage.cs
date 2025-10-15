@@ -67,7 +67,7 @@ public partial class TutorialStage : BaseStage
 			),
 
 			new TutorialStep(
-				"EINIGE STUNDEN SPÄTER ...",
+				"EINIGE STUNDEN SPÄTER...",
 				"🅐 - Weiter | 🅧 - Zurück",
 				["A"],
 				["X"]
@@ -116,8 +116,8 @@ public partial class TutorialStage : BaseStage
 
 			new TutorialStep(
 				"Deine Pistole ist noch nicht geladen. Das musst du selbst übernehmen, dabei kann ich leider nicht helfen. " +
-				"Nimm ein Batterie-Magazin mit R3 von deinem Gürtel und lade deine Elektro-Pistole. " + 
-				"Mit B kannst du das Magazin wieder auswerfen.",
+				"Nimm ein Batterie-Magazin mit Ⓡ③ von deinem Gürtel und lade deine Elektro-Pistole. " + 
+				"Mit Ⓑ kannst du das Magazin wieder auswerfen.",
 				"Lade die Waffe | 🅧 - Zurück",
 				["Loaded"],
 				["X"],
