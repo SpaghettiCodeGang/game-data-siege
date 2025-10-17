@@ -36,9 +36,9 @@ glow_intensity = 0.12
 
 [node name="TutorialStage" type="Node3D" node_paths=PackedStringArray("EnemyPositionMarker", "Whiteboard", "PlayerPositionMarker")]
 script = ExtResource("1_c8lsh")
+EnemyScene = ExtResource("2_o6wnn")
 EnemyPositionMarker = NodePath("EnemyPositionMarker")
 Whiteboard = NodePath("Whiteboard")
-EnemyScene = ExtResource("2_o6wnn")
 PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
