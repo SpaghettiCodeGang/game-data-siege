@@ -14,6 +14,8 @@ public partial class Menu : VBoxContainer
 	[Export] private Button _btnTutorial;
 	[Export] private Button _btnExit;
 
+	[Export] private AudioStreamPlayer _soundClick;
+
 	/// <summary>
 	/// Connects button signals to their respective handler methods.
 	/// </summary>
@@ -22,11 +24,39 @@ public partial class Menu : VBoxContainer
 		_btnPlay.Connect("pressed", new Callable(this, nameof(OnPlayPressed)));
 		_btnTutorial.Connect("pressed", new Callable(this, nameof(OnTutorialPressed)));
 		_btnExit.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
+		
+		_soundClick = GetNode<AudioStreamPlayer>("SoundClick");
 	}
 
+	/// <summary>
+	/// Handles the event triggered when the Tutorial is pressed.
+	/// If a click sound is defined, it is played, and a timer is started to wait 
+	/// for the sound's duration before loading the stage. Otherwise, the stage 
+	/// is loaded immediately.
+	/// </summary>
 	private void OnTutorialPressed()
 	{
-		GameManager.Instance.LoadStage(TutorialStage);
+		if (_soundClick == null)
+		{
+			GameManager.Instance.LoadStage(TutorialStage);
+			return;
+		}
+		
+		_soundClick.Play();
+
+		var timer = new Timer
+		{
+			WaitTime = _soundClick.Stream.GetLength(),
+			OneShot = true
+		};
+		AddChild(timer);
+		timer.Timeout += () =>
+		{
+			GameManager.Instance.LoadStage(TutorialStage);
+			timer.QueueFree();
+		};
+		timer.Start();
+
 	}
 
 	private void OnPlayPressed()
