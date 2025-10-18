@@ -10,12 +10,12 @@ extends XRToolsPickable
 ## They enable communication with the C# player script.
 signal gun_picked_up()
 signal gun_loaded()
-signal magazine_ejected()
 
 @export var projectile_scene: PackedScene
 
 @onready var magazine_snapzone = $GunModel/MagazineSnapZone
 @onready var muzzle = $GunModel/Muzzle
+@onready var muzzle_flash_effect: Node3D = $GunModel/VfxMuzzleFlash
 
 var magazine
 var trigger_pressed_last_frame: bool = false
@@ -65,15 +65,13 @@ func on_magazine_loaded():
 	pass
 	
 ## Handles magazine ejection.
-## Marks the magazine as unloaded, starts its lifetime timer, drops it from the snap zone,
-## and emits the `magazine_ejected` signal.
+## Marks the magazine as unloaded, starts its lifetime timer, drops it from the snap zone.
 func on_magazine_ejected():
 	if magazine and is_instance_valid(magazine):
 		magazine.is_loaded_in_gun = false
 		magazine.get_node("LifetimeTimer").start()
 		magazine_snapzone.drop_object()
 	magazine = null
-	magazine_ejected.emit()
 
 ## Triggered when the magazine snap zone picks up a magazine object.
 ## Loads the magazine, plays a load animation, and emits the `gun_loaded` signal.
@@ -91,7 +89,6 @@ func _on_magazine_snap_zone_has_picked_up(what: Variant) -> void:
 ## Consumes one round from the magazine and spawns a projectile instance in the scene.
 func fire() -> void:
 	if projectile_scene == null:
-		$SoundEmpty.play()
 		return
 		
 	if magazine == null or not is_instance_valid(magazine):
@@ -99,7 +96,11 @@ func fire() -> void:
 		return
 		
 	if not magazine.consume_round():
+		$SoundEmpty.play()
 		return
+		
+	if muzzle_flash_effect:
+		enable_all_particles(muzzle_flash_effect)
 	
 	var direction = muzzle.global_transform.basis.z
 	var projectile = projectile_scene.instantiate()
@@ -108,3 +109,12 @@ func fire() -> void:
 	projectile.Fire(direction)
 	$SoundShot.play()
 	get_tree().current_scene.add_child(projectile)
+
+## Recursively searches for and enables all GPUParticles3D nodes in the hierarchy.
+## @param node: The root node from GPUParticles3Ds 
+func enable_all_particles(node: Node) -> void:
+	for child in node.get_children():
+		if child is GPUParticles3D:
+			child.emitting = true
+		
+		enable_all_particles(child)

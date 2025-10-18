@@ -31,6 +31,8 @@ curve = SubResource("Curve_ust0o")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nlq07"]
 gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.099999994
 scale_curve = SubResource("CurveTexture_6oq7n")
 color = Color(0.22091928, 0.66631895, 0.9269341, 1)
 alpha_curve = SubResource("CurveTexture_jqdj2")
@@ -46,8 +48,8 @@ albedo_texture = ExtResource("3_jqdj2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x1aop"]
 gravity = Vector3(0, 0, 0)
-scale_min = 1.1999999
-scale_max = 2.0
+scale_min = 0.049999997
+scale_max = 0.19999999
 scale_curve = SubResource("CurveTexture_6oq7n")
 color = Color(0.22091928, 0.66631895, 0.9269341, 1)
 alpha_curve = SubResource("CurveTexture_jqdj2")
@@ -82,8 +84,8 @@ curve = SubResource("Curve_w7c4u")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5fjsd"]
 gravity = Vector3(0, 0, 0)
-scale_min = 2.5
-scale_max = 2.5
+scale_min = 0.29999998
+scale_max = 0.29999998
 scale_curve = SubResource("CurveTexture_5j6pl")
 color = Color(0.56757206, 0.81812185, 0.98937523, 1)
 alpha_curve = SubResource("CurveTexture_ja3rs")
@@ -131,8 +133,8 @@ spread = 20.0
 initial_velocity_min = 3.0
 initial_velocity_max = 15.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.049999997
-scale_max = 0.099999994
+scale_min = 0.01
+scale_max = 0.01
 scale_curve = SubResource("CurveXYZTexture_1etik")
 color = Color(1.2077075, 1.6328152, 1.6948643, 1)
 alpha_curve = SubResource("CurveTexture_5bbim")
@@ -142,6 +144,7 @@ alpha_curve = SubResource("CurveTexture_5bbim")
 [node name="VfxMuzzleFlash" type="Node3D"]
 
 [node name="MuzzleFlash" type="Node3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
 [node name="MuzzlePlanes" type="GPUParticles3D" parent="MuzzleFlash"]
 material_override = SubResource("StandardMaterial3D_usunq")
