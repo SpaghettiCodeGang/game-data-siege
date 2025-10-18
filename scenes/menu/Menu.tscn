@@ -39,6 +39,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Beenden"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+[node name="SoundClick" type="AudioStreamPlayer" parent="VBoxContainer"]
 stream = ExtResource("3_iflpk")
 volume_db = -10.0
