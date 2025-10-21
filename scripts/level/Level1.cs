@@ -11,6 +11,15 @@ public partial class Level1 : BaseStage
     public override void OnEnter()
     {
         if (Player == null) return;
+        Player.PlayerInventory.SpawnGun();
+        Player.PlayerInventory.SpawnMagazine();
+    }
+
+    public override void OnExit()
+    {
+        if (Player == null) return;
+        Player.PlayerInventory.RemoveGun();
+        Player.PlayerInventory.RemoveMagazine();
     }
 
 }
