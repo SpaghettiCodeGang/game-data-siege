@@ -39,6 +39,8 @@ public class PlayerInventory
         // Connect signals from Gun.gd
         CurrentGun.Connect("gun_picked_up", 
             Callable.From(OnGunPickedUp));
+        CurrentGun.Connect("gun_despawned",
+            Callable.From(OnGunDespawned));        
         CurrentGun.Connect("gun_loaded",
             Callable.From(OnGunLoaded));
     }
@@ -58,6 +60,17 @@ public class PlayerInventory
         {
             _player.CurrentStage.OnPlayerButtonPressed("Picked");
         }
+    }
+    
+    /// <summary>
+    /// Triggered when the currently active Gun despawns.
+    /// Clears the reference and spawns a new Gun unless the player is in the menu stage.
+    /// </summary>
+    private void OnGunDespawned()
+    {
+        if (_player.CurrentStage is MenuStage) return;
+        CurrentGun = null;
+        SpawnGun();
     }
 
     /// <summary>
