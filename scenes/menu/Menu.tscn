@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0q0oi6040isq"]
 
 [ext_resource type="Script" uid="uid://mo1m2maa8fix" path="res://scripts/menu/Menu.cs" id="1_klgdb"]
+[ext_resource type="PackedScene" uid="uid://3hi723ixw7ph" path="res://scenes/level/Level1.tscn" id="2_iflpk"]
 [ext_resource type="PackedScene" uid="uid://ckw15ucmuo8ip" path="res://scenes/tutorial/TutorialStage.tscn" id="2_mcvr8"]
 [ext_resource type="AudioStream" uid="uid://dgjb5tiyxcnya" path="res://assets/audio/sounds/ButtonClick.mp3" id="3_iflpk"]
 
@@ -19,6 +20,7 @@ offset_bottom = 98.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_klgdb")
+GameStage = ExtResource("2_iflpk")
 TutorialStage = ExtResource("2_mcvr8")
 _btnPlay = NodePath("PlayButton")
 _btnTutorial = NodePath("TutorialButton")

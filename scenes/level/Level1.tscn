@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://3hi723ixw7ph"]
 
-[ext_resource type="Script" uid="uid://wox08oj50gl1" path="res://scripts/tutorial/TutorialStage.cs" id="1_bl884"]
-[ext_resource type="PackedScene" uid="uid://bcv2tle0qu0oi" path="res://scenes/enemy/Enemy.tscn" id="2_571ng"]
+[ext_resource type="Script" uid="uid://4d0hnvamx4eh" path="res://scripts/level/Level1.cs" id="1_ttqo4"]
+[ext_resource type="PackedScene" uid="uid://bcv2tle0qu0oi" path="res://scenes/enemy/Enemy.tscn" id="2_lssdq"]
 [ext_resource type="PackedScene" uid="uid://d1dqgvyllsmv1" path="res://scenes/level-boundaries/groundplate.tscn" id="3_erfms"]
 [ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="4_rfu2a"]
 [ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="5_ir4d2"]
@@ -38,9 +38,13 @@ glow_enabled = true
 glow_intensity = 0.15
 glow_bloom = 0.15
 
-[node name="Level1" type="Node3D"]
-script = ExtResource("1_bl884")
-EnemyScene = ExtResource("2_571ng")
+[node name="Level1" type="Node3D" node_paths=PackedStringArray("EnemyPositionMarker1", "EnemyPositionMarker2", "EnemyPositionMarker3", "PlayerPositionMarker")]
+script = ExtResource("1_ttqo4")
+EnemyScene = ExtResource("2_lssdq")
+EnemyPositionMarker1 = NodePath("EnemyPositionMarker1")
+EnemyPositionMarker2 = NodePath("EnemyPositionMarker2")
+EnemyPositionMarker3 = NodePath("EnemyPositionMarker3")
+PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_umtil")
@@ -696,8 +700,14 @@ spot_angle = 70.0
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.463366, 0.07735658, -1.2790103)
 
-[node name="EnemyPositionMarker" type="Marker3D" parent="."]
-transform = Transform3D(-4.371138e-08, 0, 0.9999998, 0, 1, 0, -0.9999998, 0, -4.371138e-08, 4.4057126, 1.0291039, -0.30189148)
+[node name="EnemyPositionMarker1" type="Marker3D" parent="."]
+transform = Transform3D(-4.371138e-08, 0, 0.9999998, 0, 1, 0, -0.9999998, 0, -4.371138e-08, 4.8756375, 1.0291039, -0.30189148)
+
+[node name="EnemyPositionMarker2" type="Marker3D" parent="."]
+transform = Transform3D(-0.99999964, 0, -8.742275e-08, 0, 1, 0, 8.742275e-08, 0, -0.99999964, -6.304, 1.029, -5.178)
+
+[node name="EnemyPositionMarker3" type="Marker3D" parent="."]
+transform = Transform3D(1.311341e-07, 0, -0.99999946, 0, 1, 0, 0.99999946, 0, 1.311341e-07, -5.529, 1.029, 2.81)
 
 [node name="BackgrundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_ixdpk")

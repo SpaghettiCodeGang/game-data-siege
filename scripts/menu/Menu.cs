@@ -23,11 +23,7 @@ public partial class Menu : VBoxContainer
 	/// </summary>
 	public override void _Ready()
 	{
-		_btnPlay.Pressed += async () => await HandleButtonPress(() =>
-		{
-			// TODO: GameManager.Instance.LoadStage(GameStage);
-		});
-
+		_btnPlay.Pressed += async () => await HandleButtonPress(() => GameManager.Instance.LoadStage(GameStage));
 		_btnTutorial.Pressed += async () => await HandleButtonPress(() => GameManager.Instance.LoadStage(TutorialStage));
 		_btnExit.Pressed += async () => await HandleButtonPress(() => GetTree().Quit());
 	}
