@@ -2,16 +2,22 @@ using Godot;
 
 public partial class PlayerDamageOverlay : Node3D
 {
+    [ExportGroup("Verhalten")]
+    [Export] public float TriggerThreshold = 0.5f;
+    [Export] public float FadeSpeed = 2.0f;
+    [Export] public float PulseSpeed = 3.0f;
+
+    [ExportGroup("Intensität")]
+    [Export] public float BaseEmission = 0.2f;
+    [Export] public float PulseAmplitude = 1.0f;
+    [Export] public float MaxEmission = 5.0f;
+    
     private MeshInstance3D _mesh;
     private StandardMaterial3D _mat;
 
     private float _health = 1.0f;
-    private float _pulseTime = 0.0f;
-
-    [ExportGroup("Verhalten")]
-    [Export] public float TriggerThreshold = 0.5f;   // Unter diesem Wert sichtbar
-    [Export] public float FadeSpeed = 2.0f;          // Wie schnell Emission reagiert
-    [Export] public float PulseSpeed = 3.0f;         // Geschwindigkeit der Pulsierung
+    private float _pulseTime;
+    private bool _isVisible;
 
     [ExportGroup("Intensität")]
     [Export] public float BaseEmission = 0.2f;       // Minimalwert bei Puls
@@ -22,44 +28,51 @@ public partial class PlayerDamageOverlay : Node3D
     {
         _mesh = GetNode<MeshInstance3D>("MeshInstance3D");
         _mat = _mesh.GetActiveMaterial(0) as StandardMaterial3D;
+
+        if (_mat == null)
+        {
+            SetProcess(false);
+            return;
+        }
+
+        _mat.EmissionEnabled = true;
         _mesh.Visible = false;
+        _isVisible = false;
     }
 
     public override void _Process(double delta)
     {
-        if (_mat == null)
-            return;
-
-        _pulseTime += (float)delta * PulseSpeed;
-
-        if (_health >= TriggerThreshold)
-        {
-            HideOverlay((float)delta);
-            return;
-        }
-
-        ShowOverlay((float)delta);
+        var dt = (float)delta;
+        _pulseTime += dt * PulseSpeed;
+        
+        if (_health < TriggerThreshold)
+            UpdateOverlay(dt);
+        else
+            FadeOutOverlay(dt);
     }
 
-    private void ShowOverlay(float delta)
+    private void UpdateOverlay(float delta)
     {
-        _mesh.Visible = true;
+        if (!_isVisible)
+        {
+            _mesh.Visible = true;
+            _isVisible = true;
+        }
 
-        // Normierte Health: 0 → 1 in Abhängigkeit vom Triggerbereich
-        float damageFactor = Mathf.InverseLerp(TriggerThreshold, 0f, _health);
-        float pulse = Mathf.Sin(_pulseTime) * 0.5f + 0.5f; // 0–1 Bereich
+        var damageFactor = Mathf.InverseLerp(TriggerThreshold, 0f, _health);
+        var pulse = (Mathf.Sin(_pulseTime) * 0.5f) + 0.5f;
 
-        // Basis + Puls + Health-Skalierung
-        float targetEmission = (BaseEmission + PulseAmplitude * pulse) * Mathf.Lerp(0f, MaxEmission, damageFactor);
-
-        // Smooth Übergang
+        var targetEmission = (BaseEmission + PulseAmplitude * pulse) * Mathf.Lerp(0f, MaxEmission, damageFactor);
         _mat.EmissionEnergyMultiplier = Mathf.MoveToward(_mat.EmissionEnergyMultiplier, targetEmission, delta * FadeSpeed);
     }
 
-    private void HideOverlay(float delta)
+    private void FadeOutOverlay(float delta)
     {
-        _mesh.Visible = false;
         _mat.EmissionEnergyMultiplier = Mathf.MoveToward(_mat.EmissionEnergyMultiplier, 0f, delta * FadeSpeed);
+
+        if (!(_mat.EmissionEnergyMultiplier <= 0.01f) || !_isVisible) return;
+        _mesh.Visible = false;
+        _isVisible = false;
     }
 
     public void SetHealthPercent(float health)
