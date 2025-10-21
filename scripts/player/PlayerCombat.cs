@@ -34,11 +34,24 @@ public class PlayerCombat
         
         if (_currentHealth <= 0)
         {
-            _currentHealth = _player.MaxHealth;
-            _player.PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
+            Reset();
             GameManager.Instance.ReturnToMenu();
         }
 
+        _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
+    }
+
+    /// <summary>
+    /// Restores the player's health and resets combat-related state.
+    /// 
+    /// This method fully heals the player, triggers any necessary
+    /// cleanup on equipped weapons (such as ejecting the current magazine),
+    /// and updates the damage overlay to reflect full health.
+    /// </summary>
+    public void Reset()
+    {
+        _currentHealth = _player.MaxHealth;
+        _player.PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
         _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
     }
 }
