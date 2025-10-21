@@ -101,5 +101,6 @@ public class EnemyCombat
         var spreadDirection = CalculateSpreadDirection(baseDirection);
         
         projectile.Fire(spreadDirection);
+        _enemy.EnemyGunSound.Play();
     }
 }
