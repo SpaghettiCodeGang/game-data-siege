@@ -31,7 +31,7 @@ public partial class Menu : VBoxContainer
 
 	private void OnPlayPressed()
 	{
-		// TODO: GameManager.Instance.LoadStage(GameStage);
+		GameManager.Instance.LoadStage(GameStage);
 	}
 
 	private void OnExitPressed()
