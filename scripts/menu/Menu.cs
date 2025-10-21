@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -14,28 +16,30 @@ public partial class Menu : VBoxContainer
 	[Export] private Button _btnTutorial;
 	[Export] private Button _btnExit;
 
+	[Export] private AudioStreamPlayer _soundClick;
+
 	/// <summary>
 	/// Connects button signals to their respective handler methods.
 	/// </summary>
 	public override void _Ready()
 	{
-		_btnPlay.Connect("pressed", new Callable(this, nameof(OnPlayPressed)));
-		_btnTutorial.Connect("pressed", new Callable(this, nameof(OnTutorialPressed)));
-		_btnExit.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
+		_btnPlay.Pressed += async () => await HandleButtonPress(() => GameManager.Instance.LoadStage(GameStage));
+		_btnTutorial.Pressed += async () => await HandleButtonPress(() => GameManager.Instance.LoadStage(TutorialStage));
+		_btnExit.Pressed += async () => await HandleButtonPress(() => GetTree().Quit());
 	}
 
-	private void OnTutorialPressed()
+	/// <summary>
+	/// Plays the click sound (if available), waits for it to finish, and executes the given action.
+	/// </summary>
+	private async Task HandleButtonPress(Action action)
 	{
-		GameManager.Instance.LoadStage(TutorialStage);
-	}
+		if (_soundClick != null)
+		{
+			_soundClick.Play();
+			await ToSignal(_soundClick, "finished");
+		}
 
-	private void OnPlayPressed()
-	{
-		GameManager.Instance.LoadStage(GameStage);
+		action?.Invoke();
 	}
-
-	private void OnExitPressed()
-	{
-		GetTree().Quit();
-	}
+	
 }

@@ -5,7 +5,8 @@ using System;
 /// Handles combat-related functionality for the player character.
 /// Manages health, damage taking, and combat state.
 /// </summary>
-/// <author>Elias Kugel</author>
+/// <author>Sören Lehmann</author>
+/// <coauthor>Elias Kugel</coauthor>
 public class PlayerCombat
 {
     private readonly Player _player;
@@ -30,13 +31,14 @@ public class PlayerCombat
     public void TakeDamage(float damage)
     {
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);
+        
         if (_currentHealth <= 0)
         {
-            GD.Print("Player is dead.");
+            _currentHealth = _player.MaxHealth;
+            _player.PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
+            GameManager.Instance.ReturnToMenu();
         }
-        else
-        {
-            GD.Print("Player hit for " + damage + " damage. Current health: " + _currentHealth);
-        }
+
+        _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
     }
 }
