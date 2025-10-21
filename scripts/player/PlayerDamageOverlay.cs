@@ -19,11 +19,6 @@ public partial class PlayerDamageOverlay : Node3D
     private float _pulseTime;
     private bool _isVisible;
 
-    [ExportGroup("Intensität")]
-    [Export] public float BaseEmission = 0.2f;       // Minimalwert bei Puls
-    [Export] public float PulseAmplitude = 1.0f;     // Wie stark der Puls schwankt
-    [Export] public float MaxEmission = 5.0f;        // Oberes Limit bei 0 HP
-
     public override void _Ready()
     {
         _mesh = GetNode<MeshInstance3D>("MeshInstance3D");
