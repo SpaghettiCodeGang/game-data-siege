@@ -6,7 +6,7 @@
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("_btnPlay", "_btnTutorial", "_btnExit")]
+[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("_btnPlay", "_btnTutorial", "_btnExit", "_soundClick")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,6 +23,7 @@ TutorialStage = ExtResource("2_mcvr8")
 _btnPlay = NodePath("PlayButton")
 _btnTutorial = NodePath("TutorialButton")
 _btnExit = NodePath("ExitButton")
+_soundClick = NodePath("SoundClick")
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

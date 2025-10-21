@@ -14,8 +14,6 @@ public class EnemyCombat
     private float _currentCooldown;
     private readonly RandomNumberGenerator _rng;
     private float _currentHealth;
-    
-
 
     /// <summary>
     /// Initializes a new instance of EnemyCombat with the specified enemy.

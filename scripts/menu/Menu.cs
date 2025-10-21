@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -21,51 +23,27 @@ public partial class Menu : VBoxContainer
 	/// </summary>
 	public override void _Ready()
 	{
-		_btnPlay.Connect("pressed", new Callable(this, nameof(OnPlayPressed)));
-		_btnTutorial.Connect("pressed", new Callable(this, nameof(OnTutorialPressed)));
-		_btnExit.Connect("pressed", new Callable(this, nameof(OnExitPressed)));
-		
-		_soundClick = GetNode<AudioStreamPlayer>("SoundClick");
+		_btnPlay.Pressed += async () => await HandleButtonPress(() =>
+		{
+			// TODO: GameManager.Instance.LoadStage(GameStage);
+		});
+
+		_btnTutorial.Pressed += async () => await HandleButtonPress(() => GameManager.Instance.LoadStage(TutorialStage));
+		_btnExit.Pressed += async () => await HandleButtonPress(() => GetTree().Quit());
 	}
 
 	/// <summary>
-	/// Handles the event triggered when the Tutorial is pressed.
-	/// If a click sound is defined, it is played, and a timer is started to wait 
-	/// for the sound's duration before loading the stage. Otherwise, the stage 
-	/// is loaded immediately.
+	/// Plays the click sound (if available), waits for it to finish, and executes the given action.
 	/// </summary>
-	private void OnTutorialPressed()
+	private async Task HandleButtonPress(Action action)
 	{
-		if (_soundClick == null)
+		if (_soundClick != null)
 		{
-			GameManager.Instance.LoadStage(TutorialStage);
-			return;
+			_soundClick.Play();
+			await ToSignal(_soundClick, "finished");
 		}
-		
-		_soundClick.Play();
 
-		var timer = new Timer
-		{
-			WaitTime = _soundClick.Stream.GetLength(),
-			OneShot = true
-		};
-		AddChild(timer);
-		timer.Timeout += () =>
-		{
-			GameManager.Instance.LoadStage(TutorialStage);
-			timer.QueueFree();
-		};
-		timer.Start();
-
+		action?.Invoke();
 	}
-
-	private void OnPlayPressed()
-	{
-		// TODO: GameManager.Instance.LoadStage(GameStage);
-	}
-
-	private void OnExitPressed()
-	{
-		GetTree().Quit();
-	}
+	
 }
