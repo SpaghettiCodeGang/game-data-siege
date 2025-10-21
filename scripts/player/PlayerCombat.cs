@@ -5,7 +5,8 @@ using System;
 /// Handles combat-related functionality for the player character.
 /// Manages health, damage taking, and combat state.
 /// </summary>
-/// <author>Elias Kugel</author>
+/// <author>Sören Lehmann</author>
+/// <coauthor>Elias Kugel</coauthor>
 public class PlayerCombat
 {
     private readonly Player _player;
