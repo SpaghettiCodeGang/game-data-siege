@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 /// <author>Elias Kugel</author>
 public partial class Level1 : BaseStage
 {
-    [Export] public PackedScene EnemyScene;    
-    [Export] public Node3D SpawnArea; // Der Bereich, in dem Gegner spawnen sollen
-    [Export] public float RespawnDelay = 5.0f; // Sekunden
-    [Export] public float AggressiveDelay = 3.0f; // Sekunden bis der Gegner aggressiv wird
+    [Export] public PackedScene EnemyScene;
+    [Export] public Node3D SpawnArea;
+    [Export] public float RespawnDelay = 5.0f;
+    [Export] public float AggressiveDelay = 3.0f;
     [Export] public int MaxEnemies = 5;
     private int currentEnemyCount = 0;
     private int killedEnemiesCounter = 0;
-    private const float ClearRadius = 1.0f; // Meter
+    private const float ClearRadius = 1.0f;
     private double respawnTimer = 0.0;
     public int _damageIncrease = 0;
     private Dictionary<Enemy, double> enemyAggressiveTimers = new();
@@ -26,8 +26,8 @@ public partial class Level1 : BaseStage
         if (Player == null) return;
         Player.PlayerInventory.SpawnGun();
         Player.PlayerInventory.SpawnMagazine();
-        killedEnemiesCounter = 0; // Counter zurücksetzen
-        respawnTimer = RespawnDelay; // Timer starten
+        killedEnemiesCounter = 0;
+        respawnTimer = RespawnDelay;
     }
 
     /// <summary>
@@ -36,10 +36,7 @@ public partial class Level1 : BaseStage
     /// </summary>
     /// <param name="delta">Time elapsed since the last frame in seconds.</param>
     public override void _Process(double delta)
-    {
-        base._Process(delta);
-        
-        // Spawn-Timer verarbeiten
+    {        
         if (currentEnemyCount < MaxEnemies)
         {
             respawnTimer -= delta;
@@ -86,7 +83,7 @@ public partial class Level1 : BaseStage
         currentEnemyCount--;
         if (currentEnemyCount < MaxEnemies)
         {
-            respawnTimer = RespawnDelay; // Starte Timer neu, wenn ein Gegner stirbt
+            respawnTimer = RespawnDelay;
         }
     }
 
@@ -99,16 +96,13 @@ public partial class Level1 : BaseStage
     {
         if (SpawnArea == null) return Vector3.Zero;
 
-        // Get the spawn area's bounds using its transform
         var spawnTransform = SpawnArea.GlobalTransform;
         var spawnScale = spawnTransform.Basis.Scale;
         var spawnPosition = spawnTransform.Origin;
         
-        // Create a random number generator
         var random = new RandomNumberGenerator();
         random.Randomize();
         
-        // Begrenzt die Spawn-Fläche auf einen vernünftigen Bereich
         float maxWidth = 10.0f;
         float maxDepth = 10.0f;
         

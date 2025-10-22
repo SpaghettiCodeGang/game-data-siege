@@ -96,12 +96,9 @@ public class EnemyCombat
         var projectile = _enemy.ProjectileScene.Instantiate<Projectile>();
         _enemy.GetTree().CurrentScene.AddChild(projectile);
         projectile.Damage += _damageAddition;
-        GD.Print("Enemy projectile damage: " + projectile.Damage);
         projectile.GlobalTransform = _enemy.Muzzle.GlobalTransform;
-
         var baseDirection = -_enemy.GlobalTransform.Basis.Z;
         var spreadDirection = CalculateSpreadDirection(baseDirection);
-        
         projectile.Fire(spreadDirection);
     }
 }
