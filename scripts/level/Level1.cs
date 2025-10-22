@@ -14,20 +14,19 @@ public partial class Level1 : BaseStage
     [Export] public float RespawnDelay = 5.0f;
     [Export] public float AggressiveDelay = 3.0f;
     [Export] public int MaxEnemies = 5;
-    private int currentEnemyCount = 0;
-    private int killedEnemiesCounter = 0;
-    private const float ClearRadius = 1.0f;
-    private double respawnTimer = 0.0;
-    public int _damageIncrease = 0;
-    private Dictionary<Enemy, double> enemyAggressiveTimers = new();
+    private int _currentEnemyCount;
+    private int _killedEnemiesCounter;
+    private double _respawnTimer;
+    private int _damageIncrease;
+    private readonly Dictionary<Enemy, double> _enemyAggressiveTimers = new();
 
     public override void OnEnter()
     {
         if (Player == null) return;
         Player.PlayerInventory.SpawnGun();
         Player.PlayerInventory.SpawnMagazine();
-        killedEnemiesCounter = 0;
-        respawnTimer = RespawnDelay;
+        _killedEnemiesCounter = 0;
+        _respawnTimer = RespawnDelay;
     }
 
     /// <summary>
@@ -37,10 +36,10 @@ public partial class Level1 : BaseStage
     /// <param name="delta">Time elapsed since the last frame in seconds.</param>
     public override void _Process(double delta)
     {        
-        if (currentEnemyCount < MaxEnemies)
+        if (_currentEnemyCount < MaxEnemies)
         {
-            respawnTimer -= delta;
-            if (respawnTimer <= 0)
+            _respawnTimer -= delta;
+            if (_respawnTimer <= 0)
             {
                 Vector3 spawnPosition = GetRandomPositionInSpawnArea();
                 Enemy enemy = SpawnEnemy(spawnPosition);
@@ -49,27 +48,21 @@ public partial class Level1 : BaseStage
                 {
                     enemy.TreeExiting += OnEnemyDied;
                     enemy.CurrentState = Enemy.EnemyState.Passive; 
-                    enemyAggressiveTimers[enemy] = AggressiveDelay;
+                    _enemyAggressiveTimers[enemy] = AggressiveDelay;
                 }
                 
-                respawnTimer = RespawnDelay;
+                _respawnTimer = RespawnDelay;
             }
         }
 
-        var enemiesToUpdate = new List<Enemy>(enemyAggressiveTimers.Keys);
+        var enemiesToUpdate = new List<Enemy>(_enemyAggressiveTimers.Keys);
         foreach (var enemy in enemiesToUpdate)
         {
-            if (enemy == null || !IsInstanceValid(enemy)) 
-            {
-                enemyAggressiveTimers.Remove(enemy);
-                continue;
-            }
-
-            enemyAggressiveTimers[enemy] -= delta;
-            if (enemyAggressiveTimers[enemy] <= 0)
+            _enemyAggressiveTimers[enemy] -= delta;
+            if (_enemyAggressiveTimers[enemy] <= 0)
             {
                 enemy.CurrentState = Enemy.EnemyState.Aggressive;
-                enemyAggressiveTimers.Remove(enemy);
+                _enemyAggressiveTimers.Remove(enemy);
             }
         }
     }
@@ -80,10 +73,10 @@ public partial class Level1 : BaseStage
     /// </summary>
     private void OnEnemyDied()
     {
-        currentEnemyCount--;
-        if (currentEnemyCount < MaxEnemies)
+        _currentEnemyCount--;
+        if (_currentEnemyCount < MaxEnemies)
         {
-            respawnTimer = RespawnDelay;
+            _respawnTimer = RespawnDelay;
         }
     }
 
@@ -134,14 +127,14 @@ public partial class Level1 : BaseStage
         enemy.GlobalTransform = transform;
         enemy.Player = Player;
         AddChild(enemy);
-        if (killedEnemiesCounter >= 5)
+        if (_killedEnemiesCounter >= 5)
         {
             _damageIncrease++;
-            killedEnemiesCounter = 0;
+            _killedEnemiesCounter = 0;
         }        
-        enemy.EnemyCombat._damageAddition += _damageIncrease;
-        currentEnemyCount++;
-        killedEnemiesCounter++;
+        enemy.EnemyCombat.DamageAddition += _damageIncrease;
+        _currentEnemyCount++;
+        _killedEnemiesCounter++;
         return enemy;
     }
 
