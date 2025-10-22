@@ -81,7 +81,6 @@ public partial class Player : Node3D
         CurrentHealth = MaxHealth;
         PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
         PlayerDamageOverlay.SetHealthPercent(CurrentHealth / MaxHealth);
-        
         GameManager.Instance.ReturnToMenu();
     }
 }

@@ -13,6 +13,9 @@ public partial class GameManager : Node
     [Export] private Node3D _currentStage;
     [Export] private Player _player;
 
+    public int CurrentScore = 0;
+    public int Highscore = 0;
+
     public static GameManager Instance { get; private set; }
 
     /// <summary>
@@ -23,7 +26,7 @@ public partial class GameManager : Node
         if (Instance == null) Instance = this;
         LoadStage(MenuStage);
     }
-    
+
     /// <summary>
     /// Loads a new stage by instantiating the given scene,
     /// cleaning up the previous one, and assigning the player if available.
@@ -50,7 +53,7 @@ public partial class GameManager : Node
         _player.SetCurrentStage(baseStage);
         baseStage.OnEnter();
     }
-    
+
     /// <summary>
     /// Returns to the menu stage if the current stage is not already the menu.
     /// Triggered e.g. via VR controller input.
@@ -64,5 +67,15 @@ public partial class GameManager : Node
         // Prevent reloading if we are already in the menu
         if (currentSceneNode is Menu) return;
         LoadStage(MenuStage);
+    }
+    
+    public void IncrementScore()
+    {
+        CurrentScore += 1;
+
+        if (CurrentScore > Highscore)
+        {
+            Highscore = CurrentScore;
+        }
     }
 }

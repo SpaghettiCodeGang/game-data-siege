@@ -60,6 +60,7 @@ public class EnemyCombat
         if (_currentHealth <= 0)
         {
             _enemy.CurrentState = Enemy.EnemyState.Passive;
+            
             _enemy.DeathSequence();
         }
     }

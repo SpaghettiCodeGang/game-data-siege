@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 
 /// <summary>
@@ -27,6 +28,8 @@ public partial class Level1 : BaseStage
         Player.PlayerInventory.SpawnMagazine();
         _killedEnemiesCounter = 0;
         _respawnTimer = RespawnDelay;
+        _currentEnemyCount = 0;
+        GameManager.Instance.CurrentScore = 0;
     }
 
     /// <summary>
@@ -74,6 +77,7 @@ public partial class Level1 : BaseStage
     private void OnEnemyDied()
     {
         _currentEnemyCount--;
+        GameManager.Instance.IncrementScore();
         if (_currentEnemyCount < MaxEnemies)
         {
             _respawnTimer = RespawnDelay;
