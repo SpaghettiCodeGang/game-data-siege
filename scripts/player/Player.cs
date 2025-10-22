@@ -17,7 +17,10 @@ public partial class Player : Node3D
     [Export] public XRController3D RightController;
     [Export] public XRController3D LeftController;
     [Export] public PlayerDamageOverlay PlayerDamageOverlay;
-    [Export] public int MaxHealth = 10;
+    [Export] public AudioStreamPlayer3D PlayerDeathSequenz;
+    [Export] public AudioStreamPlayer3D PlayerHitSequenz;
+    [Export] public float MaxHealth = 10;
+    public float CurrentHealth;
 
     public PlayerCombat PlayerCombat { get; private set; }
     public PlayerInventory PlayerInventory { get; private set; }
@@ -36,6 +39,7 @@ public partial class Player : Node3D
         PlayerInventory = new PlayerInventory(this);
         PlayerInputHandler = new PlayerInputHandler(this);
         PlayerLaserHandler = new PlayerLaserHandler(this);
+        CurrentHealth = MaxHealth;
     }
     
     /// <summary>
@@ -52,5 +56,20 @@ public partial class Player : Node3D
     /// </summary>
     /// <param name="stage">The stage to associate with the player.</param>
     public void SetCurrentStage(BaseStage stage) => CurrentStage = stage;
-    
+
+    /// <summary>
+    /// Initiates the death sequence for the player.
+    /// Plays a death sound and waits for it to finish before transitioning to the menu stage.
+    /// </summary>
+    public async void DeathSequenz()
+    {
+        PlayerDeathSequenz.Play();
+        await ToSignal(PlayerDeathSequenz, "finished");
+        PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
+        
+        CurrentHealth = MaxHealth;
+        PlayerDamageOverlay.SetHealthPercent(CurrentHealth / MaxHealth);
+
+        GameManager.Instance.ReturnToMenu();
+    }
 }

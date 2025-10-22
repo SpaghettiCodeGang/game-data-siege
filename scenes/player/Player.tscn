@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d37yu22av1kym"]
+[gd_scene load_steps=20 format=3 uid="uid://d37yu22av1kym"]
 
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://d2p58ierxfjq0" path="res://scenes/player/MagazineSnapZone.tscn" id="11_5stf6"]
 [ext_resource type="Script" uid="uid://xemm3f5dssyw" path="res://scripts/core/Hitbox.cs" id="12_20koh"]
 [ext_resource type="Script" uid="uid://cc7wnhcki8t8o" path="res://scripts/player/PlayerHeightAttachmentSync.cs" id="13_20koh"]
+[ext_resource type="AudioStream" uid="uid://cgkysttalvgaw" path="res://assets/audio/player/PlayerDeath.mp3" id="15_rn7t0"]
+[ext_resource type="AudioStream" uid="uid://bcaaqoqpcrqlb" path="res://assets/audio/player/PlayerHit.mp3" id="16_8qjgm"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ov1oi"]
 size = Vector2(3, 3)
@@ -26,7 +28,7 @@ emission = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rn7t0"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController", "PlayerDamageOverlay")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController", "PlayerDamageOverlay", "PlayerDeathSequenz", "PlayerHitSequenz")]
 script = ExtResource("1_lvxji")
 RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
 LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
@@ -35,6 +37,8 @@ MagazineScene = ExtResource("3_75vfm")
 RightController = NodePath("XROrigin3D/XRController3D_Right")
 LeftController = NodePath("XROrigin3D/XRController3D_Left")
 PlayerDamageOverlay = NodePath("XROrigin3D/XRCamera3D/PlayerDamageOverlay")
+PlayerDeathSequenz = NodePath("PlayerDeath")
+PlayerHitSequenz = NodePath("PlayerHit")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
@@ -95,3 +99,9 @@ PlayerBody = NodePath("..")
 HitboxCollisionShape = NodePath("../Hitbox/CollisionShape3D")
 RightHolster = NodePath("../RightHolster")
 LeftMagBox = NodePath("../LeftMagBox")
+
+[node name="PlayerDeath" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("15_rn7t0")
+
+[node name="PlayerHit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("16_8qjgm")
