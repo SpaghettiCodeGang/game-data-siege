@@ -39,4 +39,18 @@ public class PlayerCombat
             _player.PlayerDamageOverlay.SetHealthPercent(_player.CurrentHealth / _player.MaxHealth);
         }
     }
+    
+    /// <summary>
+    /// Heals player by 1 point.
+    ///
+    /// This method is called when the player kills an enemy and gives him one HP, if he is below max health.
+    /// </summary>
+    public void Heal()
+    {
+        if (_player.CurrentHealth < _player.MaxHealth)
+        {
+            _player.CurrentHealth += 1;
+            _player.PlayerDamageOverlay.SetHealthPercent(_player.CurrentHealth / _player.MaxHealth);
+        }
+    }
 }

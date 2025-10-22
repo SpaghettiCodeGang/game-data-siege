@@ -78,6 +78,7 @@ public partial class Enemy : CharacterBody3D
                 break;
 
             case EnemyState.Dead:
+                Player.PlayerCombat.Heal();
                 QueueFree();
                 break;
         }
