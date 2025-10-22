@@ -54,6 +54,12 @@ public class PlayerCombat
         _player.PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
         _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
     }
+    
+    /// <summary>
+    /// Heals player by 1 point.
+    ///
+    /// This method is called when the player kills an enemy and gives him one HP, if he is below max health.
+    /// </summary>
     public void Heal()
     {
         if (_currentHealth < _player.MaxHealth)
