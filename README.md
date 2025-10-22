@@ -87,9 +87,9 @@ Alle benötigten **Godot-Addons** liegen im Repo unter `res://addons/` und sind 
 ```
 - Branch-Namen folgen dem Schema:
 ```
-Ticketname-Ticketnummer
+Projektname-Ticketnummer (Jira)
 ```
-> Beispiel: `Tolles-neues-Feature-30`
+> Beispiel: `INTMED-30`
 
 ### Commits
 - Commit-Messages bestehen aus einem **Prefix**, das den Typ der Änderung angibt, gefolgt von einer kurzen Beschreibung.
