@@ -10,6 +10,7 @@ extends XRToolsPickable
 ## They enable communication with the C# player script.
 signal gun_picked_up()
 signal gun_loaded()
+signal gun_despawned()
 
 @export var projectile_scene: PackedScene
 
@@ -52,12 +53,23 @@ func _physics_process(_delta: float):
 ## Called when the gun is picked up.
 ## Emits the `gun_picked_up` signal.
 func _on_gun_picked_up(_pickable):
+	if $LifetimeTimer.is_stopped() == false:
+		$LifetimeTimer.stop()
 	gun_picked_up.emit()
 	
 ## Called when the gun is dropped.
-## Resets physics freeze state.
+## Resets physics freeze state and restarts lifetime timer.
 func _on_gun_dropped(_pickable):
 	freeze = false
+
+	$LifetimeTimer.start()
+	
+## Called when the lifetime timer times out.
+## Emits `gun_despawned` and removes the gun from the scene.
+func _on_lifetime_timer_timeout():
+	on_magazine_ejected()
+	gun_despawned.emit()
+	queue_free()
 	
 ## Called when a magazine has been loaded.
 ## Currently unused, but reserved for future logic.

@@ -38,12 +38,10 @@ glow_enabled = true
 glow_intensity = 0.15
 glow_bloom = 0.15
 
-[node name="Level1" type="Node3D" node_paths=PackedStringArray("EnemyPositionMarker1", "EnemyPositionMarker2", "EnemyPositionMarker3", "PlayerPositionMarker")]
+[node name="Level1" type="Node3D" node_paths=PackedStringArray("SpawnArea", "PlayerPositionMarker")]
 script = ExtResource("1_ttqo4")
 EnemyScene = ExtResource("2_lssdq")
-EnemyPositionMarker1 = NodePath("EnemyPositionMarker1")
-EnemyPositionMarker2 = NodePath("EnemyPositionMarker2")
-EnemyPositionMarker3 = NodePath("EnemyPositionMarker3")
+SpawnArea = NodePath("SpawnArea")
 PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -720,3 +718,6 @@ stream = ExtResource("27_ttqo4")
 volume_db = -10.0
 autoplay = true
 parameters/looping = true
+
+[node name="SpawnArea" type="Node3D" parent="."]
+transform = Transform3D(1500, 0, 0, 0, 1, 0, 0, 0, 1200, -0.79, 0, 0)
