@@ -14,6 +14,7 @@ public class EnemyCombat
     private float _currentCooldown;
     private readonly RandomNumberGenerator _rng;
     private float _currentHealth;
+    public float DamageAddition;
 
     /// <summary>
     /// Initializes a new instance of EnemyCombat with the specified enemy.
@@ -94,12 +95,10 @@ public class EnemyCombat
 
         var projectile = _enemy.ProjectileScene.Instantiate<Projectile>();
         _enemy.GetTree().CurrentScene.AddChild(projectile);
-        
+        projectile.Damage += DamageAddition;
         projectile.GlobalTransform = _enemy.Muzzle.GlobalTransform;
-        
         var baseDirection = -_enemy.GlobalTransform.Basis.Z;
         var spreadDirection = CalculateSpreadDirection(baseDirection);
-        
         projectile.Fire(spreadDirection);
         var pitch = _rng.RandfRange(1, 2);
         _enemy.EnemyGunSound.SetPitchScale(pitch);
