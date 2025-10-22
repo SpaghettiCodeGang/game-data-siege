@@ -31,7 +31,7 @@ public class PlayerCombat
     public void TakeDamage(float damage)
     {
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);
-        
+
         if (_currentHealth <= 0)
         {
             _currentHealth = _player.MaxHealth;
@@ -40,5 +40,13 @@ public class PlayerCombat
         }
 
         _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
+    }
+    public void Heal()
+    {
+        if (_currentHealth < _player.MaxHealth)
+        {
+            _currentHealth += 1;
+            _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
+        }
     }
 }
