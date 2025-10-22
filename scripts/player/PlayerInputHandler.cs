@@ -33,8 +33,7 @@ public class PlayerInputHandler
         // Menü-Button Left
         if (_player.LeftController.IsButtonPressed("menu_button"))
         {
-            _player.PlayerCombat.Reset();
-            GameManager.Instance.ReturnToMenu();
+            _player.ResetAndReturnToMenu();
         }
 
         // X-Button Left

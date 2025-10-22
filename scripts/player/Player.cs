@@ -65,11 +65,23 @@ public partial class Player : Node3D
     {
         PlayerDeathSequenz.Play();
         await ToSignal(PlayerDeathSequenz, "finished");
-        PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
-        
-        CurrentHealth = MaxHealth;
-        PlayerDamageOverlay.SetHealthPercent(CurrentHealth / MaxHealth);
 
+        ResetAndReturnToMenu();
+    }
+    
+    /// <summary>
+    /// Restores the player's health and resets combat-related state.
+    /// 
+    /// This method fully heals the player, triggers any necessary
+    /// cleanup on equipped weapons (such as ejecting the current magazine),
+    /// and updates the damage overlay to reflect full health.
+    /// </summary>
+    public void ResetAndReturnToMenu()
+    {
+        CurrentHealth = MaxHealth;
+        PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
+        PlayerDamageOverlay.SetHealthPercent(CurrentHealth / MaxHealth);
+        
         GameManager.Instance.ReturnToMenu();
     }
 }
