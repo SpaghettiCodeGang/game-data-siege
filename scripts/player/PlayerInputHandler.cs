@@ -33,7 +33,7 @@ public class PlayerInputHandler
         // Menü-Button Left
         if (_player.LeftController.IsButtonPressed("menu_button"))
         {
-            _player.PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
+            _player.PlayerCombat.Reset();
             GameManager.Instance.ReturnToMenu();
         }
 
