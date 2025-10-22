@@ -11,6 +11,7 @@ public partial class Enemy : CharacterBody3D
 {
     [Export] public Node3D Muzzle;
     [Export] public PackedScene ProjectileScene;
+    [Export] public AudioStreamPlayer3D EnemyGunSound;
     
     [ExportGroup("Movement")] 
     [Export] public float MaxRadius = 1.0f;

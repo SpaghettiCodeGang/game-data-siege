@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d37yu22av1kym"]
+[gd_scene load_steps=18 format=3 uid="uid://d37yu22av1kym"]
 
 [ext_resource type="PackedScene" uid="uid://btknduttnmoxf" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_gqjuk"]
 [ext_resource type="Script" uid="uid://dbgvugt0h6vh8" path="res://scripts/player/Player.cs" id="1_lvxji"]
 [ext_resource type="PackedScene" uid="uid://bdi6wt3tyvw3a" path="res://scenes/gun/Gun.tscn" id="2_7oing"]
 [ext_resource type="PackedScene" uid="uid://1l2ja703b70c" path="res://scenes/gun/Magazine.tscn" id="3_75vfm"]
+[ext_resource type="Script" uid="uid://bldk41h765mfa" path="res://scripts/player/PlayerDamageOverlay.cs" id="5_ov1oi"]
 [ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="6_v42im"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="7_0owmy"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_7oing"]
@@ -14,9 +15,18 @@
 [ext_resource type="Script" uid="uid://xemm3f5dssyw" path="res://scripts/core/Hitbox.cs" id="12_20koh"]
 [ext_resource type="Script" uid="uid://cc7wnhcki8t8o" path="res://scripts/player/PlayerHeightAttachmentSync.cs" id="13_20koh"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_ov1oi"]
+size = Vector2(3, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rn7t0"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.2)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rn7t0"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController", "PlayerDamageOverlay")]
 script = ExtResource("1_lvxji")
 RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
 LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
@@ -24,12 +34,21 @@ GunScene = ExtResource("2_7oing")
 MagazineScene = ExtResource("3_75vfm")
 RightController = NodePath("XROrigin3D/XRController3D_Right")
 LeftController = NodePath("XROrigin3D/XRController3D_Left")
+PlayerDamageOverlay = NodePath("XROrigin3D/XRCamera3D/PlayerDamageOverlay")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
 [node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("1_gqjuk")]
+
+[node name="PlayerDamageOverlay" type="Node3D" parent="XROrigin3D/XRCamera3D"]
+script = ExtResource("5_ov1oi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D/PlayerDamageOverlay"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.5)
+mesh = SubResource("QuadMesh_ov1oi")
+surface_material_override/0 = SubResource("StandardMaterial3D_rn7t0")
 
 [node name="XRController3D_Right" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"

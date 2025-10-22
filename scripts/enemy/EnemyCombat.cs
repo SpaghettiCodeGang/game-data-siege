@@ -14,8 +14,6 @@ public class EnemyCombat
     private float _currentCooldown;
     private readonly RandomNumberGenerator _rng;
     private float _currentHealth;
-    
-
 
     /// <summary>
     /// Initializes a new instance of EnemyCombat with the specified enemy.
@@ -103,5 +101,8 @@ public class EnemyCombat
         var spreadDirection = CalculateSpreadDirection(baseDirection);
         
         projectile.Fire(spreadDirection);
+        var pitch = _rng.RandfRange(1, 2);
+        _enemy.EnemyGunSound.SetPitchScale(pitch);
+        _enemy.EnemyGunSound.Play();
     }
 }

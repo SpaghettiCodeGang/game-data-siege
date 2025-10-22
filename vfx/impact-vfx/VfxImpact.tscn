@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://2pve8123aecl"]
+[gd_scene load_steps=21 format=3 uid="uid://2pve8123aecl"]
 
 [ext_resource type="Texture2D" uid="uid://dvh1cshbs3mg5" path="res://vfx/impact-vfx/Circle.png" id="1_rh07c"]
 [ext_resource type="Texture2D" uid="uid://ck1fvrgnexit0" path="res://vfx/impact-vfx/Flare.png" id="2_domr5"]
 [ext_resource type="Texture2D" uid="uid://d0d35fwu7j27b" path="res://vfx/impact-vfx/HollowCircle.png" id="3_cixp7"]
-[ext_resource type="AudioStream" uid="uid://bckip6n7v0apc" path="res://assets/audio/sounds/Impact.mp3" id="4_cixp7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wo5i"]
 transparency = 1
@@ -145,8 +144,3 @@ one_shot = true
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_wo7g4")
 draw_pass_1 = SubResource("QuadMesh_hkc6q")
-
-[node name="SoundImpact" type="AudioStreamPlayer3D" parent="ImpactEffect"]
-stream = ExtResource("4_cixp7")
-volume_db = -10.0
-autoplay = true
