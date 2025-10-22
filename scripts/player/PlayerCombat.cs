@@ -10,17 +10,14 @@ using System;
 public class PlayerCombat
 {
     private readonly Player _player;
-    private float _currentHealth;
     
     /// <summary>
     /// Initializes a new instance of PlayerCombat with the specified player.
-    /// Initializes the player's health from the Player configuration.
     /// </summary>
     /// <param name="player">The player instance this combat system belongs to.</param>
     public PlayerCombat(Player player)
     {
         _player = player;
-        _currentHealth = _player.MaxHealth;
     }
 
     /// <summary>
@@ -30,28 +27,16 @@ public class PlayerCombat
     /// <returns>True if the player survives the damage, false if the damage is fatal.</returns>
     public void TakeDamage(float damage)
     {
-        _currentHealth = Mathf.Max(0f, _currentHealth - damage);
+        _player.CurrentHealth = Mathf.Max(0f, _player.CurrentHealth - damage);
         
-        if (_currentHealth <= 0)
+        if (_player.CurrentHealth <= 0)
         {
-            Reset();
-            GameManager.Instance.ReturnToMenu();
+            _player.DeathSequenz();
         }
-
-        _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
-    }
-
-    /// <summary>
-    /// Restores the player's health and resets combat-related state.
-    /// 
-    /// This method fully heals the player, triggers any necessary
-    /// cleanup on equipped weapons (such as ejecting the current magazine),
-    /// and updates the damage overlay to reflect full health.
-    /// </summary>
-    public void Reset()
-    {
-        _currentHealth = _player.MaxHealth;
-        _player.PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
-        _player.PlayerDamageOverlay.SetHealthPercent(_currentHealth / _player.MaxHealth);
+        else
+        {
+            _player.PlayerHitSequenz.Play();
+            _player.PlayerDamageOverlay.SetHealthPercent(_player.CurrentHealth / _player.MaxHealth);
+        }
     }
 }
