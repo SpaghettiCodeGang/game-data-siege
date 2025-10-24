@@ -74,10 +74,12 @@ public partial class Level1 : BaseStage
     private void OnEnemyDied()
     {
         _currentEnemyCount--;
-        if (_currentEnemyCount < MaxEnemies)
+        _killedEnemiesCounter++;
+        if (_killedEnemiesCounter % 5 == 0)
         {
-            _respawnTimer = RespawnDelay;
-        }
+            _damageIncrease++;
+            GD.Print($"Damage increased by {_damageIncrease}");
+        }        
     }
 
     /// <summary>
@@ -127,14 +129,8 @@ public partial class Level1 : BaseStage
         enemy.GlobalTransform = transform;
         enemy.Player = Player;
         AddChild(enemy);
-        if (_killedEnemiesCounter >= 5)
-        {
-            _damageIncrease++;
-            _killedEnemiesCounter = 0;
-        }        
         enemy.EnemyCombat.DamageAddition += _damageIncrease;
         _currentEnemyCount++;
-        _killedEnemiesCounter++;
         return enemy;
     }
 
@@ -147,5 +143,6 @@ public partial class Level1 : BaseStage
         if (Player == null) return;
         Player.PlayerInventory.RemoveGun();
         Player.PlayerInventory.RemoveMagazine();
+        DataManager.Instance.UpdateScore(_killedEnemiesCounter);
     }
 }
