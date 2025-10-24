@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://flkgi54xe6gb"]
+[gd_scene load_steps=19 format=3 uid="uid://flkgi54xe6gb"]
 
 [ext_resource type="Script" uid="uid://c6ebq4dasxhyp" path="res://scripts/menu/MenuStage.cs" id="1_h4mjy"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_wsfis"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://w2p0s701u5hy" path="res://scenes/furniture/WallWhiteboard.tscn" id="13_3lk1m"]
 [ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="14_valbw"]
 [ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="15_h63ly"]
+[ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="16_mqmb7"]
+[ext_resource type="Script" uid="uid://dfb4sdvug5cud" path="res://scripts/furniture/Scoreboard.cs" id="17_qljjb"]
 
 [sub_resource type="Environment" id="Environment_3lk1m"]
 background_mode = 1
@@ -116,3 +118,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.79
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, 0)
+
+[node name="Whiteboard" parent="." instance=ExtResource("16_mqmb7")]
+transform = Transform3D(0.9320079, 0, -0.36243805, 0, 1, 0, 0.36243805, 0, 0.9320079, 1.759382, 0.0361825, -3.1016235)
+script = ExtResource("17_qljjb")
