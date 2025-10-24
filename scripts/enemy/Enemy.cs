@@ -79,7 +79,7 @@ public partial class Enemy : CharacterBody3D
 
             case EnemyState.Dead:
                 Player.PlayerCombat.Heal();
-                QueueFree();
+                DeathSequence();
                 break;
         }
     }
@@ -103,11 +103,15 @@ public partial class Enemy : CharacterBody3D
     /// </summary>
     public async void DeathSequence()
     {
-        int soundNumber = _rng.RandiRange(1, 4);
+        SetPhysicsProcess(false);
+        SetProcess(false);
+        
+        var soundNumber = _rng.RandiRange(1, 4);
         var deathSound = GetNode<AudioStreamPlayer3D>("Death" + soundNumber);
         deathSound.Play();
         await ToSignal(deathSound, "finished");
         await Task.Delay(500);
-        CurrentState = EnemyState.Dead;
+        
+        QueueFree();
     }
 }

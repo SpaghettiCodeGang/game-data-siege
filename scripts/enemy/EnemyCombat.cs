@@ -56,12 +56,7 @@ public class EnemyCombat
         if (isHeadshot) _currentHealth = 0;
         else _currentHealth -= damage;
            
-        
-        if (_currentHealth <= 0)
-        {
-            _enemy.CurrentState = Enemy.EnemyState.Passive;
-            _enemy.DeathSequence();
-        }
+        if (_currentHealth <= 0) _enemy.CurrentState = Enemy.EnemyState.Dead;
     }
 
     /// <summary>
