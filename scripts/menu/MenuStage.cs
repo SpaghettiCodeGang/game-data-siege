@@ -11,10 +11,6 @@ public partial class MenuStage : BaseStage
     {
         if (Player == null) return;
         
-        // Move the player to the world origin and reset rotation
-        Player.GlobalPosition = Vector3.Zero;
-        Player.GlobalRotation = Vector3.Zero;
-        
         Player.PlayerLaserHandler?.ShowAllLasers();
 
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
