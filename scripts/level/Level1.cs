@@ -78,7 +78,6 @@ public partial class Level1 : BaseStage
         if (_killedEnemiesCounter % 5 == 0)
         {
             _damageIncrease++;
-            GD.Print($"Damage increased by {_damageIncrease}");
         }        
     }
 

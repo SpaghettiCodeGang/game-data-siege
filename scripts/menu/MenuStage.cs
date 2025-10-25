@@ -7,15 +7,11 @@ using Godot;
 /// <author>Sören Lehmann</author>
 public partial class MenuStage : BaseStage
 {
-    public override async void OnEnter()
+    public override void OnEnter()
     {
         if (Player == null) return;
         
         Player.PlayerLaserHandler?.ShowAllLasers();
-
-        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        GD.Print("Entered Menu Stage, Highscore:" + DataManager.Instance.Highscore);
-        GD.Print("Current Score:" + DataManager.Instance.CurrentScore);
     }
 
     public override void OnExit()
