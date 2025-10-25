@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://flkgi54xe6gb"]
+[gd_scene load_steps=19 format=3 uid="uid://flkgi54xe6gb"]
 
 [ext_resource type="Script" uid="uid://c6ebq4dasxhyp" path="res://scripts/menu/MenuStage.cs" id="1_h4mjy"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_wsfis"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://w2p0s701u5hy" path="res://scenes/furniture/WallWhiteboard.tscn" id="13_3lk1m"]
 [ext_resource type="PackedScene" uid="uid://nvnmrad7lex7" path="res://scenes/level-boundaries/WallDoor.tscn" id="14_valbw"]
 [ext_resource type="PackedScene" uid="uid://cwiirf2apvhjp" path="res://scenes/level-boundaries/WallWindows.tscn" id="15_h63ly"]
+[ext_resource type="PackedScene" uid="uid://c1ad3ytbwqvfc" path="res://scenes/furniture/Whiteboard.tscn" id="16_mqmb7"]
+[ext_resource type="Script" uid="uid://dfb4sdvug5cud" path="res://scripts/furniture/Scoreboard.cs" id="17_qljjb"]
 
 [sub_resource type="Environment" id="Environment_3lk1m"]
 background_mode = 1
@@ -26,8 +28,9 @@ glow_bloom = 0.2
 fog_enabled = true
 fog_light_color = Color(0.7078427, 0.7357314, 0.7791171, 1)
 
-[node name="MenuStage" type="Node3D"]
+[node name="MenuStage" type="Node3D" node_paths=PackedStringArray("PlayerPositionMarker")]
 script = ExtResource("1_h4mjy")
+PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3lk1m")
@@ -99,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0352023, 0.8902856, -1.8388
 transform = Transform3D(-0.05618739, 0, 0.99842024, 0, 1, 0, -0.99842024, 0, -0.05618739, -1.5109318, 0.029040553, -2.5710018)
 
 [node name="Groundplate" parent="Props" instance=ExtResource("4_irgad")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061393738, 0.016047716, 0.05897522)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061, 0.016, 0.053)
 
 [node name="WallWhiteboard" parent="Props" instance=ExtResource("13_3lk1m")]
 transform = Transform3D(-6.119594e-08, 0, -1.4, 0, 1.4, 0, 1.4, 0, -6.119594e-08, 0.0010331869, 1.9551977, -3.9194589)
@@ -112,3 +115,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.7
 
 [node name="Wall-Windows2" parent="Props" instance=ExtResource("15_h63ly")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.7999997, 0, 1.6)
+
+[node name="PlayerPositionMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, 0)
+
+[node name="Whiteboard" parent="." instance=ExtResource("16_mqmb7")]
+transform = Transform3D(0.9320079, 0, -0.36243805, 0, 1, 0, 0.36243805, 0, 0.9320079, 1.759382, 0.0361825, -3.1016235)
+script = ExtResource("17_qljjb")
