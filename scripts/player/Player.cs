@@ -20,7 +20,9 @@ public partial class Player : Node3D
     [Export] public AudioStreamPlayer3D PlayerDeathSequenz;
     [Export] public AudioStreamPlayer3D PlayerHitSequenz;
     [Export] public float MaxHealth = 10;
+    
     public float CurrentHealth;
+    private bool _isDead;
 
     public PlayerCombat PlayerCombat { get; private set; }
     public PlayerInventory PlayerInventory { get; private set; }
@@ -63,6 +65,9 @@ public partial class Player : Node3D
     /// </summary>
     public async void DeathSequenz()
     {
+        if (_isDead) return;
+        _isDead = true;
+        
         PlayerDeathSequenz.Play();
         await ToSignal(PlayerDeathSequenz, "finished");
 
@@ -78,6 +83,7 @@ public partial class Player : Node3D
     /// </summary>
     public void ResetAndReturnToMenu()
     {
+        _isDead =  false;
         CurrentHealth = MaxHealth;
         PlayerInventory?.CurrentGun?.Call("on_magazine_ejected");
         PlayerDamageOverlay.SetHealthPercent(CurrentHealth / MaxHealth);
