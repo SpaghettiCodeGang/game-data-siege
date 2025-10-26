@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4xohn6b0gx8h"]
+[gd_scene load_steps=9 format=3 uid="uid://b4xohn6b0gx8h"]
 
 [ext_resource type="Script" uid="uid://66uptlvba263" path="res://scripts/Main.cs" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://blbgb5w7goe71" path="res://scripts/core/GameManager.cs" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d37yu22av1kym" path="res://scenes/player/Player.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://flkgi54xe6gb" path="res://scenes/menu/MenuStage.tscn" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://cupcs0kvlil15" path="res://scripts/core/DataManager.cs" id="4_c01mt"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="5_85g3d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
@@ -25,6 +26,9 @@ script = ExtResource("2_jyhfs")
 MenuStage = ExtResource("3_tbgi4")
 _currentStage = NodePath("../CurrentStage")
 _player = NodePath("../Player")
+
+[node name="DataManager" type="Node" parent="."]
+script = ExtResource("4_c01mt")
 
 [node name="StartXR" parent="." instance=ExtResource("5_85g3d")]
 
