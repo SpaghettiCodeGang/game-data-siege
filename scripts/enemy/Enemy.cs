@@ -20,7 +20,7 @@ public partial class Enemy : CharacterBody3D
     [Export] public float TurnSpeed = 1.0f;
 
     [ExportGroup("Combat")] 
-    [Export] public int MaxHealth = 10;
+    [Export] public int MaxHealth = 3;
     [Export] public float MaxSpreadAngle = 15.0f;
     [Export] public float AccurateShotChance = 0.7f;
     [Export] public float AccurateSpreadAngle = 5.0f;
