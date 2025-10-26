@@ -118,9 +118,9 @@ public partial class TutorialStage : BaseStage
 				"Deine Pistole ist noch nicht geladen. Das musst du selbst übernehmen, dabei kann ich leider nicht helfen. " +
 				"Nimm ein Batterie-Magazin mit Ⓡ③ von deinem Gürtel und lade deine Elektro-Pistole. " + 
 				"Mit Ⓑ kannst du das Magazin wieder auswerfen.",
-				"Lade die Waffe | 🅧 - Zurück",
+				"Lade die Waffe",
 				["Loaded"],
-				["X"],
+				[],
 				() =>
 				{
 					Player.PlayerInventory.SpawnMagazine();
@@ -130,10 +130,9 @@ public partial class TutorialStage : BaseStage
 
 			new TutorialStep(
 				"Bitte hilf mir, die infizierten Bots auszuschalten, bevor sie die gesamte DHSN übernehmen!",
-				"Menü-Taste - Hauptmenü " +
-				"🅧 - Zurück",
+				"Menü-Taste - Hauptmenü",
 				[],
-				["X"],
+				[],
 				() =>
 				{
 					_enemy.CurrentState = Enemy.EnemyState.Aggressive;

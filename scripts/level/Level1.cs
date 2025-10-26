@@ -14,6 +14,8 @@ public partial class Level1 : BaseStage
     [Export] public float RespawnDelay = 5.0f;
     [Export] public float AggressiveDelay = 3.0f;
     [Export] public int MaxEnemies = 5;
+    [Export] public int KillsPerDamageIncrease = 10;
+    
     private int _currentEnemyCount;
     private int _killedEnemiesCounter;
     private double _respawnTimer;
@@ -75,7 +77,7 @@ public partial class Level1 : BaseStage
     {
         _currentEnemyCount--;
         _killedEnemiesCounter++;
-        if (_killedEnemiesCounter % 5 == 0)
+        if (_killedEnemiesCounter % KillsPerDamageIncrease == 0)
         {
             _damageIncrease++;
         }        
