@@ -28,7 +28,7 @@ emission = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rn7t0"]
 
-[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController", "PlayerDamageOverlay", "PlayerDeathSequenz", "PlayerHitSequenz")]
+[node name="Player" type="Node3D" node_paths=PackedStringArray("RightHolster", "LeftMagBox", "RightController", "LeftController", "PlayerDamageOverlay", "PlayerDeathSequence", "PlayerHitSequence")]
 script = ExtResource("1_lvxji")
 RightHolster = NodePath("XROrigin3D/PlayerBody/RightHolster")
 LeftMagBox = NodePath("XROrigin3D/PlayerBody/LeftMagBox")
@@ -37,8 +37,8 @@ MagazineScene = ExtResource("3_75vfm")
 RightController = NodePath("XROrigin3D/XRController3D_Right")
 LeftController = NodePath("XROrigin3D/XRController3D_Left")
 PlayerDamageOverlay = NodePath("XROrigin3D/XRCamera3D/PlayerDamageOverlay")
-PlayerDeathSequenz = NodePath("PlayerDeath")
-PlayerHitSequenz = NodePath("PlayerHit")
+PlayerDeathSequence = NodePath("PlayerDeath")
+PlayerHitSequence = NodePath("PlayerHit")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 

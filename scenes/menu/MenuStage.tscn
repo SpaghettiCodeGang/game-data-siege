@@ -32,14 +32,21 @@ fog_light_color = Color(0.7078427, 0.7357314, 0.7791171, 1)
 script = ExtResource("1_h4mjy")
 PlayerPositionMarker = NodePath("PlayerPositionMarker")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3lk1m")
+[node name="PlayerPositionMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, 0)
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("2_wsfis")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9924829, -3.8624082)
 screen_size = Vector2(1.5, 1)
 scene = ExtResource("3_sny8h")
 scene_properties_keys = PackedStringArray()
+
+[node name="Whiteboard" parent="." instance=ExtResource("16_mqmb7")]
+transform = Transform3D(0.9320079, 0, -0.36243805, 0, 1, 0, 0.36243805, 0, 0.9320079, 1.759382, 0.0361825, -3.1016235)
+script = ExtResource("17_qljjb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3lk1m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.106958255, 0.9942636, 0, -0.9942636, 0.106958255, 0, 8.106989, 1.958808)
@@ -115,10 +122,3 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.7
 
 [node name="Wall-Windows2" parent="Props" instance=ExtResource("15_h63ly")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.7999997, 0, 1.6)
-
-[node name="PlayerPositionMarker" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, 0)
-
-[node name="Whiteboard" parent="." instance=ExtResource("16_mqmb7")]
-transform = Transform3D(0.9320079, 0, -0.36243805, 0, 1, 0, 0.36243805, 0, 0.9320079, 1.759382, 0.0361825, -3.1016235)
-script = ExtResource("17_qljjb")
