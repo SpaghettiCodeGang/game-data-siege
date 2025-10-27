@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b0khtldnuikw2"
-path="res://.godot/imported/whiteboard.glb-ab9449497f2784846998ab9c76144179.scn"
+path="res://.godot/imported/Whiteboard.glb-42e3f4bf2cbc3dab970ba6fbc74a4567.scn"
 
 [deps]
 
-source_file="res://assets/furniture/whiteboard.glb"
-dest_files=["res://.godot/imported/whiteboard.glb-ab9449497f2784846998ab9c76144179.scn"]
+source_file="res://assets/furniture/Whiteboard.glb"
+dest_files=["res://.godot/imported/Whiteboard.glb-42e3f4bf2cbc3dab970ba6fbc74a4567.scn"]
 
 [params]
 

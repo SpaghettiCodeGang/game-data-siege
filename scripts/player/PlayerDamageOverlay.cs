@@ -11,12 +11,12 @@ using Godot;
 /// <author>Sören Lehmann</author>
 public partial class PlayerDamageOverlay : Node3D
 {
-    [ExportGroup("Verhalten")]
+    [ExportGroup("Behavior")]
     [Export] public float TriggerThreshold = 0.5f;
     [Export] public float FadeSpeed = 2.0f;
     [Export] public float PulseSpeed = 3.0f;
 
-    [ExportGroup("Intensität")]
+    [ExportGroup("Intensity")]
     [Export] public float BaseEmission = 0.2f;
     [Export] public float PulseAmplitude = 1.0f;
     [Export] public float MaxEmission = 5.0f;
