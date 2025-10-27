@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://d22p3qs2bocde"]
+
+[ext_resource type="Script" uid="uid://dmuvcb873lpk5" path="res://scripts/gun/Projectile.cs" id="1_tt8rk"]
+[ext_resource type="PackedScene" uid="uid://bohed0d2xmqll" path="res://vfx/impact-vfx/VfxImpactRed.tscn" id="2_tt8rk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8ftho"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oulbh"]
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vc17"]
+transparency = 1
+albedo_color = Color(0.7535918, 0.0002707836, 5.7756904e-07, 0.47843137)
+emission_enabled = true
+emission = Color(0.7764706, 0, 0, 1)
+emission_energy_multiplier = 2.52
+
+[sub_resource type="Gradient" id="Gradient_4rp1d"]
+offsets = PackedFloat32Array(0, 0.008333334, 0.325, 0.875, 1)
+colors = PackedColorArray(0, 0.39151636, 0.74060166, 0, 0.7490196, 0, 0, 1, 0.99998814, 0.40554982, 0.35312173, 0.558, 1, 0.94884515, 0.94180316, 0.09644446, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g5xln"]
+gradient = SubResource("Gradient_4rp1d")
+height = 256
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xirki"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("GradientTexture2D_g5xln")
+emission_enabled = true
+emission = Color(1, 0.3019608, 0.3019608, 1)
+emission_energy_multiplier = 4.11
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_kja17"]
+material = SubResource("StandardMaterial3D_xirki")
+size = 0.013
+sections = 2
+section_length = 0.1
+section_segments = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_j37tr"]
+size = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osmrn"]
+albedo_color = Color(0.5058824, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.62152386, 0.62152386, 0.6215238, 1)
+emission_energy_multiplier = 5.69
+
+[node name="Projectile" type="RigidBody3D" node_paths=PackedStringArray("ImpactEffect")]
+collision_layer = 2048
+collision_mask = 8193
+mass = 0.001
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_tt8rk")
+ImpactEffect = NodePath("VfxImpactRed")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+shape = SubResource("SphereShape3D_8ftho")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000350222, 0.00027480518, 5.802035e-05)
+mesh = SubResource("BoxMesh_oulbh")
+surface_material_override/0 = SubResource("StandardMaterial3D_1vc17")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0.000350222, -0.00027480518, -0.09012728)
+mesh = SubResource("RibbonTrailMesh_kja17")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000350222, -0.00027480518, -5.802035e-05)
+mesh = SubResource("BoxMesh_j37tr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_osmrn")
+
+[node name="VfxImpactRed" parent="." instance=ExtResource("2_tt8rk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
