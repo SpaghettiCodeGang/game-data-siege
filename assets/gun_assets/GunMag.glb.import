@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://p6bh07jcmxm1"
-path="res://.godot/imported/beginner_room.glb-34b3c8140e65b0465b682a2f92e429b4.scn"
+uid="uid://c875hsg0s3ppp"
+path="res://.godot/imported/GunMag.glb-70823e3293189abc98fc44e267aab78b.scn"
 
 [deps]
 
-source_file="res://assets/beginner_room.glb"
-dest_files=["res://.godot/imported/beginner_room.glb-34b3c8140e65b0465b682a2f92e429b4.scn"]
+source_file="res://assets/gun_assets/GunMag.glb"
+dest_files=["res://.godot/imported/GunMag.glb-70823e3293189abc98fc44e267aab78b.scn"]
 
 [params]
 

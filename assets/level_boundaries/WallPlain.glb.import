@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c875hsg0s3ppp"
-path="res://.godot/imported/Gun-Mag.glb-abb8799645e203e3a11ffeafa6e5636a.scn"
+uid="uid://by0y58rk47x0p"
+path="res://.godot/imported/WallPlain.glb-f4f7a896c4bcfb1607568ba4a740892c.scn"
 
 [deps]
 
-source_file="res://assets/gun_assets/Gun-Mag.glb"
-dest_files=["res://.godot/imported/Gun-Mag.glb-abb8799645e203e3a11ffeafa6e5636a.scn"]
+source_file="res://assets/level_boundaries/WallPlain.glb"
+dest_files=["res://.godot/imported/WallPlain.glb-f4f7a896c4bcfb1607568ba4a740892c.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=1
+meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=1
+gltf/naming_version=2
 gltf/embedded_image_handling=1

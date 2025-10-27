@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cfiqjsca2gmq6"
-path="res://.godot/imported/Gun-Model.glb-28ab420c0c422f48589542ef8fc524e1.scn"
+uid="uid://8md1uku38l7p"
+path="res://.godot/imported/ColumnAssets.glb-91f2fe7abcd29ed67a33594157d473c2.scn"
 
 [deps]
 
-source_file="res://assets/gun_assets/Gun-Model.glb"
-dest_files=["res://.godot/imported/Gun-Model.glb-28ab420c0c422f48589542ef8fc524e1.scn"]
+source_file="res://assets/level_boundaries/ColumnAssets.glb"
+dest_files=["res://.godot/imported/ColumnAssets.glb-91f2fe7abcd29ed67a33594157d473c2.scn"]
 
 [params]
 
@@ -38,5 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=1
+gltf/naming_version=2
 gltf/embedded_image_handling=1
