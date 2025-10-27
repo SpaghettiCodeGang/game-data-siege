@@ -51,7 +51,7 @@ emission = Color(0.62152386, 0.62152386, 0.6215238, 1)
 emission_energy_multiplier = 5.69
 
 [node name="Projectile" type="RigidBody3D" node_paths=PackedStringArray("ImpactEffect")]
-collision_layer = 2048
+collision_layer = 16384
 collision_mask = 1025
 mass = 0.001
 gravity_scale = 0.0
