@@ -17,8 +17,8 @@ public partial class Player : Node3D
     [Export] public XRController3D RightController;
     [Export] public XRController3D LeftController;
     [Export] public PlayerDamageOverlay PlayerDamageOverlay;
-    [Export] public AudioStreamPlayer3D PlayerDeathSequenz;
-    [Export] public AudioStreamPlayer3D PlayerHitSequenz;
+    [Export] public AudioStreamPlayer3D PlayerDeathSequence;
+    [Export] public AudioStreamPlayer3D PlayerHitSequence;
     [Export] public float MaxHealth = 10;
     
     public float CurrentHealth;
@@ -63,13 +63,13 @@ public partial class Player : Node3D
     /// Initiates the death sequence for the player.
     /// Plays a death sound and waits for it to finish before transitioning to the menu stage.
     /// </summary>
-    public async void DeathSequenz()
+    public async void DeathSequence()
     {
         if (_isDead) return;
         _isDead = true;
         
-        PlayerDeathSequenz.Play();
-        await ToSignal(PlayerDeathSequenz, "finished");
+        PlayerDeathSequence.Play();
+        await ToSignal(PlayerDeathSequence, "finished");
 
         ResetAndReturnToMenu();
     }

@@ -18,7 +18,7 @@ public partial class Projectile : RigidBody3D
 
 	/// <summary>
 	/// Called when the node enters the scene tree for the first time.
-	/// Cconnects physics collision signals.
+	/// Connects physics collision signals.
 	/// </summary>
 	public override void _Ready()
 	{

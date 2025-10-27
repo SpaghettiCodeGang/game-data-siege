@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c875hsg0s3ppp"
-path="res://.godot/imported/Gun-Mag.glb-abb8799645e203e3a11ffeafa6e5636a.scn"
+uid="uid://b0khtldnuikw2"
+path="res://.godot/imported/Whiteboard.glb-42e3f4bf2cbc3dab970ba6fbc74a4567.scn"
 
 [deps]
 
-source_file="res://assets/gun_assets/Gun-Mag.glb"
-dest_files=["res://.godot/imported/Gun-Mag.glb-abb8799645e203e3a11ffeafa6e5636a.scn"]
+source_file="res://assets/furniture/Whiteboard.glb"
+dest_files=["res://.godot/imported/Whiteboard.glb-42e3f4bf2cbc3dab970ba6fbc74a4567.scn"]
 
 [params]
 

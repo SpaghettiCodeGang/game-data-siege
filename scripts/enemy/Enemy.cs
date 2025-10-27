@@ -47,7 +47,7 @@ public partial class Enemy : CharacterBody3D
     /// <summary>
     /// Initializes the enemy's movement component.
     /// Initializes the enemy's combat component.
-    /// Sets up random number generation for deathsequence variability.
+    /// Sets up random number generation for death sequence variability.
     /// </summary>
     public override void _Ready()
     {

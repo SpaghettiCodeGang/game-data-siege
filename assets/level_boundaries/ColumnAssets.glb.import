@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://by0y58rk47x0p"
-path="res://.godot/imported/WallPlain.glb-409224c93aade5d5c25c996a46071d0a.scn"
+uid="uid://8md1uku38l7p"
+path="res://.godot/imported/ColumnAssets.glb-91f2fe7abcd29ed67a33594157d473c2.scn"
 
 [deps]
 
-source_file="res://assets/level-boundaries/WallPlain.glb"
-dest_files=["res://.godot/imported/WallPlain.glb-409224c93aade5d5c25c996a46071d0a.scn"]
+source_file="res://assets/level_boundaries/ColumnAssets.glb"
+dest_files=["res://.godot/imported/ColumnAssets.glb-91f2fe7abcd29ed67a33594157d473c2.scn"]
 
 [params]
 
@@ -24,7 +24,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=2
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true

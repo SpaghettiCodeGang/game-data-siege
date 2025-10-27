@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfkbhlj3rlcaa"
-path="res://.godot/imported/desk.glb-a6aa6cc4cee98fe8980a8a6d69cc5cef.scn"
+uid="uid://c875hsg0s3ppp"
+path="res://.godot/imported/GunMag.glb-70823e3293189abc98fc44e267aab78b.scn"
 
 [deps]
 
-source_file="res://assets/desk.glb"
-dest_files=["res://.godot/imported/desk.glb-a6aa6cc4cee98fe8980a8a6d69cc5cef.scn"]
+source_file="res://assets/gun_assets/GunMag.glb"
+dest_files=["res://.godot/imported/GunMag.glb-70823e3293189abc98fc44e267aab78b.scn"]
 
 [params]
 

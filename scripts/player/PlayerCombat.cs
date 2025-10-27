@@ -31,11 +31,11 @@ public class PlayerCombat
         
         if (_player.CurrentHealth <= 0)
         {
-            _player.DeathSequenz();
+            _player.DeathSequence();
         }
         else
         {
-            _player.PlayerHitSequenz.Play();
+            _player.PlayerHitSequence.Play();
             _player.PlayerDamageOverlay.SetHealthPercent(_player.CurrentHealth / _player.MaxHealth);
         }
     }

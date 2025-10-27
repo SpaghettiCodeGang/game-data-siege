@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://blc216fwjk1gr"
-path="res://.godot/imported/Groundplate.glb-7d81afaafe1e982897fa2f53eb34d262.scn"
+uid="uid://4gd0yuqhugjq"
+path="res://.godot/imported/Celling.glb-73352ececc8721de3f5d3d7b5cce8ebd.scn"
 
 [deps]
 
-source_file="res://assets/level-boundaries/Groundplate.glb"
-dest_files=["res://.godot/imported/Groundplate.glb-7d81afaafe1e982897fa2f53eb34d262.scn"]
+source_file="res://assets/level_boundaries/Celling.glb"
+dest_files=["res://.godot/imported/Celling.glb-73352ececc8721de3f5d3d7b5cce8ebd.scn"]
 
 [params]
 
